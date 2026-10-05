@@ -1,0 +1,82 @@
+<view class="container">
+  <!-- 结果头部 -->
+  <view class="result-header">
+    <view class="result-hero">
+      <view class="result-icon">🎉</view>
+      <view class="result-title">{{toolName}}</view>
+      <view class="result-sub">生成成功！快复制分享给朋友吧~</view>
+    </view>
+  </view>
+
+  <!-- 结果内容卡片 -->
+  <view class="card result-card">
+    <view class="result-card-title">✨ 生成结果</view>
+
+    <block wx:for="{{blocks}}" wx:key="index" wx:for-item="b">
+      <!-- 文本 -->
+      <view wx:if="{{b.type === 'text'}}" class="blk-text">{{b.text}}</view>
+      <view wx:if="{{b.type === 'tip'}}" class="blk-tip">{{b.text}}</view>
+
+      <!-- 模板表情包文字 -->
+      <view wx:if="{{b.type === 'memeText'}}" class="blk-meme">{{b.text}}</view>
+
+      <!-- 列表 -->
+      <view wx:if="{{b.type === 'list'}}" class="blk-list">
+        <view wx:for="{{b.items}}" wx:key="rank" wx:for-item="it" class="list-item">
+          <view class="list-rank">{{it.rank}}</view>
+          <view class="list-body">
+            <view class="list-title">{{it.title}}</view>
+            <view wx:if="{{it.sub}}" class="list-sub">{{it.sub}}</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 键值 -->
+      <view wx:if="{{b.type === 'kv'}}" class="blk-kv">
+        <view wx:for="{{b.items}}" wx:key="key" wx:for-item="kv" class="kv-row">
+          <text class="kv-key">{{kv.key}}</text>
+          <text class="kv-val">{{kv.value}}</text>
+        </view>
+      </view>
+
+      <!-- 藏头诗 -->
+      <view wx:if="{{b.type === 'poem'}}" class="blk-poem">
+        <view class="poem-title" wx:if="{{b.title}}">《{{b.title}}》</view>
+        <view class="poem-line" wx:for="{{b.lines}}" wx:key="index" wx:for-item="line">{{line}}</view>
+        <view class="poem-sub" wx:if="{{b.sub}}">{{b.sub}}</view>
+      </view>
+
+      <!-- 评分 -->
+      <view wx:if="{{b.type === 'score'}}" class="blk-score">
+        <view class="score-num">{{b.score}}</view>
+        <view class="score-label">综合评分</view>
+        <view class="score-motto" wx:if="{{b.motto}}">「{{b.motto}}」</view>
+      </view>
+
+      <!-- 图片 -->
+      <view wx:if="{{b.type === 'image'}}" class="blk-image">
+        <image src="{{b.url}}" mode="widthFix" bindtap="onSaveImage" data-url="{{b.url}}" />
+        <view class="image-hint">点按图片可保存到相册</view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-section">
+    <view class="btn-main-row">
+      <button class="btn-primary btn-copy" bindtap="onCopy">
+        <text wx:if="{{!copied}}">📋 复制结果</text>
+        <text wx:else>✅ 已复制</text>
+      </button>
+      <button class="btn-primary btn-share" open-type="share">
+        🎁 分享好友
+      </button>
+    </view>
+    <view class="btn-second-row">
+      <button class="btn-plain" bindtap="goBackTool">🔄 再玩一次</button>
+      <button class="btn-plain" bindtap="goHome">🏠 返回首页</button>
+    </view>
+  </view>
+
+  <view style="height: 60rpx;"></view>
+</view>

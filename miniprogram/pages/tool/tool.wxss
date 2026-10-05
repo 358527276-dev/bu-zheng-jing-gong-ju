@@ -1,0 +1,198 @@
+/* ===== 工具头部 ===== */
+.tool-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40rpx 32rpx !important;
+  border-radius: 24rpx !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-head.vip-head {
+  background: linear-gradient(180deg, #fef3c7 0%, #ffffff 60%) !important;
+  border: 2rpx solid #fde68a;
+}
+
+.tool-icon-bg {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10rpx 28rpx rgba(0, 0, 0, 0.15);
+  margin-bottom: 16rpx;
+}
+
+.tool-big-icon {
+  font-size: 64rpx;
+}
+
+.tool-title {
+  font-size: 40rpx;
+  font-weight: 800;
+  margin-top: 4rpx;
+  color: #1f2937;
+}
+
+.tool-desc {
+  font-size: 26rpx;
+  color: #9ca3af;
+  margin-top: 12rpx;
+  line-height: 1.6;
+}
+
+.tool-meta {
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.tag-free {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  color: #059669;
+  font-weight: 700;
+}
+
+.tag-count {
+  background: #f3f4f6;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* ===== 次数信息卡 ===== */
+.uses-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 28rpx 20rpx !important;
+  border-radius: 20rpx !important;
+}
+
+.uses-item {
+  flex: 1;
+  text-align: center;
+}
+
+.uses-num {
+  font-size: 44rpx;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff6b9d, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.uses-num.uses-ad {
+  display: inline-block;
+  width: 56rpx;
+  height: 56rpx;
+  line-height: 48rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6b9d, #c084fc);
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  font-size: 36rpx;
+  font-weight: 700;
+  box-shadow: 0 6rpx 16rpx rgba(192, 132, 252, 0.4);
+}
+
+.uses-label {
+  font-size: 22rpx;
+  color: #9ca3af;
+  margin-top: 6rpx;
+}
+
+.uses-divider {
+  width: 2rpx;
+  height: 60rpx;
+  background: linear-gradient(180deg, transparent, #e5e7eb, transparent);
+}
+
+/* ===== 表单卡片 ===== */
+.form-card {
+  border-radius: 20rpx !important;
+  padding: 32rpx 28rpx !important;
+}
+
+.form-card-title {
+  font-size: 32rpx;
+  font-weight: 800;
+  margin-bottom: 8rpx;
+  color: #1f2937;
+}
+
+/* ===== VIP提示卡 ===== */
+.vip-tip-card {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 28rpx !important;
+  background: linear-gradient(135deg, #fef3c7, #fef9e7) !important;
+  border: 2rpx solid #fde68a;
+  border-radius: 16rpx !important;
+}
+
+.vip-tip-icon {
+  font-size: 48rpx;
+  margin-right: 20rpx;
+}
+
+.vip-tip-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #92400e;
+}
+
+.vip-tip-desc {
+  font-size: 22rpx;
+  color: #b45309;
+  margin-top: 4rpx;
+}
+
+/* ===== 生成按钮 ===== */
+.generate-wrap {
+  margin-top: 8rpx;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  padding: 20rpx 0;
+  background: linear-gradient(180deg, transparent, #fff5f7 30%);
+}
+
+.btn-generate {
+  width: 100%;
+  height: 96rpx;
+  line-height: 96rpx;
+  font-size: 34rpx;
+  font-weight: 800;
+  border-radius: 999rpx !important;
+  background: linear-gradient(135deg, #ff6b9d 0%, #c084fc 50%, #60a5fa 100%) !important;
+  box-shadow: 0 12rpx 32rpx rgba(192, 132, 252, 0.5) !important;
+  letter-spacing: 4rpx;
+  transition: all 0.2s ease;
+}
+
+.btn-generate[disabled] {
+  opacity: 0.6;
+  background: linear-gradient(135deg, #d1d5db, #9ca3af) !important;
+  box-shadow: none !important;
+}
+
+.btn-sub-tip {
+  text-align: center;
+  font-size: 22rpx;
+  color: #9ca3af;
+  margin-top: 12rpx;
+}
+
+.loading-dot {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

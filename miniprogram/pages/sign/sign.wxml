@@ -1,0 +1,37 @@
+<view class="container">
+  <!-- 每日签到 -->
+  <view class="card" wx:if="{{signStatus}}">
+    <view class="sec-title">📅 每日签到 <text class="sec-sub">已连签 {{signStatus.signDays}} 天</text></view>
+    <view class="week-row">
+      <view wx:for="{{signStatus.weekList}}" wx:key="day" class="day-item {{item.isSigned ? 'signed' : ''}} {{item.isToday ? 'today' : ''}}">
+        <view class="day-num">D{{item.day}}</view>
+        <view class="day-reward">+{{item.freeUses}}次</view>
+        <view class="day-check">{{item.isSigned ? '✓' : '·'}}</view>
+      </view>
+    </view>
+    <view class="next-reward" wx:if="{{signStatus.nextReward && signStatus.nextReward.day}}">
+      🎯 再签 {{signStatus.nextReward.day - signStatus.signDays}} 天：{{signStatus.nextReward.desc}}
+    </view>
+    <button class="btn-primary" bindtap="handleSign" disabled="{{signStatus.todaySigned}}">
+      {{signStatus.todaySigned ? '今日已签到 ✓' : '立即签到'}}
+    </button>
+  </view>
+
+  <!-- 任务列表 -->
+  <view class="card">
+    <view class="sec-title">🎯 做任务赚免费次数</view>
+    <view wx:for="{{tasks}}" wx:key="id" class="task-item">
+      <view class="task-body">
+        <view class="task-name">{{item.name}}</view>
+        <view class="task-desc">{{item.desc}}</view>
+      </view>
+      <button
+        class="task-btn {{item.completed ? 'done' : ''}}"
+        size="mini"
+        data-id="{{item.id}}"
+        bindtap="handleTask"
+        disabled="{{item.completed}}"
+      >{{item.completed ? '已完成' : '去做'}}</button>
+    </view>
+  </view>
+</view>

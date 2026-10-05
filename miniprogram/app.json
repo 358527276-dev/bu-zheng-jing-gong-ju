@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/tool/tool",
+    "pages/result/result",
+    "pages/profile/profile",
+    "pages/sign/sign",
+    "pages/invite/invite",
+    "pages/wallet/wallet",
+    "pages/orders/orders"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "不正经工具箱",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#fff5f7",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#ff6b9d",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "工具箱",
+        "iconPath": "assets/tab-home.png",
+        "selectedIconPath": "assets/tab-home-on.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/tab-me.png",
+        "selectedIconPath": "assets/tab-me-on.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "__usePrivacyCheck__": true
+}

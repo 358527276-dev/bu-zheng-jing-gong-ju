@@ -1,0 +1,102 @@
+<view class="container" wx:if="{{tool}}">
+  <!-- 工具头部 -->
+  <view class="card tool-head {{isVipTool ? 'vip-head' : ''}}">
+    <view class="tool-icon-bg" style="background: {{iconBg}};">
+      <text class="tool-big-icon">{{tool.icon}}</text>
+    </view>
+    <view class="tool-title">{{tool.name}}</view>
+    <view class="tool-desc">{{tool.description}}</view>
+    <view class="tool-meta">
+      <text class="tag {{isVipTool ? 'tag-vip' : 'tag-free'}}">
+        {{isVipTool ? '👑 看广告解锁' : '🆓 免费使用'}}
+      </text>
+      <text class="tag tag-count" style="margin-left:12rpx;">🔥 {{tool.useCount}}人玩过</text>
+    </view>
+  </view>
+
+  <!-- 次数信息 -->
+  <view class="card uses-card">
+    <view class="uses-item">
+      <view class="uses-num">{{dailyFreeLeft}}</view>
+      <view class="uses-label">今日免费</view>
+    </view>
+    <view class="uses-divider"></view>
+    <view class="uses-item">
+      <view class="uses-num">{{freeUses}}</view>
+      <view class="uses-label">赠送次数</view>
+    </view>
+    <view class="uses-divider"></view>
+    <view class="uses-item" bindtap="goWallet">
+      <view class="uses-num uses-ad">+</view>
+      <view class="uses-label">看广告得</view>
+    </view>
+  </view>
+
+  <!-- 动态表单 -->
+  <view class="card form-card">
+    <view class="form-card-title">✨ 填写参数</view>
+    <block wx:for="{{visibleFields}}" wx:key="key" wx:for-item="f">
+      <view class="form-label">{{f.label}}</view>
+      <view class="form-tip" wx:if="{{f.tip}}">{{f.tip}}</view>
+
+      <view wx:if="{{f.type === 'options'}}" class="opt-group">
+        <view
+          wx:for="{{f.options}}"
+          wx:key="value"
+          wx:for-item="o"
+          class="opt-item {{formData[f.key] == o.value ? 'active' : ''}}"
+          data-key="{{f.key}}"
+          data-value="{{o.value}}"
+          bindtap="onOptionTap"
+        >{{o.label}}</view>
+      </view>
+
+      <input
+        wx:if="{{f.type === 'input' || f.type === 'number'}}"
+        class="form-input"
+        type="{{f.type === 'number' ? 'number' : 'text'}}"
+        placeholder="{{f.placeholder}}"
+        maxlength="{{f.maxlength || 140}}"
+        value="{{formData[f.key]}}"
+        data-key="{{f.key}}"
+        bindinput="onInputChange"
+      />
+
+      <textarea
+        wx:if="{{f.type === 'textarea'}}"
+        class="form-textarea"
+        placeholder="{{f.placeholder}}"
+        maxlength="{{f.maxlength || 200}}"
+        value="{{formData[f.key]}}"
+        data-key="{{f.key}}"
+        bindinput="onInputChange"
+        auto-height
+      />
+    </block>
+  </view>
+
+  <!-- VIP工具提示 -->
+  <view class="card vip-tip-card" wx:if="{{isVipTool}}">
+    <view class="vip-tip-icon">👑</view>
+    <view class="vip-tip-text">
+      <view class="vip-tip-title">VIP专属工具</view>
+      <view class="vip-tip-desc">看一段广告即可解锁使用，生成结果永久保存</view>
+    </view>
+  </view>
+
+  <!-- 生成按钮 -->
+  <view class="generate-wrap">
+    <button class="btn-primary btn-generate" disabled="{{submitting}}" bindtap="handleGenerate">
+      <block wx:if="{{submitting}}">
+        <text class="loading-dot">⏳</text> AI 疯狂生成中...
+      </block>
+      <block wx:else>
+        ✨ {{isVipTool ? '看广告解锁并生成' : '立即生成（免费）'}}
+      </block>
+    </button>
+    <view class="btn-sub-tip" wx:if="{{!isVipTool}}">
+      消耗 1 次免费次数 · 每日自动重置
+    </view>
+  </view>
+  <view style="height: 60rpx;"></view>
+</view>

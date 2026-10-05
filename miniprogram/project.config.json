@@ -1,0 +1,41 @@
+{
+  "description": "不正经工具箱小程序",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "compileWorklet": false,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "minifyWXML": true,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "condition": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.4.10",
+  "appid": "wxcf1ab93976bbee02",
+  "projectname": "buzhengjing-toolbox",
+  "condition": {},
+  "simulatorPluginLibVersion": {
+    "wxext14566970e7e9f62": "2.27.3"
+  },
+  "editorSetting": {},
+  "isGameTourist": false,
+  "projectArchitecture": "multiPlatform"
+}

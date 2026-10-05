@@ -1,0 +1,55 @@
+<view class="container">
+  <!-- 顶部横幅 -->
+  <view class="hero card">
+    <view class="hero-title">🤪 不正经工具箱</view>
+    <view class="hero-sub">17个上头AI小玩具，看广告就能白嫖全部！</view>
+    <view class="hero-free">
+      <text>🎁 今日免费 {{dailyFreeLeft}} 次</text>
+      <text class="hero-free-dot">·</text>
+      <text>赠送 {{freeUses}} 次</text>
+    </view>
+    <view class="hero-cta" bindtap="goWallet">看广告得次数 →</view>
+  </view>
+
+  <!-- 分类 -->
+  <scroll-view scroll-x class="cat-bar" enhanced show-scrollbar="{{false}}">
+    <view
+      wx:for="{{categories}}"
+      wx:key="key"
+      class="cat-item {{currentCategory === item.key ? 'active' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="onCategoryTap"
+    >
+      <text class="cat-icon">{{item.icon}}</text>
+      <text>{{item.name}}</text>
+    </view>
+  </scroll-view>
+
+  <!-- 工具宫格 -->
+  <view class="grid">
+    <view
+      wx:for="{{tools}}"
+      wx:key="id"
+      class="tool-card card {{item.isVipTool ? 'vip-card' : ''}}"
+      data-id="{{item.id}}"
+      bindtap="onToolTap"
+    >
+      <view class="tool-icon-bg" style="background: {{item.iconBg}};">
+        <text class="tool-icon">{{item.icon}}</text>
+      </view>
+      <view class="tool-name">{{item.name}}</view>
+      <view class="tool-desc">{{item.description}}</view>
+      <view class="tool-foot">
+        <text class="tool-price {{item.isVipTool ? 'vip-price' : ''}}">
+          {{item.isVipTool ? '👑 看广告解锁' : item.priceText}}
+        </text>
+        <text class="tool-count">{{item.useCount}}人玩过</text>
+      </view>
+      <view wx:if="{{item.isNew}}" class="new-badge">NEW</view>
+      <view wx:if="{{item.isHot}}" class="hot-badge">HOT</view>
+    </view>
+  </view>
+
+  <view wx:if="{{!loading && tools.length === 0}}" class="empty">这个分类暂时没有工具~</view>
+  <view style="height: 40rpx;"></view>
+</view>

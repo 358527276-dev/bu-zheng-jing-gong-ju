@@ -1,0 +1,254 @@
+/* ===== 顶部横幅 Hero ===== */
+.hero {
+  background: linear-gradient(135deg, #ff6b9d 0%, #c084fc 50%, #60a5fa 100%) !important;
+  color: #fff;
+  border-radius: 24rpx !important;
+  padding: 48rpx 36rpx !important;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16rpx 40rpx rgba(192, 132, 252, 0.4) !important;
+  margin-bottom: 32rpx !important;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -80rpx;
+  right: -60rpx;
+  width: 240rpx;
+  height: 240rpx;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -100rpx;
+  left: -40rpx;
+  width: 200rpx;
+  height: 200rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.hero-title {
+  font-size: 48rpx;
+  font-weight: 900;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 3rpx;
+  text-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
+}
+
+.hero-sub {
+  font-size: 28rpx;
+  opacity: 0.95;
+  margin-top: 16rpx;
+  position: relative;
+  z-index: 1;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.hero-free {
+  margin-top: 28rpx;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10rpx);
+  display: inline-flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 14rpx 28rpx;
+  border-radius: 999rpx;
+  font-size: 26rpx;
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+  border: 2rpx solid rgba(255, 255, 255, 0.35);
+}
+
+.hero-free-dot {
+  opacity: 0.6;
+}
+
+.hero-cta {
+  position: absolute;
+  top: 32rpx;
+  right: 32rpx;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 10rpx 22rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  border: 2rpx solid rgba(255, 255, 255, 0.4);
+}
+
+/* ===== 分类标签栏 ===== */
+.cat-bar {
+  white-space: nowrap;
+  margin-bottom: 32rpx;
+  padding: 6rpx 0;
+}
+
+.cat-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10rpx;
+  padding: 18rpx 36rpx;
+  margin-right: 18rpx;
+  background: #fff;
+  border-radius: 999rpx;
+  color: #666;
+  font-size: 28rpx;
+  border: 2rpx solid transparent;
+  font-weight: 500;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cat-item.active {
+  background: linear-gradient(135deg, #ff6b9d 0%, #c084fc 100%);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 8rpx 24rpx rgba(192, 132, 252, 0.45);
+  border: none;
+  transform: translateY(-2rpx);
+}
+
+.cat-icon {
+  font-size: 32rpx;
+}
+
+/* ===== 工具宫格 ===== */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.tool-card {
+  width: 338rpx;
+  padding: 28rpx 24rpx 24rpx !important;
+  box-sizing: border-box;
+  margin-bottom: 24rpx;
+  border-radius: 20rpx !important;
+  background: #fff;
+  box-shadow: 0 6rpx 20rpx rgba(255, 107, 157, 0.08),
+              0 2rpx 8rpx rgba(0, 0, 0, 0.04) !important;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6rpx;
+  background: linear-gradient(90deg, #ff6b9d, #c084fc, #60a5fa);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.tool-card.vip-card {
+  background: linear-gradient(180deg, #fff9ec 0%, #ffffff 40%);
+  border: 2rpx solid #fde68a;
+}
+
+.tool-card.vip-card::before {
+  opacity: 1;
+  background: linear-gradient(90deg, #f59e0b, #fbbf24, #fcd34d);
+}
+
+.tool-icon-bg {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6rpx 16rpx rgba(0, 0, 0, 0.12);
+  margin-bottom: 4rpx;
+}
+
+.tool-icon {
+  font-size: 48rpx;
+  display: inline-block;
+  line-height: 1;
+}
+
+.tool-name {
+  font-size: 30rpx;
+  font-weight: 800;
+  margin-top: 18rpx;
+  color: #1f2937;
+  line-height: 1.3;
+}
+
+.tool-desc {
+  font-size: 22rpx;
+  color: #9ca3af;
+  margin-top: 8rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 66rpx;
+  line-height: 1.5;
+}
+
+.tool-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f3f4f6;
+}
+
+.tool-price {
+  color: #10b981;
+  font-weight: 700;
+  font-size: 24rpx;
+}
+
+.tool-price.vip-price {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  font-size: 22rpx;
+}
+
+.tool-count {
+  font-size: 20rpx;
+  color: #d1d5db;
+}
+
+/* 角标 */
+.new-badge,
+.hot-badge {
+  position: absolute;
+  top: 16rpx;
+  right: -28rpx;
+  transform: rotate(45deg);
+  width: 100rpx;
+  text-align: center;
+  font-size: 18rpx;
+  font-weight: 800;
+  padding: 4rpx 0;
+  color: #fff;
+  letter-spacing: 1rpx;
+}
+
+.new-badge {
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+}
+
+.hot-badge {
+  background: linear-gradient(135deg, #ef4444, #f97316);
+}

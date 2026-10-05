@@ -1,0 +1,103 @@
+.invite-hero {
+  background: linear-gradient(135deg, #ff6b9d 0%, #c084fc 50%, #60a5fa 100%) !important;
+  color: #fff;
+  text-align: center;
+  border-radius: 24rpx !important;
+  padding: 48rpx 32rpx !important;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12rpx 32rpx rgba(192, 132, 252, 0.4) !important;
+}
+
+.invite-hero::before {
+  content: '';
+  position: absolute;
+  top: -60rpx;
+  right: -40rpx;
+  width: 180rpx;
+  height: 180rpx;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+}
+
+.invite-title {
+  font-size: 36rpx;
+  font-weight: 800;
+  position: relative;
+  z-index: 1;
+}
+
+.invite-desc {
+  font-size: 26rpx;
+  opacity: 0.92;
+  margin: 16rpx 0 28rpx;
+  position: relative;
+  z-index: 1;
+  line-height: 1.6;
+}
+
+.invite-code-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  margin-bottom: 28rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.invite-code {
+  background: rgba(255,255,255,0.22);
+  backdrop-filter: blur(10rpx);
+  padding: 16rpx 36rpx;
+  border-radius: 16rpx;
+  font-size: 44rpx;
+  font-weight: 900;
+  letter-spacing: 8rpx;
+  border: 2rpx solid rgba(255,255,255,0.3);
+}
+
+.invite-hero button.btn-primary {
+  background: #fff !important;
+  color: #c084fc !important;
+  font-weight: 800;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  border-radius: 999rpx !important;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.15) !important;
+  position: relative;
+  z-index: 1;
+}
+
+.sec-title {
+  font-size: 32rpx;
+  font-weight: 800;
+  margin-bottom: 16rpx;
+  color: #1f2937;
+}
+
+.inv-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f3f4f6;
+}
+
+.inv-item:last-child { border-bottom: none; }
+
+.inv-avatar {
+  font-size: 48rpx;
+  margin-right: 20rpx;
+  width: 72rpx;
+  height: 72rpx;
+  background: #f3f4f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inv-body { flex: 1; }
+.inv-name { font-size: 30rpx; font-weight: 600; color: #1f2937; }
+.inv-time { font-size: 22rpx; color: #9ca3af; margin-top: 6rpx; }

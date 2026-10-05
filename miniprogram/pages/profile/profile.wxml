@@ -1,0 +1,115 @@
+<view class="container" wx:if="{{user}}">
+  <!-- 用户头部卡片 -->
+  <view class="profile-header">
+    <view class="header-bg"></view>
+    <view class="user-card">
+      <view class="user-avatar-wrap">
+        <view class="user-avatar">{{user.avatar}}</view>
+        <view class="avatar-ring"></view>
+      </view>
+      <view class="user-info">
+        <view class="user-name">
+          {{user.nickname}}
+        </view>
+        <view class="user-level">
+          <text class="level-badge">{{user.levelInfo.icon}} {{user.levelInfo.name}}</text>
+          <text class="growth-text">成长值 {{user.growthPoints}}</text>
+        </view>
+        <view class="user-code">邀请码：{{user.inviteCode}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 数据卡片组 -->
+  <view class="stats-grid">
+    <view class="stat-card stat-card-1" bindtap="goWallet">
+      <view class="stat-num">{{user.freeUses}}</view>
+      <view class="stat-label">赠送次数</view>
+      <view class="stat-icon">🎁</view>
+    </view>
+    <view class="stat-card stat-card-2">
+      <view class="stat-num">{{user.totalUses}}</view>
+      <view class="stat-label">已玩次数</view>
+      <view class="stat-icon">🎮</view>
+    </view>
+    <view class="stat-card stat-card-3" bindtap="goSign">
+      <view class="stat-num">{{signDays}}</view>
+      <view class="stat-label">连续签到</view>
+      <view class="stat-icon">📅</view>
+    </view>
+    <view class="stat-card stat-card-4" bindtap="goInvite">
+      <view class="stat-num">{{inviteCount}}</view>
+      <view class="stat-label">邀请好友</view>
+      <view class="stat-icon">👥</view>
+    </view>
+  </view>
+
+  <!-- 功能入口 -->
+  <view class="card menu-card">
+    <view class="menu-item" bindtap="goSign">
+      <view class="menu-icon-wrap" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+        <text class="menu-icon">📅</text>
+      </view>
+      <view class="menu-body">
+        <view class="menu-title">签到 · 任务中心</view>
+        <view class="menu-desc">每日签到领免费次数</view>
+      </view>
+      <text class="arrow">›</text>
+    </view>
+
+    <view class="menu-item" bindtap="goWallet">
+      <view class="menu-icon-wrap" style="background: linear-gradient(135deg, #10b981, #06b6d4);">
+        <text class="menu-icon">🎁</text>
+      </view>
+      <view class="menu-body">
+        <view class="menu-title">免费次数中心</view>
+        <view class="menu-desc">看广告 · 做任务赚次数</view>
+      </view>
+      <text class="arrow">›</text>
+    </view>
+
+    <view class="menu-item" bindtap="goOrders">
+      <view class="menu-icon-wrap" style="background: linear-gradient(135deg, #8b5cf6, #d946ef);">
+        <text class="menu-icon">📜</text>
+      </view>
+      <view class="menu-body">
+        <view class="menu-title">使用记录</view>
+        <view class="menu-desc">查看历史生成记录</view>
+      </view>
+      <text class="arrow">›</text>
+    </view>
+
+    <view class="menu-item" bindtap="goInvite">
+      <view class="menu-icon-wrap" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">
+        <text class="menu-icon">🎁</text>
+      </view>
+      <view class="menu-body">
+        <view class="menu-title">邀请好友得次数</view>
+        <view class="menu-desc">邀1位得15次，好友得10次</view>
+      </view>
+      <text class="arrow">›</text>
+    </view>
+
+    <button class="menu-item menu-share" open-type="share">
+      <view class="menu-icon-wrap" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);">
+        <text class="menu-icon">📤</text>
+      </view>
+      <view class="menu-body">
+        <view class="menu-title">分享给好友</view>
+        <view class="menu-desc">好东西就要一起分享</view>
+      </view>
+      <text class="arrow">›</text>
+    </button>
+  </view>
+
+  <!-- 等级说明 -->
+  <view class="card" wx:if="{{levels.length}}">
+    <view class="sec-title">🏅 成长等级</view>
+    <view class="lv-row" wx:for="{{levels}}" wx:key="level">
+      <text class="lv-name">{{item.icon}} {{item.name}}</text>
+      <text class="lv-desc">≥{{item.minGrowth}}成长值 · 每日{{item.dailyFree}}次免费</text>
+    </view>
+  </view>
+
+  <view style="height: 60rpx;"></view>
+</view>

@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="page-header">
+    <view class="page-title">📜 使用记录</view>
+    <view class="page-sub">看看你都玩了些什么~</view>
+  </view>
+
+  <view wx:for="{{orders}}" wx:key="id" class="card record-card">
+    <view class="record-head">
+      <view class="record-icon">{{item.toolIcon || '🎮'}}</view>
+      <view class="record-info">
+        <view class="record-name">{{item.toolName}}</view>
+        <view class="record-time">{{item.createdAt}}</view>
+      </view>
+      <view class="record-status {{item.status === 1 ? 'ok' : ''}}">
+        {{item.statusText}}
+      </view>
+    </view>
+    <view class="record-foot">
+      <text class="record-type">{{item.payTypeText}}</text>
+    </view>
+  </view>
+
+  <view wx:if="{{!loading && !orders.length}}" class="empty-wrap">
+    <view class="empty-icon">🎯</view>
+    <view class="empty-text">还没有记录</view>
+    <view class="empty-desc">去首页玩一玩吧~</view>
+  </view>
+
+  <view style="height: 60rpx;"></view>
+</view>
