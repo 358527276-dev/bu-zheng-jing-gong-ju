@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>不正经工具箱 - 你的互联网嘴替</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 顶部导航 -->
+    <header class="app-header">
+      <div class="header-left" id="backBtn" style="display:none;">
+        <span class="back-icon">←</span>
+      </div>
+      <div class="header-title" id="pageTitle">不正经工具箱</div>
+      <div class="header-right" id="userBtn">
+        <span class="user-avatar" id="userAvatar">😀</span>
+      </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="app-main">
+      <!-- 首页 -->
+      <div class="page page-home active" id="pageHome">
+        <!-- 顶部Banner -->
+        <div class="banner">
+          <div class="banner-content">
+            <div class="banner-title">🤪 不正经工具箱</div>
+            <div class="banner-subtitle">你的互联网嘴替 + 精神状态检测仪</div>
+            <div class="banner-badge">
+              <span class="badge-item">🔥 已帮10w+人打发无聊</span>
+              <span class="badge-item">⚡ 一秒出结果</span>
+            </div>
+          </div>
+          <div class="banner-decoration"></div>
+        </div>
+
+        <!-- 余额卡片 -->
+        <div class="balance-card" id="balanceCard">
+          <div class="balance-row">
+            <div class="balance-item">
+              <div class="balance-label">余额</div>
+              <div class="balance-value">
+                <span class="b-symbol">¥</span>
+                <span class="b-num" id="userBalance">0.00</span>
+              </div>
+            </div>
+            <div class="balance-divider"></div>
+            <div class="balance-item">
+              <div class="balance-label">免费次数</div>
+              <div class="balance-value free">
+                <span class="b-num" id="freeUses">0</span>
+                <span class="b-unit">次</span>
+              </div>
+            </div>
+            <div class="balance-divider"></div>
+            <div class="balance-item clickable" id="signEntry">
+              <div class="balance-label">每日签到</div>
+              <div class="balance-value sign">
+                <span class="b-num" id="signDays">0</span>
+                <span class="b-unit">天</span>
+              </div>
+            </div>
+          </div>
+          <div class="balance-actions">
+            <button class="action-btn-small vip" id="vipEntry">
+              <span>👑 开通会员</span>
+            </button>
+            <button class="action-btn-small recharge" id="rechargeBtn">
+              <span>💰 充值</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 新人福利横幅 -->
+        <div class="newbie-banner" id="newbieBanner" onclick="showNewbieModal()">
+          <div class="newbie-banner-left">
+            <span class="newbie-banner-icon">🎉</span>
+            <div>
+              <div class="newbie-banner-text">新人专享5大好礼</div>
+              <div class="newbie-banner-desc">5次免费 + 首充双倍 + 会员特惠</div>
+            </div>
+          </div>
+          <span class="newbie-banner-btn">去领取</span>
+        </div>
+
+        <!-- 任务入口横幅 -->
+        <div class="task-banner" id="taskBanner">
+          <div class="task-banner-left">
+            <span class="task-icon">🎁</span>
+            <span class="task-text">做任务领免费次数，每日更新</span>
+          </div>
+          <span class="task-arrow">›</span>
+        </div>
+
+        <!-- 分类标签 -->
+        <div class="category-tabs">
+          <div class="tab-item active" data-category="all">全部</div>
+          <div class="tab-item" data-category="creative">骚话王</div>
+          <div class="tab-item" data-category="fortune">玄学</div>
+          <div class="tab-item" data-category="fun">整活</div>
+          <div class="tab-item" data-category="test">测一测</div>
+        </div>
+
+        <!-- 工具列表 -->
+        <div class="tools-grid" id="toolsGrid">
+          <!-- 工具卡片动态生成 -->
+        </div>
+
+        <!-- 底部说明 -->
+        <div class="footer-tip">
+          <p>💡 每个工具仅需1元，生成结果可分享给朋友</p>
+          <p class="tip-sub">新用户注册即送体验金</p>
+        </div>
+      </div>
+
+      <!-- 工具详情页 -->
+      <div class="page page-tool" id="pageTool">
+        <div class="tool-detail-header">
+          <div class="tool-icon" id="toolDetailIcon">✨</div>
+          <div class="tool-detail-info">
+            <h2 class="tool-detail-name" id="toolDetailName">AI趣味起名</h2>
+            <p class="tool-detail-desc" id="toolDetailDesc">给宠物、网名、宝宝起个有趣的名字</p>
+          </div>
+          <div class="tool-price-tag">
+            <span class="price-symbol">¥</span>
+            <span class="price-num" id="toolDetailPrice">1</span>
+            <span class="price-unit">/次</span>
+          </div>
+        </div>
+
+        <div class="tool-form" id="toolForm">
+          <!-- 表单动态生成 -->
+        </div>
+
+        <div class="tool-action">
+          <button class="generate-btn" id="generateBtn">
+            <span>立即生成 · 1元</span>
+          </button>
+          <p class="action-tip">支付后立即生成结果，不满意可免费重新生成1次</p>
+        </div>
+      </div>
+
+      <!-- 结果页 -->
+      <div class="page page-result" id="pageResult">
+        <div class="result-header">
+          <div class="result-icon">✨</div>
+          <div class="result-title">生成成功！</div>
+          <div class="result-subtitle">以下是为您生成的结果</div>
+        </div>
+
+        <div class="result-content" id="resultContent">
+          <!-- 结果动态生成 -->
+        </div>
+
+        <div class="result-actions">
+          <button class="action-btn secondary" id="shareBtn">
+            <span>📤 分享给朋友</span>
+          </button>
+          <button class="action-btn primary" id="regenBtn">
+            <span>🔄 再来一次</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 个人中心 -->
+      <div class="page page-profile" id="pageProfile">
+        <div class="profile-header">
+          <div class="profile-avatar" id="profileAvatar">😀</div>
+          <div class="profile-info">
+            <div class="profile-name-row">
+              <span class="profile-name" id="profileName">测试用户</span>
+              <span class="profile-level" id="profileLevel">🥉 青铜</span>
+            </div>
+            <div class="profile-id">ID: <span id="profileId">1</span></div>
+            <div class="profile-growth">
+              <div class="growth-bar">
+                <div class="growth-fill" id="growthFill" style="width: 0%;"></div>
+              </div>
+              <div class="growth-text">
+                <span id="growthPoints">0</span> 成长值 · 距下一级 <span id="nextLevelNeed">100</span>
+              </div>
+            </div>
+          </div>
+          <div class="profile-vip-badge" id="profileVipBadge" style="display:none;">
+            <span>👑 VIP</span>
+          </div>
+        </div>
+
+        <div class="profile-stats">
+          <div class="stat-item">
+            <div class="stat-num" id="statBalance">0.00</div>
+            <div class="stat-label">余额(元)</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-num" id="statFree">0</div>
+            <div class="stat-label">免费次数</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-num" id="statUses">0</div>
+            <div class="stat-label">使用次数</div>
+          </div>
+        </div>
+
+        <!-- 功能入口网格 -->
+        <div class="profile-grid">
+          <div class="grid-item" id="gridSign">
+            <div class="grid-icon">📅</div>
+            <div class="grid-text">每日签到</div>
+            <div class="grid-badge" id="signBadge">+1</div>
+          </div>
+          <div class="grid-item" id="gridTasks">
+            <div class="grid-icon">🎯</div>
+            <div class="grid-text">任务中心</div>
+          </div>
+          <div class="grid-item" id="gridInvite">
+            <div class="grid-icon">🤝</div>
+            <div class="grid-text">邀请好友</div>
+          </div>
+          <div class="grid-item" id="gridVip">
+            <div class="grid-icon">👑</div>
+            <div class="grid-text">快乐会员</div>
+            <div class="grid-badge vip-badge">VIP</div>
+          </div>
+        </div>
+
+        <div class="profile-menu">
+          <div class="menu-item" id="menuRecharge">
+            <span class="menu-icon">💰</span>
+            <span class="menu-text">充值余额</span>
+            <span class="menu-arrow">›</span>
+          </div>
+          <div class="menu-item" id="menuOrders">
+            <span class="menu-icon">📋</span>
+            <span class="menu-text">使用记录</span>
+            <span class="menu-arrow">›</span>
+          </div>
+          <div class="menu-item" id="menuGrowth">
+            <span class="menu-icon">📈</span>
+            <span class="menu-text">等级特权</span>
+            <span class="menu-arrow">›</span>
+          </div>
+          <div class="menu-item" id="menuAbout">
+            <span class="menu-icon">ℹ️</span>
+            <span class="menu-text">关于我们</span>
+            <span class="menu-arrow">›</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 签到页面 -->
+      <!-- 签到页面 -->
+      <div class="page page-sign" id="pageSign">
+        <!-- 顶部导航栏 -->
+        <div class="vip-nav-bar">
+          <div class="vip-nav-back" onclick="navigateTo('home')">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </div>
+          <div class="vip-nav-title">每日签到</div>
+          <div class="vip-nav-right"></div>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="vip-content">
+          <!-- 顶部连续天数卡片 -->
+          <div class="sign-hero-card">
+            <div class="sign-hero-icon">📅</div>
+            <div class="sign-hero-title">已连续签到 <span id="signDaysCount">0</span> 天</div>
+            <div class="sign-hero-subtitle">坚持就是胜利，明天继续加油~</div>
+          </div>
+
+          <!-- 7天日历 -->
+          <div class="vip-section">
+            <div class="vip-section-title">
+              <span class="vip-section-dot"></span>
+              本周签到
+            </div>
+            <div class="sign-calendar-new" id="signCalendar">
+              <!-- 动态生成7天 -->
+            </div>
+          </div>
+
+          <!-- 今日可得 -->
+          <div class="vip-section">
+            <div class="vip-section-title">
+              <span class="vip-section-dot"></span>
+              今日可得
+            </div>
+            <div class="sign-rewards">
+              <div class="sign-reward-item">
+                <div class="sign-reward-icon">🎁</div>
+                <div class="sign-reward-num" id="todayFreeReward">+1次</div>
+                <div class="sign-reward-label">免费机会</div>
+              </div>
+              <div class="sign-reward-item">
+                <div class="sign-reward-icon">📈</div>
+                <div class="sign-reward-num sign-reward-blue" id="todayGrowthReward">+5点</div>
+                <div class="sign-reward-label">成长值</div>
+              </div>
+              <div class="sign-reward-item">
+                <div class="sign-reward-icon">💰</div>
+                <div class="sign-reward-num sign-reward-green" id="todayBalanceReward">+¥0</div>
+                <div class="sign-reward-label">余额奖励</div>
+              </div>
+            </div>
+            <button class="sign-btn-new" id="signBtn">立即签到</button>
+          </div>
+
+          <!-- 里程碑奖励 -->
+          <div class="vip-section">
+            <div class="vip-section-title">
+              <span class="vip-section-dot"></span>
+              🏆 里程碑奖励
+            </div>
+            <div class="milestone-list">
+              <div class="milestone-item">
+                <div class="milestone-icon">🎉</div>
+                <div class="milestone-info">
+                  <div class="milestone-name">连续7天</div>
+                  <div class="milestone-desc">周签到大礼包</div>
+                </div>
+                <div class="milestone-reward">+5次 + ¥1</div>
+              </div>
+              <div class="milestone-item">
+                <div class="milestone-icon">🏆</div>
+                <div class="milestone-info">
+                  <div class="milestone-name">连续30天</div>
+                  <div class="milestone-desc">月度签到达人</div>
+                </div>
+                <div class="milestone-reward">+20次 + ¥3 + 1天VIP</div>
+              </div>
+              <div class="milestone-item">
+                <div class="milestone-icon">👑</div>
+                <div class="milestone-info">
+                  <div class="milestone-name">连续100天</div>
+                  <div class="milestone-desc">百日签到达人</div>
+                </div>
+                <div class="milestone-reward">+100次 + ¥10 + 7天VIP</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="height: 30px;"></div>
+        </div>
+      </div>
+
+      <!-- 任务中心页面 -->
+      <div class="page page-tasks" id="pageTasks">
+        <!-- 顶部导航栏 -->
+        <div class="vip-nav-bar">
+          <div class="vip-nav-back" onclick="navigateTo('home')">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </div>
+          <div class="vip-nav-title">任务中心</div>
+          <div class="vip-nav-right"></div>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="vip-content">
+          <!-- 顶部卡片 -->
+          <div class="tasks-hero-card">
+            <div class="tasks-hero-icon">🎯</div>
+            <div class="tasks-hero-title">做任务 · 领免费</div>
+            <div class="tasks-hero-subtitle">每天动动手指，免费次数拿到手软</div>
+          </div>
+
+          <!-- 每日任务 -->
+          <div class="vip-section">
+            <div class="vip-section-title">
+              <span class="vip-section-dot"></span>
+              每日任务
+            </div>
+            <div class="task-card-list" id="dailyTasksList">
+              <!-- 动态生成 -->
+            </div>
+          </div>
+
+          <!-- 新手任务 -->
+          <div class="vip-section">
+            <div class="vip-section-title">
+              <span class="vip-section-dot"></span>
+              新手任务
+              <span style="margin-left:auto; font-size:11px; color:#f59e0b; font-weight:600;">限时</span>
+            </div>
+            <div class="task-card-list" id="newbieTasksList">
+              <!-- 动态生成 -->
+            </div>
+          </div>
+
+          <div style="height: 30px;"></div>
+        </div>
+      </div>
+
+      <!-- 会员中心页面 -->
+      <div class="page page-vip" id="pageVip">
+        <!-- 顶部导航栏 -->
+        <div class="vip-nav-bar">
+          <div class="vip-nav-back" onclick="navigateTo('home')">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </div>
+          <div class="vip-nav-title">快乐会员</div>
+          <div class="vip-nav-right"></div>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="vip-content">
+          <!-- 顶部会员卡片 -->
+          <div class="vip-hero-card">
+            <div class="vip-hero-bg"></div>
+            <div class="vip-hero-crown">👑</div>
+            <div class="vip-hero-title">开通会员 · 天天快乐</div>
+            <div class="vip-hero-subtitle">解锁全部骚操作 · 10万+人已开通</div>
+            <div class="vip-hero-price">
+              <span class="vip-hero-price-symbol">¥</span>
+              <span class="vip-hero-price-num" id="vipHeaderPrice">15.9</span>
+              <span class="vip-hero-price-unit">/季</span>
+            </div>
+            <div class="vip-hero-tag">限时特惠 · 买季卡最划算</div>
+          </div>
+
+          <!-- 套餐选择 -->
+          <div class="vip-section">
+            <div class="vip-section-title">
+              <span class="vip-section-dot"></span>
+              选择套餐
+            </div>
+            <div class="vip-packages-new" id="vipPackages">
+              <!-- 动态生成 -->
+            </div>
+          </div>
+
+          <!-- 会员权益 -->
+          <div class="vip-section">
+            <div class="vip-section-title">
+              <span class="vip-section-dot"></span>
+              会员权益
+            </div>
+            <div class="vip-benefits-card">
+              <div class="benefit-item-row">
+                <div class="benefit-item-icon">🎯</div>
+                <div class="benefit-item-info">
+                  <div class="benefit-item-name">每日免费使用</div>
+                  <div class="benefit-item-desc">每天白嫖几次不心疼</div>
+                </div>
+                <div class="benefit-item-check">✓</div>
+              </div>
+              <div class="benefit-divider"></div>
+              <div class="benefit-item-row">
+                <div class="benefit-item-icon">🔓</div>
+                <div class="benefit-item-info">
+                  <div class="benefit-item-name">全部10个工具</div>
+                  <div class="benefit-item-desc">解锁所有骚话王专属工具</div>
+                </div>
+                <div class="benefit-item-check">✓</div>
+              </div>
+              <div class="benefit-divider"></div>
+              <div class="benefit-item-row">
+                <div class="benefit-item-icon">🚫</div>
+                <div class="benefit-item-info">
+                  <div class="benefit-item-name">全程无广告</div>
+                  <div class="benefit-item-desc">纯净快乐体验</div>
+                </div>
+                <div class="benefit-item-check">✓</div>
+              </div>
+              <div class="benefit-divider"></div>
+              <div class="benefit-item-row">
+                <div class="benefit-item-icon">⚡</div>
+                <div class="benefit-item-info">
+                  <div class="benefit-item-name">极速生成</div>
+                  <div class="benefit-item-desc">快到朋友以为你手打的</div>
+                </div>
+                <div class="benefit-item-check">✓</div>
+              </div>
+              <div class="benefit-divider"></div>
+              <div class="benefit-item-row">
+                <div class="benefit-item-icon">💬</div>
+                <div class="benefit-item-info">
+                  <div class="benefit-item-name">专属客服</div>
+                  <div class="benefit-item-desc">有问题随时找</div>
+                </div>
+                <div class="benefit-item-check">✓</div>
+              </div>
+              <div class="benefit-divider"></div>
+              <div class="benefit-item-row">
+                <div class="benefit-item-icon">🎂</div>
+                <div class="benefit-item-info">
+                  <div class="benefit-item-name">生日惊喜</div>
+                  <div class="benefit-item-desc">生日当月神秘礼物</div>
+                </div>
+                <div class="benefit-item-check">✓</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 支付方式 -->
+          <div class="vip-section">
+            <div class="vip-section-title">
+              <span class="vip-section-dot"></span>
+              支付方式
+            </div>
+            <div class="vip-pay-card">
+              <div class="vip-pay-row active" data-vip-pay="balance">
+                <div class="vip-pay-left">
+                  <span class="vip-pay-icon-big">💰</span>
+                  <span class="vip-pay-name-big">余额支付</span>
+                </div>
+                <div class="vip-pay-radio">
+                  <div class="vip-pay-radio-inner"></div>
+                </div>
+              </div>
+              <div class="benefit-divider"></div>
+              <div class="vip-pay-row" data-vip-pay="wechat">
+                <div class="vip-pay-left">
+                  <span class="vip-pay-icon-big">💚</span>
+                  <span class="vip-pay-name-big">微信支付</span>
+                </div>
+                <div class="vip-pay-radio">
+                  <div class="vip-pay-radio-inner"></div>
+                </div>
+              </div>
+              <div class="benefit-divider"></div>
+              <div class="vip-pay-row" data-vip-pay="alipay">
+                <div class="vip-pay-left">
+                  <span class="vip-pay-icon-big">💙</span>
+                  <span class="vip-pay-name-big">支付宝</span>
+                </div>
+                <div class="vip-pay-radio">
+                  <div class="vip-pay-radio-inner"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="height: 100px;"></div>
+        </div>
+
+        <!-- 底部吸底按钮 -->
+        <div class="vip-bottom-bar">
+          <div class="vip-bottom-price">
+            <span class="vip-bottom-label">合计</span>
+            <span class="vip-bottom-symbol">¥</span>
+            <span class="vip-bottom-num" id="vipBottomPrice">15.9</span>
+          </div>
+          <button class="vip-bottom-btn" id="vipBuyBtn">
+            立即开通
+          </button>
+        </div>
+      </div>
+
+      <!-- 邀请页面 -->
+      <div class="page page-invite" id="pageInvite">
+        <!-- 顶部导航栏 -->
+        <div class="vip-nav-bar">
+          <div class="vip-nav-back" onclick="navigateTo('home')">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </div>
+          <div class="vip-nav-title">邀请好友</div>
+          <div class="vip-nav-right"></div>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="vip-content">
+          <!-- 顶部福利卡片 -->
+          <div class="invite-hero-card">
+            <div class="invite-hero-icon">🎁</div>
+            <div class="invite-hero-title">邀请好友一起玩</div>
+            <div class="invite-hero-subtitle">每邀请1人，双方各得10次免费 + 5元</div>
+            <div class="invite-hero-tip">上不封顶 · 多邀多得</div>
+          </div>
+
+          <!-- 数据统计 -->
+          <div class="invite-stats">
+            <div class="invite-stat-card">
+              <div class="invite-stat-num" id="inviteCount">0</div>
+              <div class="invite-stat-label">已邀请好友</div>
+            </div>
+            <div class="invite-stat-card">
+              <div class="invite-stat-num invite-stat-gold" id="inviteTotalReward">0</div>
+              <div class="invite-stat-label">累计获得(元)</div>
+            </div>
+          </div>
+
+          <!-- 我的邀请码 -->
+          <div class="vip-section">
+            <div class="vip-section-title">
+              <span class="vip-section-dot"></span>
+              我的邀请码
+            </div>
+            <div class="invite-code-card">
+              <div class="invite-code-text" id="inviteCode">------</div>
+              <button class="invite-copy-btn" id="copyInviteCode">复制邀请码</button>
+            </div>
+          </div>
+
+          <!-- 邀请记录 -->
+          <div class="vip-section">
+            <div class="vip-section-title">
+              <span class="vip-section-dot"></span>
+              邀请记录
+              <span style="margin-left:auto; font-size:12px; color:#9ca3af; font-weight:400;" id="inviteListCount">共0人</span>
+            </div>
+            <div class="invite-record-list" id="inviteListContainer">
+              <div class="empty-state">
+                <div class="empty-state-icon">🤝</div>
+                <div class="empty-state-text">还没有邀请记录<br>快去邀请好友吧~</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="height: 100px;"></div>
+        </div>
+
+        <!-- 底部吸底按钮 -->
+        <div class="vip-bottom-bar">
+          <button class="vip-bottom-btn" id="inviteShareBtn" style="flex:1;">
+            📤 立即邀请好友
+          </button>
+        </div>
+      </div>
+
+      <!-- 等级特权页面 -->
+      <div class="page page-levels" id="pageLevels">
+        <div class="levels-header">
+          <div class="my-level">
+            <div class="my-level-icon" id="myLevelIcon">🥉</div>
+            <div class="my-level-info">
+              <div class="my-level-name" id="myLevelName">青铜</div>
+              <div class="my-level-growth">成长值: <span id="myGrowthPoints">0</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="levels-list" id="levelsList">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+
+      <!-- 订单记录页 -->
+      <div class="page page-orders" id="pageOrders">
+        <div class="orders-list" id="ordersList">
+          <!-- 订单列表动态生成 -->
+        </div>
+      </div>
+    </main>
+
+    <!-- 底部TabBar -->
+    <nav class="tab-bar" id="tabBar">
+      <div class="tab-bar-item active" data-tab="home">
+        <div class="tab-icon">🏠</div>
+        <div class="tab-label">首页</div>
+      </div>
+      <div class="tab-bar-item" data-tab="profile">
+        <div class="tab-icon">👤</div>
+        <div class="tab-label">我的</div>
+      </div>
+    </nav>
+
+    <!-- 充值弹窗 -->
+    <div class="modal" id="rechargeModal">
+      <div class="modal-mask"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="modal-title">充值余额</span>
+          <span class="modal-close" id="closeRecharge">×</span>
+        </div>
+        <div class="modal-body">
+          <div class="recharge-options">
+            <div class="recharge-item" data-amount="1" data-bonus="0">
+              <div class="recharge-amount">¥1</div>
+              <div class="recharge-desc">体验一下</div>
+            </div>
+            <div class="recharge-item hot" data-amount="5" data-bonus="0">
+              <div class="recharge-badge">热门</div>
+              <div class="recharge-amount">¥5</div>
+              <div class="recharge-desc">够用5次</div>
+            </div>
+            <div class="recharge-item" data-amount="10" data-bonus="1">
+              <div class="recharge-amount">¥10</div>
+              <div class="recharge-desc">送¥1</div>
+            </div>
+            <div class="recharge-item" data-amount="20" data-bonus="3">
+              <div class="recharge-amount">¥20</div>
+              <div class="recharge-desc">送¥3</div>
+            </div>
+            <div class="recharge-item best" data-amount="50" data-bonus="12">
+              <div class="recharge-badge">超值</div>
+              <div class="recharge-amount">¥50</div>
+              <div class="recharge-desc">送¥12</div>
+            </div>
+          </div>
+          <div class="pay-methods">
+            <div class="pay-method-item active" data-method="wechat">
+              <span class="pay-icon">💚</span>
+              <span class="pay-name">微信支付</span>
+              <span class="pay-check">✓</span>
+            </div>
+            <div class="pay-method-item" data-method="alipay">
+              <span class="pay-icon">💙</span>
+              <span class="pay-name">支付宝</span>
+              <span class="pay-check">✓</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="modal-btn" id="confirmRecharge">
+            立即充值
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 扫码支付弹窗 -->
+    <div class="modal" id="qrcodeModal">
+      <div class="modal-mask"></div>
+      <div class="modal-content qrcode-modal">
+        <div class="modal-header">
+          <span class="modal-title" id="qrcodeTitle">扫码支付</span>
+          <span class="modal-close" id="closeQrcode">×</span>
+        </div>
+        <div class="modal-body" style="text-align: center; padding: 20px 16px;">
+          <div class="qrcode-amount">
+            <span style="font-size: 14px; color: #6b7280;">支付金额</span>
+            <div class="qrcode-price">
+              <span style="font-size: 20px;">¥</span>
+              <span id="qrcodeAmount" style="font-size: 36px; font-weight: 700;">0.00</span>
+            </div>
+          </div>
+          
+          <div class="qrcode-box">
+            <img id="qrcodeImg" src="" alt="收款码" style="width: 200px; height: 200px; border-radius: 8px;">
+            <div class="qrcode-tip" id="qrcodeTip">请使用微信扫码支付</div>
+          </div>
+          
+          <div class="qrcode-order">
+            <span style="color: #9ca3af; font-size: 12px;">订单号：</span>
+            <span id="qrcodeOrderNo" style="color: #6b7280; font-size: 12px;">-</span>
+          </div>
+          
+          <div class="qrcode-countdown">
+            <span id="qrcodeCountdown" style="color: #f59e0b; font-size: 13px;">⏱ 支付剩余时间：30:00</span>
+          </div>
+          
+          <div class="qrcode-status" id="qrcodeStatus" style="display:none; margin-top: 12px;">
+            <div style="color: #10b981; font-size: 15px; font-weight: 600;">✓ 支付成功</div>
+          </div>
+          
+          <div class="qrcode-actions">
+            <button class="qrcode-btn cancel" id="cancelQrcodePay">取消支付</button>
+            <button class="qrcode-btn confirm" id="iPaidBtn">我已付款</button>
+          </div>
+          
+          <div class="qrcode-notice" style="margin-top: 16px; padding: 10px 12px; background: #fef9c3; border-radius: 8px; font-size: 12px; color: #854d0e; text-align: left; line-height: 1.6;">
+            💡 <strong>支付说明：</strong><br>
+            1. 长按保存收款码图片，打开对应APP扫码支付<br>
+            2. 支付后点击「我已付款」，管理员确认后自动到账<br>
+            3. 一般1-5分钟内到账，高峰期可能稍慢
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 支付确认弹窗 -->
+    <div class="modal" id="payModal">
+      <div class="modal-mask"></div>
+      <div class="modal-content pay-modal">
+        <div class="pay-modal-header">
+          <div class="pay-icon-large">✨</div>
+          <div class="pay-tool-name" id="payToolName">AI趣味起名</div>
+          <div class="pay-amount">
+            <span class="pay-currency">¥</span>
+            <span class="pay-price" id="payPrice">1.00</span>
+          </div>
+        </div>
+        <div class="pay-modal-body">
+          <div class="pay-balance-info">
+            <span>当前余额：</span>
+            <span class="pay-balance" id="payBalance">10.00</span> 元
+          </div>
+          <div class="pay-tip">支付后将立即为您生成结果</div>
+        </div>
+        <div class="pay-modal-footer">
+          <button class="pay-btn cancel" id="cancelPay">取消</button>
+          <button class="pay-btn confirm" id="confirmPay">确认支付</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast提示 -->
+    <div class="toast" id="toast"></div>
+
+    <!-- 新人福利弹窗 -->
+    <div class="newbie-modal" id="newbieModal">
+      <div class="modal-mask" onclick="closeNewbieModal()"></div>
+      <div class="newbie-content">
+        <div class="newbie-close" onclick="closeNewbieModal()">×</div>
+        <div class="newbie-header">
+          <div class="newbie-badge">🎁 新人专享</div>
+          <div class="newbie-title">欢迎来到不正经工具箱！</div>
+          <div class="newbie-subtitle">一个进去就出不来的快乐小站</div>
+        </div>
+        <div class="newbie-gifts">
+          <div class="gift-item">
+            <div class="gift-icon">🆓</div>
+            <div class="gift-name">5次免费</div>
+            <div class="gift-desc">注册即送</div>
+          </div>
+          <div class="gift-item">
+            <div class="gift-icon">💰</div>
+            <div class="gift-name">首充双倍</div>
+            <div class="gift-desc">额外送50%</div>
+          </div>
+          <div class="gift-item">
+            <div class="gift-icon">📅</div>
+            <div class="gift-name">每日签到</div>
+            <div class="gift-desc">天天领奖励</div>
+          </div>
+          <div class="gift-item">
+            <div class="gift-icon">🤝</div>
+            <div class="gift-name">邀请好友</div>
+            <div class="gift-desc">双方都有奖</div>
+          </div>
+          <div class="gift-item">
+            <div class="gift-icon">👑</div>
+            <div class="gift-name">会员5折</div>
+            <div class="gift-desc">月卡低至6.9</div>
+          </div>
+        </div>
+        <div class="newbie-action">
+          <button class="newbie-btn" onclick="closeNewbieModalAndUse()">立即领取，免费体验</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 加载中 -->
+    <div class="loading" id="loading" style="display:none;">
+      <div class="loading-spinner"></div>
+      <div class="loading-text" id="loadingText">加载中...</div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

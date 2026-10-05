@@ -1,0 +1,1236 @@
+{
+  "users": [
+    {
+      "free_uses": 7,
+      "growth_points": 21,
+      "level": "bronze",
+      "invite_code": "869HES",
+      "inviter_id": null,
+      "vip_type": null,
+      "vip_expire_at": null,
+      "sign_days": 0,
+      "last_sign_at": null,
+      "today_share_count": 0,
+      "last_share_date": null,
+      "today_free_used": 0,
+      "last_free_date": null,
+      "id": 2,
+      "openid": "wx_test123456",
+      "nickname": "微信用户3456",
+      "avatar": "😀",
+      "balance": 0,
+      "total_spent": 0,
+      "total_uses": 1,
+      "created_at": "2026-10-04T11:44:57.015Z",
+      "last_login_at": "2026-10-04T11:44:57.015Z"
+    },
+    {
+      "free_uses": 5,
+      "growth_points": 0,
+      "level": "bronze",
+      "invite_code": "WE7R6E",
+      "inviter_id": null,
+      "vip_type": null,
+      "vip_expire_at": null,
+      "sign_days": 0,
+      "last_sign_at": null,
+      "today_share_count": 0,
+      "last_share_date": null,
+      "today_free_used": 0,
+      "last_free_date": null,
+      "id": 3,
+      "openid": "wx_FAKECODE123",
+      "nickname": "微信用户E123",
+      "avatar": "😀",
+      "balance": 0,
+      "total_spent": 0,
+      "total_uses": 0,
+      "created_at": "2026-10-04T11:58:23.050Z",
+      "last_login_at": "2026-10-04T11:58:23.050Z"
+    },
+    {
+      "id": 4,
+      "openid": "test_user_1791190066656",
+      "nickname": "测试用户",
+      "avatar": "🧪",
+      "balance": 0,
+      "free_uses": 9,
+      "total_spent": 0,
+      "total_uses": 0,
+      "growth_points": 12,
+      "level": "bronze",
+      "invite_code": "ZDGNAG",
+      "inviter_id": null,
+      "vip_type": null,
+      "vip_expire_at": null,
+      "sign_days": 1,
+      "last_sign_at": "2026-10-05T08:47:46.707Z",
+      "today_share_count": 1,
+      "last_share_date": "2026-10-05T08:47:46.737Z",
+      "today_free_used": 0,
+      "last_free_date": null,
+      "created_at": "2026-10-05T08:47:46.682Z",
+      "last_login_at": "2026-10-05T08:47:46.682Z"
+    },
+    {
+      "id": 5,
+      "openid": "free_mode_test_1791190066746",
+      "nickname": "免费模式测试",
+      "avatar": "🆓",
+      "balance": 0,
+      "free_uses": 0,
+      "total_spent": 0,
+      "total_uses": 19,
+      "growth_points": 47,
+      "level": "bronze",
+      "invite_code": "ET4GRZ",
+      "inviter_id": null,
+      "vip_type": null,
+      "vip_expire_at": null,
+      "sign_days": 0,
+      "last_sign_at": null,
+      "today_share_count": 0,
+      "last_share_date": null,
+      "today_free_used": 3,
+      "last_free_date": "2026-10-05T08:47:46.797Z",
+      "created_at": "2026-10-05T08:47:46.747Z",
+      "last_login_at": "2026-10-05T08:47:46.747Z"
+    }
+  ],
+  "tools": [
+    {
+      "id": 1,
+      "name": "给娃起个名",
+      "description": "王家卫风/霸总风/狗蛋风，总有一款你不敢用",
+      "icon": "🐣",
+      "price": 1,
+      "category": "creative",
+      "status": 1,
+      "use_count": 15,
+      "sort_order": 1,
+      "vip_only": false,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 2,
+      "name": "塔罗日运占卜",
+      "description": "抽一张今日专属塔罗牌，听听牌想对你说什么（塔罗占卜纯属娱乐，请勿当真）",
+      "icon": "🔮",
+      "price": 1,
+      "category": "fortune",
+      "status": 1,
+      "use_count": 10,
+      "sort_order": 2,
+      "vip_only": false,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 3,
+      "name": "恋爱嘴替",
+      "description": "给crush发点发疯文学，不回你算我输",
+      "icon": "💕",
+      "price": 1,
+      "category": "fun",
+      "status": 1,
+      "use_count": 7,
+      "sort_order": 3,
+      "vip_only": false,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 4,
+      "name": "藏头诗骚话",
+      "description": "用TA的名字写一首诗，撩完就跑",
+      "icon": "📜",
+      "price": 1,
+      "category": "creative",
+      "status": 1,
+      "use_count": 5,
+      "sort_order": 4,
+      "vip_only": false,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 5,
+      "name": "表情包配文",
+      "description": "给你收藏的表情包配个神文案，斗图必胜",
+      "icon": "😎",
+      "price": 1,
+      "category": "fun",
+      "status": 1,
+      "use_count": 22,
+      "sort_order": 5,
+      "vip_only": false,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 6,
+      "name": "假装今天",
+      "description": "假装今天过得很好/很忙/很文艺，骗赞专用",
+      "icon": "📸",
+      "price": 1,
+      "category": "creative",
+      "status": 1,
+      "use_count": 3,
+      "sort_order": 6,
+      "vip_only": false,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 7,
+      "name": "精神状态",
+      "description": "测测你现在精神正常吗？（大概率不）",
+      "icon": "🧠",
+      "price": 1,
+      "category": "test",
+      "status": 1,
+      "use_count": 1,
+      "sort_order": 7,
+      "vip_only": false,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 8,
+      "name": "感情塔罗牌",
+      "description": "默想你的感情问题，抽三张牌看看缘分走向（塔罗占卜纯属娱乐，请勿当真）",
+      "icon": "🃏",
+      "price": 1,
+      "category": "test",
+      "status": 1,
+      "use_count": 1,
+      "sort_order": 8,
+      "vip_only": false,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 9,
+      "name": "摆烂指南",
+      "description": "你适合继续卷还是直接躺平？（VIP专属）",
+      "icon": "💼",
+      "price": 1,
+      "category": "test",
+      "status": 1,
+      "use_count": 1,
+      "sort_order": 9,
+      "vip_only": true,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 10,
+      "name": "消息已读",
+      "description": "帮你回那个不想回又不得不回的消息（VIP专属）",
+      "icon": "💬",
+      "price": 1,
+      "category": "fun",
+      "status": 1,
+      "use_count": 2,
+      "sort_order": 10,
+      "vip_only": true,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 11,
+      "name": "梦境塔罗牌",
+      "description": "梦见啥了？抽张塔罗牌帮你解解梦（塔罗占卜纯属娱乐，请勿当真）",
+      "icon": "🌙",
+      "price": 1,
+      "category": "fortune",
+      "status": 1,
+      "use_count": 1,
+      "sort_order": 11,
+      "vip_only": false,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 12,
+      "name": "星座塔罗牌",
+      "description": "你的星座今日抽到了哪张指引牌？（塔罗占卜纯属娱乐，请勿当真）",
+      "icon": "⭐",
+      "price": 1,
+      "category": "fortune",
+      "status": 1,
+      "use_count": 1,
+      "sort_order": 12,
+      "vip_only": false,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 13,
+      "name": "号码塔罗牌",
+      "description": "手机号数字相加，对应你的专属塔罗牌（塔罗占卜纯属娱乐，请勿当真）",
+      "icon": "📱",
+      "price": 1,
+      "category": "fortune",
+      "status": 1,
+      "use_count": 1,
+      "sort_order": 13,
+      "vip_only": false,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 14,
+      "name": "彩虹屁生成器",
+      "description": "夸人夸到天上去，谁听谁迷糊",
+      "icon": "🌈",
+      "price": 1,
+      "category": "creative",
+      "status": 1,
+      "use_count": 1,
+      "sort_order": 14,
+      "vip_only": false,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 15,
+      "name": "优雅怼人",
+      "description": "文明优雅地怼回去，让对方无话可说",
+      "icon": "🔥",
+      "price": 1,
+      "category": "fun",
+      "status": 1,
+      "use_count": 1,
+      "sort_order": 15,
+      "vip_only": false,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 16,
+      "name": "emo文案",
+      "description": "深夜emo专属文案，朋友圈骗赞神器",
+      "icon": "😭",
+      "price": 1,
+      "category": "creative",
+      "status": 1,
+      "use_count": 1,
+      "sort_order": 16,
+      "vip_only": false,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    },
+    {
+      "id": 17,
+      "name": "歌词改编",
+      "description": "把一首流行歌改成你的故事",
+      "icon": "🎵",
+      "price": 1,
+      "category": "fun",
+      "status": 1,
+      "use_count": 1,
+      "sort_order": 17,
+      "vip_only": true,
+      "created_at": "2026-10-03T13:44:38.182Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": 2,
+      "order_no": "YY20261004X7S1RILW",
+      "user_id": 2,
+      "tool_id": 4,
+      "tool_name": "藏头诗骚话",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"name\":\"我爱你\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-04T11:45:14.645Z",
+      "pay_time": "2026-10-04T11:45:34.134Z",
+      "pay_method": "free",
+      "output_result": "{\"poem\":[\"我明月暗笼轻雾\",\"爱明月暗笼轻雾\",\"你明月暗笼轻雾\",\"月照花林皆似霰\"],\"title\":\"我爱你赋\",\"explanation\":\"此诗意境优美，以景寄情，表达美好祝愿。\",\"fromAI\":false}"
+    },
+    {
+      "id": 4,
+      "order_no": "YY202610055XXRPAFD",
+      "user_id": 5,
+      "tool_id": 1,
+      "tool_name": "给娃起个名",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"type\":\"pet\",\"gender\":\"male\",\"style\":\"cute\"}",
+      "pay_type": "daily_free",
+      "created_at": "2026-10-05T08:47:46.798Z",
+      "pay_time": "2026-10-05T08:47:48.143Z",
+      "pay_method": "daily_free",
+      "output_result": "{\"names\":[{\"name\":\"糯团\",\"meaning\":\"软萌可爱如糯米团\"},{\"name\":\"布丁\",\"meaning\":\"甜美如甜点般治愈\"},{\"name\":\"糖豆\",\"meaning\":\"像糖果一样甜蜜\"},{\"name\":\"小橘\",\"meaning\":\"活泼可爱的小橘猫\"},{\"name\":\"奶泡\",\"meaning\":\"如牛奶般温顺柔软\"},{\"name\":\"果冻\",\"meaning\":\"Q弹可爱如果冻\"}],\"fromAI\":true}"
+    },
+    {
+      "id": 5,
+      "order_no": "YY2026100560CEZH8K",
+      "user_id": 5,
+      "tool_id": 2,
+      "tool_name": "塔罗日运占卜",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"topic\":\"today\"}",
+      "pay_type": "daily_free",
+      "created_at": "2026-10-05T08:47:48.158Z",
+      "pay_time": "2026-10-05T08:47:50.001Z",
+      "pay_method": "daily_free",
+      "output_result": "{\"overallScore\":85,\"cardName\":\"力量\",\"cardEmoji\":\"🦁\",\"reversed\":true,\"cardMeaning\":\"内在力量不足，需重新找回自信。\",\"overallText\":\"今天整体运势稍显低迷，可能会感到有些无力或焦虑。但请相信，你内心依然有力量，只需调整心态，就能突破困境。\",\"loveText\":\"感情上可能需要更多耐心和沟通，别急着强求。\",\"careerText\":\"工作或学业上需稳中求进，避免冲动决定。\",\"wealthText\":\"财运平稳，不宜大手大脚，注意合理规划。\",\"suggestion\":\"给自己一点时间冷静思考，不要轻易放弃。\",\"todaysMotto\":\"静待时机，力量自会回归。\",\"fromAI\":true}"
+    },
+    {
+      "id": 6,
+      "order_no": "YY20261005SQW89N5U",
+      "user_id": 5,
+      "tool_id": 3,
+      "tool_name": "恋爱嘴替",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"type\":\"sweet\",\"target\":\"crush\"}",
+      "pay_type": "daily_free",
+      "created_at": "2026-10-05T08:47:50.014Z",
+      "pay_time": "2026-10-05T08:47:50.779Z",
+      "pay_method": "daily_free",
+      "output_result": "{\"words\":[\"你一笑，我的世界就亮了。\",\"想你的时候，连空气都变得甜了。\",\"我可能不是最帅的，但我是最想你的。\",\"你是我今天最想分享的早餐。\",\"偷偷告诉你，我偷偷喜欢你很久了。\"],\"fromAI\":true}"
+    },
+    {
+      "id": 7,
+      "order_no": "YY20261005YQ52T6IK",
+      "user_id": 5,
+      "tool_id": 4,
+      "tool_name": "藏头诗骚话",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"name\":\"我爱你\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:47:50.792Z",
+      "pay_time": "2026-10-05T08:47:51.650Z",
+      "pay_method": "free",
+      "output_result": "{\"poem\":[\"我欲乘风寻你影\",\"爱意如潮伴月明\",\"你若相依心不悔\",\"共赏人间万种情\"],\"title\":\"情牵一生\",\"explanation\":\"诗中表达了深情的追寻与不变的承诺，寓意与爱人共度美好人生。\",\"fromAI\":true}"
+    },
+    {
+      "id": 8,
+      "order_no": "YY20261005PIEGKDVR",
+      "user_id": 5,
+      "tool_id": 5,
+      "tool_name": "表情包配文",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"text\":\"上班如上坟\",\"template\":\"classic\",\"mode\":\"template\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:47:51.659Z",
+      "pay_time": "2026-10-05T08:47:51.663Z",
+      "pay_method": "free",
+      "output_result": "{\"text\":\"上班如上坟\",\"template\":\"classic\",\"fontStyle\":\"bold\",\"useCanvas\":true,\"tip\":\"长按图片可保存分享\",\"fromAI\":false}"
+    },
+    {
+      "id": 9,
+      "order_no": "YY20261005CA7I0634",
+      "user_id": 5,
+      "tool_id": 5,
+      "tool_name": "表情包配文",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"text\":\"测试一下\",\"char\":\"panda\",\"mode\":\"template\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:47:51.672Z",
+      "pay_time": "2026-10-05T08:47:51.676Z",
+      "pay_method": "free",
+      "output_result": "{\"text\":\"测试一下\",\"template\":\"classic\",\"fontStyle\":\"bold\",\"useCanvas\":true,\"tip\":\"长按图片可保存分享\",\"fromAI\":false}"
+    },
+    {
+      "id": 10,
+      "order_no": "YY20261005QDQOQF48",
+      "user_id": 5,
+      "tool_id": 6,
+      "tool_name": "假装今天",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"scene\":\"food\",\"style\":\"funny\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:47:51.683Z",
+      "pay_time": "2026-10-05T08:47:52.957Z",
+      "pay_method": "free",
+      "output_result": "{\"texts\":[\"这碗面让我感动到想哭…因为饿得眼眶都红了😭🍜\",\"吃完这盘鸡翅，我感觉自己像只抢食的鸟🐦🍗\",\"美食当前，我连减肥的决心都跟着下肚了🍚💥\",\"这火锅辣得我眼泪鼻涕一起流，但还是一口接一口🔥🍲\",\"刚咬下这块蛋糕，我宣布：我的灵魂被甜到了🍰✨\"],\"fromAI\":true}"
+    },
+    {
+      "id": 11,
+      "order_no": "YY20261005WA65ZHX9",
+      "user_id": 5,
+      "tool_id": 7,
+      "tool_name": "精神状态",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"q1\":\"A\",\"q2\":\"B\",\"q3\":\"C\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:47:52.967Z",
+      "pay_time": "2026-10-05T08:47:54.299Z",
+      "pay_method": "free",
+      "output_result": "{\"type\":\"温柔内向派\",\"emoji\":\"🌼\",\"desc\":\"性格温和内敛，善于倾听，内心丰富但不张扬。在人群中保持低调，更喜欢安静的环境和深度交流。\",\"traits\":[\"细腻敏感\",\"善解人意\",\"安静沉稳\",\"富有同理心\"],\"suitable\":[\"心理咨询师\",\"图书管理员\",\"艺术创作\"],\"loveStyle\":\"在感情中温柔体贴，愿意为对方付出，需要安全感与情感共鸣。\",\"friendStyle\":\"朋友眼中可靠又贴心，常默默支持他人。\",\"growthAdvice\":\"多表达自我，增强自信，尝试主动社交。\",\"fromAI\":true}"
+    },
+    {
+      "id": 12,
+      "order_no": "YY202610051E1K0NOT",
+      "user_id": 5,
+      "tool_id": 8,
+      "tool_name": "感情塔罗牌",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"status\":\"single\",\"question\":\"我什么时候脱单\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:47:54.307Z",
+      "pay_time": "2026-10-05T08:47:55.960Z",
+      "pay_method": "free",
+      "output_result": "{\"probability\":72,\"level\":\"缘分较旺\",\"cardNames\":[\"月亮\",\"命运之轮\",\"魔术师\"],\"cardEmojis\":[\"🌜\",\"🎡\",\"🎩\"],\"analysis\":\"过去你可能在感情中感到迷茫，但现在正迎来转折与机会。未来若能增强自信，将更有可能遇见合适的对象。\",\"advantages\":[\"你具备敏锐的直觉和创造力\",\"命运正在为你创造新的机遇\"],\"problems\":[\"需避免过度自我怀疑\",\"容易错过主动表达的机会\"],\"suggestions\":[\"相信自己的直觉，勇敢尝试新关系\",\"主动参与社交活动，扩大交友圈\",\"提升自信，展现真实的自己\"],\"bestTime\":\"今年秋冬\",\"type\":\"适合温柔、有创意且愿意主动出击的伴侣\",\"fromAI\":true}"
+    },
+    {
+      "id": 13,
+      "order_no": "YY20261005Q881BB8N",
+      "user_id": 5,
+      "tool_id": 9,
+      "tool_name": "摆烂指南",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"industry\":\"internet\",\"years\":\"3\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:47:55.971Z",
+      "pay_time": "2026-10-05T08:47:57.719Z",
+      "pay_method": "free",
+      "output_result": "{\"verdict\":\"半卷半摆\",\"score\":60,\"reason\":\"卷不动了，但摆烂又不甘心，你这状态像极了被老板画的大饼，看着香，吃着咸。\",\"pros_roll\":[\"能学到点东西，别让脑子生锈\",\"同事以为你是个有追求的人\",\"说不定哪天就翻身农奴把歌唱\"],\"pros_lazy\":[\"省下内耗的精力，留给睡觉\",\"领导看你一眼都懒得骂\",\"工资照拿，面子全无\"],\"warning\":\"摆烂太久，连自己都忘了怎么卷了。\",\"suggestion\":\"该干的时候干，该躺的时候躺，别把自己整成职场薛定谔。\",\"motto\":\"卷是种态度，摆是种智慧。\",\"fromAI\":true}"
+    },
+    {
+      "id": 14,
+      "order_no": "YY20261005GRTBLIWS",
+      "user_id": 5,
+      "tool_id": 10,
+      "tool_name": "消息已读",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"scene\":\"daily\",\"message\":\"你好\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:47:57.733Z",
+      "pay_time": "2026-10-05T08:47:58.987Z",
+      "pay_method": "free",
+      "output_result": "{\"replies\":[{\"style\":\"温柔体贴\",\"text\":\"你好呀，今天过得怎么样？\",\"reason\":\"关心对方状态，体现温暖\"},{\"style\":\"幽默化解\",\"text\":\"你好！是不是又想借我笔用？\",\"reason\":\"轻松化解尴尬，活跃气氛\"},{\"style\":\"高段位\",\"text\":\"你好，有什么需要我帮忙的吗？\",\"reason\":\"主动提供帮助，展现格局\"}],\"fromAI\":true}"
+    },
+    {
+      "id": 15,
+      "order_no": "YY20261005Q9E5SUYC",
+      "user_id": 5,
+      "tool_id": 10,
+      "tool_name": "消息已读",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"scene\":\"conflict\",\"message\":\"你怎么回事\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:47:58.998Z",
+      "pay_time": "2026-10-05T08:48:00.111Z",
+      "pay_method": "free",
+      "output_result": "{\"replies\":[{\"style\":\"温柔体贴\",\"text\":\"我是不是哪里让你不开心了？\",\"reason\":\"表达关心，引导沟通\"},{\"style\":\"幽默化解\",\"text\":\"我这是在测试你的耐心呢，合格了没？\",\"reason\":\"用幽默转移矛盾情绪\"},{\"style\":\"高段位\",\"text\":\"我可能做得不够好，但你愿意说，我很感激。\",\"reason\":\"展现成熟和包容态度\"}],\"fromAI\":true}"
+    },
+    {
+      "id": 16,
+      "order_no": "YY20261005SLQJ78JG",
+      "user_id": 5,
+      "tool_id": 11,
+      "tool_name": "梦境塔罗牌",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"dreamContent\":\"我梦见自己飞起来了\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:48:00.556Z",
+      "pay_time": "2026-10-05T08:48:01.896Z",
+      "pay_method": "free",
+      "output_result": "{\"text\":\"✨梦见这个，塔罗牌说：你正在起飞！✨\\n\\n🪄你抽到的是【女祭司🌙】正位，代表「直觉、智慧、倾听内心的声音」。\\n\\n🌙梦见自己飞起来，说明你正处在一种心灵上升的阶段。就像女祭司提醒你的那样，别只靠眼睛看世界，多听听内心的声音，它会带你飞得更高更远！\\n\\n🧠这可能是在提示你：最近是不是忽略了内心的指引？别急着行动，先静下心来感受。\\n\\n🌸温柔小建议：给自己一点独处时间，和内心好好聊聊，你会发现自己比想象中更有力量哦～  \\n\\n（塔罗解读纯属娱乐，轻松听听就好~）\",\"fromAI\":true}"
+    },
+    {
+      "id": 17,
+      "order_no": "YY20261005DCOTGYO3",
+      "user_id": 5,
+      "tool_id": 12,
+      "tool_name": "星座塔罗牌",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"sign\":\"狮子\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:48:01.907Z",
+      "pay_time": "2026-10-05T08:48:03.269Z",
+      "pay_method": "free",
+      "output_result": "{\"text\":\"✨**狮子座今日塔罗指引**✨  \\n🎯 **今日指引塔罗牌：皇帝（正位）** —— **掌控、秩序、执行力**  \\n\\n🔥 整体能量：⭐⭐⭐⭐☆（稳中带劲）  \\n\\n💞 爱情提示：别太自我，适当倾听TA的节奏，你会更受欢迎！  \\n💼 事业/学业提示：今天是展现领导力的好时机，但别忘了计划再行动！  \\n💰 财运提示：理性消费，别被虚荣心牵着走～  \\n\\n📌 今日宜：制定计划、坚定执行  \\n📌 今日忌：冲动决策、过度自恋  \\n\\n🌈 幸运色：金色 🌟 幸运数字：7\",\"fromAI\":true}"
+    },
+    {
+      "id": 18,
+      "order_no": "YY202610050E30HV4F",
+      "user_id": 5,
+      "tool_id": 13,
+      "tool_name": "号码塔罗牌",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"phoneNumber\":\"13800138000\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:48:03.279Z",
+      "pay_time": "2026-10-05T08:48:04.556Z",
+      "pay_method": "free",
+      "output_result": "{\"text\":\"号码塔罗：这个号藏着「女祭司」的智慧✨  \\n数字总和对应【女祭司🌙】正位，核心寓意是「直觉、智慧、倾听内心的声音」。  \\n\\n总评分：90分（智慧值爆表！）  \\n财运：⭐⭐⭐⭐☆  \\n事业运：⭐⭐⭐⭐⭐  \\n桃花运：⭐⭐⭐☆☆  \\n\\n适合理性又敏感的「思考型」人格使用～  \\n建议多听内心声音，别被表象迷惑，你可是自带灵性的“信息接收器”！🧠💬\",\"fromAI\":true}"
+    },
+    {
+      "id": 19,
+      "order_no": "YY20261005B9C72O70",
+      "user_id": 5,
+      "tool_id": 14,
+      "tool_name": "彩虹屁生成器",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"target\":\"小明\",\"style\":\"funny\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:48:04.565Z",
+      "pay_time": "2026-10-05T08:48:05.182Z",
+      "pay_method": "free",
+      "output_result": "{\"text\":\"小明，你简直就是行走的快乐源泉，笑点收割机，智商与幽默并存的宝藏男孩！每次和你聊天，都像打开一盒惊喜糖果，甜到心巴上～你这颜值和段子双杀的配置，简直是人间理想型！😎✨\",\"fromAI\":true}"
+    },
+    {
+      "id": 20,
+      "order_no": "YY20261005RVAA8WTU",
+      "user_id": 5,
+      "tool_id": 15,
+      "tool_name": "优雅怼人",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"scene\":\"同事抬杠\",\"intensity\":\"medium\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:48:05.196Z",
+      "pay_time": "2026-10-05T08:48:05.596Z",
+      "pay_method": "free",
+      "output_result": "{\"text\":\"你这逻辑，怕是刚从豆腐里捞出来就来上班了吧？🥢\",\"fromAI\":true}"
+    },
+    {
+      "id": 21,
+      "order_no": "YY20261005N49IDT20",
+      "user_id": 5,
+      "tool_id": 16,
+      "tool_name": "emo文案",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"scene\":\"love\",\"style\":\"lateNight\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:48:05.604Z",
+      "pay_time": "2026-10-05T08:48:06.178Z",
+      "pay_method": "free",
+      "output_result": "{\"text\":\"夜深了，月亮还是那么圆，只是少了你陪我一起看。  \\n有些爱，像风，来了又走，留不下痕迹。  \\n#晚安 #emo文案 🌙💔\",\"fromAI\":true}"
+    },
+    {
+      "id": 22,
+      "order_no": "YY20261005A2HGHFD6",
+      "user_id": 5,
+      "tool_id": 17,
+      "tool_name": "歌词改编",
+      "amount": 0,
+      "status": 1,
+      "input_params": "{\"songName\":\"孤勇者\",\"story\":\"打工人\"}",
+      "pay_type": "free",
+      "created_at": "2026-10-05T08:48:06.192Z",
+      "pay_time": "2026-10-05T08:48:07.167Z",
+      "pay_method": "free",
+      "output_result": "{\"text\":\"歌名：**打工人之歌**  \\n原曲：《孤勇者》——陈奕迅\\n\\n【主歌】  \\n你问我为何在工位上发呆  \\n不是我懒，是加班到深夜的无奈  \\n键盘敲出的是代码，不是诗篇  \\n但我依然在格子间里默默坚守  \\n\\n【副歌】  \\n谁说打工人没有英雄梦  \\n每天面对Excel和PPT的冲锋  \\n老板说“再努力一点”，我就笑了  \\n因为我知道，我就是自己的英雄！\",\"fromAI\":true}"
+    }
+  ],
+  "usage_records": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "tool_id": 2,
+      "tool_name": "今日运势",
+      "input_params": "{\"zodiac\":\"白羊座\"}",
+      "output_result": "{\"overallScore\":85,\"loveScore\":90,\"careerScore\":80,\"wealthScore\":75,\"healthScore\":88,\"luckyColor\":\"天蓝色\",\"luckyNumber\":\"7\",\"luckyDirection\":\"东南方\",\"overallText\":\"白羊座今日整体运势良好，充满活力与机遇，适合积极行动。保持乐观心态，将有助于实现目标。\",\"loveText\":\"感情方面运势佳，单身者可能有新恋情机会，情侣间互动更亲密。\",\"careerText\":\"事业上需注意沟通方式，避免冲动决策，理性处理问题更易获得成功。\",\"wealthText\":\"财运平稳，不宜冒险投资，合理规划收支更为稳妥。\",\"healthText\":\"身体状态良好，注意劳逸结合，保持规律作息。\",\"suggestion\":\"多与人交流，增强人际关系，提升整体运势。\",\"todaysMotto\":\"积极行动，迎接好运。\",\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-03T13:51:20.063Z"
+    },
+    {
+      "id": 2,
+      "user_id": 2,
+      "tool_id": 4,
+      "tool_name": "藏头诗骚话",
+      "input_params": "{\"name\":\"我爱你\"}",
+      "output_result": "{\"poem\":[\"我明月暗笼轻雾\",\"爱明月暗笼轻雾\",\"你明月暗笼轻雾\",\"月照花林皆似霰\"],\"title\":\"我爱你赋\",\"explanation\":\"此诗意境优美，以景寄情，表达美好祝愿。\",\"fromAI\":false}",
+      "amount": 0,
+      "created_at": "2026-10-04T11:45:34.141Z"
+    },
+    {
+      "id": 3,
+      "user_id": 1,
+      "tool_id": 3,
+      "tool_name": "恋爱嘴替",
+      "input_params": "{\"type\":\"sweet\",\"target\":\"crush\"}",
+      "output_result": "{\"words\":[\"你一笑，我的世界就暖了。\",\"想和你一起看遍所有日落，但最想看的是你的眼睛。\",\"我可能不是最棒的，但我会是第一个想和你分享天气的人。\",\"你是不是偷偷把星星放进了我的口袋？不然怎么感觉心里装满了光？\",\"如果喜欢有声音，那我此刻的心跳一定吵到你了。\"],\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-04T12:39:06.643Z"
+    },
+    {
+      "id": 4,
+      "user_id": 5,
+      "tool_id": 1,
+      "tool_name": "给娃起个名",
+      "input_params": "{\"type\":\"pet\",\"gender\":\"male\",\"style\":\"cute\"}",
+      "output_result": "{\"names\":[{\"name\":\"糯团\",\"meaning\":\"软萌可爱如糯米团\"},{\"name\":\"布丁\",\"meaning\":\"甜美如甜点般治愈\"},{\"name\":\"糖豆\",\"meaning\":\"像糖果一样甜蜜\"},{\"name\":\"小橘\",\"meaning\":\"活泼可爱的小橘猫\"},{\"name\":\"奶泡\",\"meaning\":\"如牛奶般温顺柔软\"},{\"name\":\"果冻\",\"meaning\":\"Q弹可爱如果冻\"}],\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:47:48.146Z"
+    },
+    {
+      "id": 5,
+      "user_id": 5,
+      "tool_id": 2,
+      "tool_name": "塔罗日运占卜",
+      "input_params": "{\"topic\":\"today\"}",
+      "output_result": "{\"overallScore\":85,\"cardName\":\"力量\",\"cardEmoji\":\"🦁\",\"reversed\":true,\"cardMeaning\":\"内在力量不足，需重新找回自信。\",\"overallText\":\"今天整体运势稍显低迷，可能会感到有些无力或焦虑。但请相信，你内心依然有力量，只需调整心态，就能突破困境。\",\"loveText\":\"感情上可能需要更多耐心和沟通，别急着强求。\",\"careerText\":\"工作或学业上需稳中求进，避免冲动决定。\",\"wealthText\":\"财运平稳，不宜大手大脚，注意合理规划。\",\"suggestion\":\"给自己一点时间冷静思考，不要轻易放弃。\",\"todaysMotto\":\"静待时机，力量自会回归。\",\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:47:50.006Z"
+    },
+    {
+      "id": 6,
+      "user_id": 5,
+      "tool_id": 3,
+      "tool_name": "恋爱嘴替",
+      "input_params": "{\"type\":\"sweet\",\"target\":\"crush\"}",
+      "output_result": "{\"words\":[\"你一笑，我的世界就亮了。\",\"想你的时候，连空气都变得甜了。\",\"我可能不是最帅的，但我是最想你的。\",\"你是我今天最想分享的早餐。\",\"偷偷告诉你，我偷偷喜欢你很久了。\"],\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:47:50.783Z"
+    },
+    {
+      "id": 7,
+      "user_id": 5,
+      "tool_id": 4,
+      "tool_name": "藏头诗骚话",
+      "input_params": "{\"name\":\"我爱你\"}",
+      "output_result": "{\"poem\":[\"我欲乘风寻你影\",\"爱意如潮伴月明\",\"你若相依心不悔\",\"共赏人间万种情\"],\"title\":\"情牵一生\",\"explanation\":\"诗中表达了深情的追寻与不变的承诺，寓意与爱人共度美好人生。\",\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:47:51.653Z"
+    },
+    {
+      "id": 8,
+      "user_id": 5,
+      "tool_id": 5,
+      "tool_name": "表情包配文",
+      "input_params": "{\"text\":\"上班如上坟\",\"template\":\"classic\",\"mode\":\"template\"}",
+      "output_result": "{\"text\":\"上班如上坟\",\"template\":\"classic\",\"fontStyle\":\"bold\",\"useCanvas\":true,\"tip\":\"长按图片可保存分享\",\"fromAI\":false}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:47:51.666Z"
+    },
+    {
+      "id": 9,
+      "user_id": 5,
+      "tool_id": 5,
+      "tool_name": "表情包配文",
+      "input_params": "{\"text\":\"测试一下\",\"char\":\"panda\",\"mode\":\"template\"}",
+      "output_result": "{\"text\":\"测试一下\",\"template\":\"classic\",\"fontStyle\":\"bold\",\"useCanvas\":true,\"tip\":\"长按图片可保存分享\",\"fromAI\":false}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:47:51.678Z"
+    },
+    {
+      "id": 10,
+      "user_id": 5,
+      "tool_id": 6,
+      "tool_name": "假装今天",
+      "input_params": "{\"scene\":\"food\",\"style\":\"funny\"}",
+      "output_result": "{\"texts\":[\"这碗面让我感动到想哭…因为饿得眼眶都红了😭🍜\",\"吃完这盘鸡翅，我感觉自己像只抢食的鸟🐦🍗\",\"美食当前，我连减肥的决心都跟着下肚了🍚💥\",\"这火锅辣得我眼泪鼻涕一起流，但还是一口接一口🔥🍲\",\"刚咬下这块蛋糕，我宣布：我的灵魂被甜到了🍰✨\"],\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:47:52.960Z"
+    },
+    {
+      "id": 11,
+      "user_id": 5,
+      "tool_id": 7,
+      "tool_name": "精神状态",
+      "input_params": "{\"q1\":\"A\",\"q2\":\"B\",\"q3\":\"C\"}",
+      "output_result": "{\"type\":\"温柔内向派\",\"emoji\":\"🌼\",\"desc\":\"性格温和内敛，善于倾听，内心丰富但不张扬。在人群中保持低调，更喜欢安静的环境和深度交流。\",\"traits\":[\"细腻敏感\",\"善解人意\",\"安静沉稳\",\"富有同理心\"],\"suitable\":[\"心理咨询师\",\"图书管理员\",\"艺术创作\"],\"loveStyle\":\"在感情中温柔体贴，愿意为对方付出，需要安全感与情感共鸣。\",\"friendStyle\":\"朋友眼中可靠又贴心，常默默支持他人。\",\"growthAdvice\":\"多表达自我，增强自信，尝试主动社交。\",\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:47:54.302Z"
+    },
+    {
+      "id": 12,
+      "user_id": 5,
+      "tool_id": 8,
+      "tool_name": "感情塔罗牌",
+      "input_params": "{\"status\":\"single\",\"question\":\"我什么时候脱单\"}",
+      "output_result": "{\"probability\":72,\"level\":\"缘分较旺\",\"cardNames\":[\"月亮\",\"命运之轮\",\"魔术师\"],\"cardEmojis\":[\"🌜\",\"🎡\",\"🎩\"],\"analysis\":\"过去你可能在感情中感到迷茫，但现在正迎来转折与机会。未来若能增强自信，将更有可能遇见合适的对象。\",\"advantages\":[\"你具备敏锐的直觉和创造力\",\"命运正在为你创造新的机遇\"],\"problems\":[\"需避免过度自我怀疑\",\"容易错过主动表达的机会\"],\"suggestions\":[\"相信自己的直觉，勇敢尝试新关系\",\"主动参与社交活动，扩大交友圈\",\"提升自信，展现真实的自己\"],\"bestTime\":\"今年秋冬\",\"type\":\"适合温柔、有创意且愿意主动出击的伴侣\",\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:47:55.964Z"
+    },
+    {
+      "id": 13,
+      "user_id": 5,
+      "tool_id": 9,
+      "tool_name": "摆烂指南",
+      "input_params": "{\"industry\":\"internet\",\"years\":\"3\"}",
+      "output_result": "{\"verdict\":\"半卷半摆\",\"score\":60,\"reason\":\"卷不动了，但摆烂又不甘心，你这状态像极了被老板画的大饼，看着香，吃着咸。\",\"pros_roll\":[\"能学到点东西，别让脑子生锈\",\"同事以为你是个有追求的人\",\"说不定哪天就翻身农奴把歌唱\"],\"pros_lazy\":[\"省下内耗的精力，留给睡觉\",\"领导看你一眼都懒得骂\",\"工资照拿，面子全无\"],\"warning\":\"摆烂太久，连自己都忘了怎么卷了。\",\"suggestion\":\"该干的时候干，该躺的时候躺，别把自己整成职场薛定谔。\",\"motto\":\"卷是种态度，摆是种智慧。\",\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:47:57.725Z"
+    },
+    {
+      "id": 14,
+      "user_id": 5,
+      "tool_id": 10,
+      "tool_name": "消息已读",
+      "input_params": "{\"scene\":\"daily\",\"message\":\"你好\"}",
+      "output_result": "{\"replies\":[{\"style\":\"温柔体贴\",\"text\":\"你好呀，今天过得怎么样？\",\"reason\":\"关心对方状态，体现温暖\"},{\"style\":\"幽默化解\",\"text\":\"你好！是不是又想借我笔用？\",\"reason\":\"轻松化解尴尬，活跃气氛\"},{\"style\":\"高段位\",\"text\":\"你好，有什么需要我帮忙的吗？\",\"reason\":\"主动提供帮助，展现格局\"}],\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:47:58.992Z"
+    },
+    {
+      "id": 15,
+      "user_id": 5,
+      "tool_id": 10,
+      "tool_name": "消息已读",
+      "input_params": "{\"scene\":\"conflict\",\"message\":\"你怎么回事\"}",
+      "output_result": "{\"replies\":[{\"style\":\"温柔体贴\",\"text\":\"我是不是哪里让你不开心了？\",\"reason\":\"表达关心，引导沟通\"},{\"style\":\"幽默化解\",\"text\":\"我这是在测试你的耐心呢，合格了没？\",\"reason\":\"用幽默转移矛盾情绪\"},{\"style\":\"高段位\",\"text\":\"我可能做得不够好，但你愿意说，我很感激。\",\"reason\":\"展现成熟和包容态度\"}],\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:48:00.547Z"
+    },
+    {
+      "id": 16,
+      "user_id": 5,
+      "tool_id": 11,
+      "tool_name": "梦境塔罗牌",
+      "input_params": "{\"dreamContent\":\"我梦见自己飞起来了\"}",
+      "output_result": "{\"text\":\"✨梦见这个，塔罗牌说：你正在起飞！✨\\n\\n🪄你抽到的是【女祭司🌙】正位，代表「直觉、智慧、倾听内心的声音」。\\n\\n🌙梦见自己飞起来，说明你正处在一种心灵上升的阶段。就像女祭司提醒你的那样，别只靠眼睛看世界，多听听内心的声音，它会带你飞得更高更远！\\n\\n🧠这可能是在提示你：最近是不是忽略了内心的指引？别急着行动，先静下心来感受。\\n\\n🌸温柔小建议：给自己一点独处时间，和内心好好聊聊，你会发现自己比想象中更有力量哦～  \\n\\n（塔罗解读纯属娱乐，轻松听听就好~）\",\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:48:01.899Z"
+    },
+    {
+      "id": 17,
+      "user_id": 5,
+      "tool_id": 12,
+      "tool_name": "星座塔罗牌",
+      "input_params": "{\"sign\":\"狮子\"}",
+      "output_result": "{\"text\":\"✨**狮子座今日塔罗指引**✨  \\n🎯 **今日指引塔罗牌：皇帝（正位）** —— **掌控、秩序、执行力**  \\n\\n🔥 整体能量：⭐⭐⭐⭐☆（稳中带劲）  \\n\\n💞 爱情提示：别太自我，适当倾听TA的节奏，你会更受欢迎！  \\n💼 事业/学业提示：今天是展现领导力的好时机，但别忘了计划再行动！  \\n💰 财运提示：理性消费，别被虚荣心牵着走～  \\n\\n📌 今日宜：制定计划、坚定执行  \\n📌 今日忌：冲动决策、过度自恋  \\n\\n🌈 幸运色：金色 🌟 幸运数字：7\",\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:48:03.274Z"
+    },
+    {
+      "id": 18,
+      "user_id": 5,
+      "tool_id": 13,
+      "tool_name": "号码塔罗牌",
+      "input_params": "{\"phoneNumber\":\"13800138000\"}",
+      "output_result": "{\"text\":\"号码塔罗：这个号藏着「女祭司」的智慧✨  \\n数字总和对应【女祭司🌙】正位，核心寓意是「直觉、智慧、倾听内心的声音」。  \\n\\n总评分：90分（智慧值爆表！）  \\n财运：⭐⭐⭐⭐☆  \\n事业运：⭐⭐⭐⭐⭐  \\n桃花运：⭐⭐⭐☆☆  \\n\\n适合理性又敏感的「思考型」人格使用～  \\n建议多听内心声音，别被表象迷惑，你可是自带灵性的“信息接收器”！🧠💬\",\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:48:04.559Z"
+    },
+    {
+      "id": 19,
+      "user_id": 5,
+      "tool_id": 14,
+      "tool_name": "彩虹屁生成器",
+      "input_params": "{\"target\":\"小明\",\"style\":\"funny\"}",
+      "output_result": "{\"text\":\"小明，你简直就是行走的快乐源泉，笑点收割机，智商与幽默并存的宝藏男孩！每次和你聊天，都像打开一盒惊喜糖果，甜到心巴上～你这颜值和段子双杀的配置，简直是人间理想型！😎✨\",\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:48:05.188Z"
+    },
+    {
+      "id": 20,
+      "user_id": 5,
+      "tool_id": 15,
+      "tool_name": "优雅怼人",
+      "input_params": "{\"scene\":\"同事抬杠\",\"intensity\":\"medium\"}",
+      "output_result": "{\"text\":\"你这逻辑，怕是刚从豆腐里捞出来就来上班了吧？🥢\",\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:48:05.599Z"
+    },
+    {
+      "id": 21,
+      "user_id": 5,
+      "tool_id": 16,
+      "tool_name": "emo文案",
+      "input_params": "{\"scene\":\"love\",\"style\":\"lateNight\"}",
+      "output_result": "{\"text\":\"夜深了，月亮还是那么圆，只是少了你陪我一起看。  \\n有些爱，像风，来了又走，留不下痕迹。  \\n#晚安 #emo文案 🌙💔\",\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:48:06.184Z"
+    },
+    {
+      "id": 22,
+      "user_id": 5,
+      "tool_id": 17,
+      "tool_name": "歌词改编",
+      "input_params": "{\"songName\":\"孤勇者\",\"story\":\"打工人\"}",
+      "output_result": "{\"text\":\"歌名：**打工人之歌**  \\n原曲：《孤勇者》——陈奕迅\\n\\n【主歌】  \\n你问我为何在工位上发呆  \\n不是我懒，是加班到深夜的无奈  \\n键盘敲出的是代码，不是诗篇  \\n但我依然在格子间里默默坚守  \\n\\n【副歌】  \\n谁说打工人没有英雄梦  \\n每天面对Excel和PPT的冲锋  \\n老板说“再努力一点”，我就笑了  \\n因为我知道，我就是自己的英雄！\",\"fromAI\":true}",
+      "amount": 0,
+      "created_at": "2026-10-05T08:48:07.174Z"
+    }
+  ],
+  "sign_records": [
+    {
+      "id": 1,
+      "user_id": 4,
+      "sign_days": 1,
+      "reward": "{\"freeUses\":1,\"balance\":0,\"growth\":5}",
+      "created_at": "2026-10-05T08:47:46.709Z"
+    }
+  ],
+  "invite_relations": [],
+  "task_records": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "task_id": "first_use",
+      "extra_data": "{}",
+      "created_at": "2026-10-03T13:51:20.067Z"
+    },
+    {
+      "id": 2,
+      "user_id": 2,
+      "task_id": "first_use",
+      "extra_data": "{}",
+      "created_at": "2026-10-04T11:45:34.150Z"
+    },
+    {
+      "id": 3,
+      "user_id": 4,
+      "task_id": "watch_ad",
+      "extra_data": "{}",
+      "created_at": "2026-10-05T08:47:46.724Z"
+    },
+    {
+      "id": 4,
+      "user_id": 4,
+      "task_id": "daily_share",
+      "extra_data": "{}",
+      "created_at": "2026-10-05T08:47:46.740Z"
+    },
+    {
+      "id": 5,
+      "user_id": 5,
+      "task_id": "watch_ad",
+      "extra_data": "{}",
+      "created_at": "2026-10-05T08:47:46.752Z"
+    },
+    {
+      "id": 6,
+      "user_id": 5,
+      "task_id": "watch_ad",
+      "extra_data": "{}",
+      "created_at": "2026-10-05T08:47:46.757Z"
+    },
+    {
+      "id": 7,
+      "user_id": 5,
+      "task_id": "watch_ad",
+      "extra_data": "{}",
+      "created_at": "2026-10-05T08:47:46.763Z"
+    },
+    {
+      "id": 8,
+      "user_id": 5,
+      "task_id": "watch_ad",
+      "extra_data": "{}",
+      "created_at": "2026-10-05T08:47:46.769Z"
+    },
+    {
+      "id": 9,
+      "user_id": 5,
+      "task_id": "watch_ad",
+      "extra_data": "{}",
+      "created_at": "2026-10-05T08:47:46.774Z"
+    },
+    {
+      "id": 10,
+      "user_id": 5,
+      "task_id": "watch_ad",
+      "extra_data": "{}",
+      "created_at": "2026-10-05T08:47:46.779Z"
+    },
+    {
+      "id": 11,
+      "user_id": 5,
+      "task_id": "watch_ad",
+      "extra_data": "{}",
+      "created_at": "2026-10-05T08:47:46.785Z"
+    },
+    {
+      "id": 12,
+      "user_id": 5,
+      "task_id": "watch_ad",
+      "extra_data": "{}",
+      "created_at": "2026-10-05T08:47:46.791Z"
+    },
+    {
+      "id": 13,
+      "user_id": 5,
+      "task_id": "first_use",
+      "extra_data": "{}",
+      "created_at": "2026-10-05T08:47:48.150Z"
+    }
+  ],
+  "share_records": [
+    {
+      "id": 1,
+      "user_id": 4,
+      "share_type": "result",
+      "tool_id": 1,
+      "created_at": "2026-10-05T08:47:46.737Z"
+    }
+  ],
+  "vip_orders": [],
+  "growth_records": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "points": 20,
+      "reason": "首次使用工具",
+      "created_at": "2026-10-03T13:51:20.066Z"
+    },
+    {
+      "id": 2,
+      "user_id": 1,
+      "points": 1,
+      "reason": "使用今日运势",
+      "created_at": "2026-10-03T13:51:20.069Z"
+    },
+    {
+      "id": 3,
+      "user_id": 2,
+      "points": 20,
+      "reason": "首次使用工具",
+      "created_at": "2026-10-04T11:45:34.148Z"
+    },
+    {
+      "id": 4,
+      "user_id": 2,
+      "points": 1,
+      "reason": "使用藏头诗骚话",
+      "created_at": "2026-10-04T11:45:34.155Z"
+    },
+    {
+      "id": 5,
+      "user_id": 1,
+      "points": 1,
+      "reason": "使用恋爱嘴替",
+      "created_at": "2026-10-04T12:39:06.651Z"
+    },
+    {
+      "id": 6,
+      "user_id": 4,
+      "points": 5,
+      "reason": "每日签到",
+      "created_at": "2026-10-05T08:47:46.708Z"
+    },
+    {
+      "id": 7,
+      "user_id": 4,
+      "points": 1,
+      "reason": "看广告得次数",
+      "created_at": "2026-10-05T08:47:46.723Z"
+    },
+    {
+      "id": 8,
+      "user_id": 4,
+      "points": 3,
+      "reason": "分享结果",
+      "created_at": "2026-10-05T08:47:46.738Z"
+    },
+    {
+      "id": 9,
+      "user_id": 4,
+      "points": 3,
+      "reason": "分享结果",
+      "created_at": "2026-10-05T08:47:46.740Z"
+    },
+    {
+      "id": 10,
+      "user_id": 5,
+      "points": 1,
+      "reason": "看广告得次数",
+      "created_at": "2026-10-05T08:47:46.752Z"
+    },
+    {
+      "id": 11,
+      "user_id": 5,
+      "points": 1,
+      "reason": "看广告得次数",
+      "created_at": "2026-10-05T08:47:46.756Z"
+    },
+    {
+      "id": 12,
+      "user_id": 5,
+      "points": 1,
+      "reason": "看广告得次数",
+      "created_at": "2026-10-05T08:47:46.763Z"
+    },
+    {
+      "id": 13,
+      "user_id": 5,
+      "points": 1,
+      "reason": "看广告得次数",
+      "created_at": "2026-10-05T08:47:46.769Z"
+    },
+    {
+      "id": 14,
+      "user_id": 5,
+      "points": 1,
+      "reason": "看广告得次数",
+      "created_at": "2026-10-05T08:47:46.773Z"
+    },
+    {
+      "id": 15,
+      "user_id": 5,
+      "points": 1,
+      "reason": "看广告得次数",
+      "created_at": "2026-10-05T08:47:46.778Z"
+    },
+    {
+      "id": 16,
+      "user_id": 5,
+      "points": 1,
+      "reason": "看广告得次数",
+      "created_at": "2026-10-05T08:47:46.784Z"
+    },
+    {
+      "id": 17,
+      "user_id": 5,
+      "points": 1,
+      "reason": "看广告得次数",
+      "created_at": "2026-10-05T08:47:46.790Z"
+    },
+    {
+      "id": 18,
+      "user_id": 5,
+      "points": 20,
+      "reason": "首次使用工具",
+      "created_at": "2026-10-05T08:47:48.149Z"
+    },
+    {
+      "id": 19,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用给娃起个名",
+      "created_at": "2026-10-05T08:47:48.153Z"
+    },
+    {
+      "id": 20,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用塔罗日运占卜",
+      "created_at": "2026-10-05T08:47:50.009Z"
+    },
+    {
+      "id": 21,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用恋爱嘴替",
+      "created_at": "2026-10-05T08:47:50.787Z"
+    },
+    {
+      "id": 22,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用藏头诗骚话",
+      "created_at": "2026-10-05T08:47:51.655Z"
+    },
+    {
+      "id": 23,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用表情包配文",
+      "created_at": "2026-10-05T08:47:51.669Z"
+    },
+    {
+      "id": 24,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用表情包配文",
+      "created_at": "2026-10-05T08:47:51.680Z"
+    },
+    {
+      "id": 25,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用假装今天",
+      "created_at": "2026-10-05T08:47:52.962Z"
+    },
+    {
+      "id": 26,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用精神状态",
+      "created_at": "2026-10-05T08:47:54.303Z"
+    },
+    {
+      "id": 27,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用感情塔罗牌",
+      "created_at": "2026-10-05T08:47:55.966Z"
+    },
+    {
+      "id": 28,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用摆烂指南",
+      "created_at": "2026-10-05T08:47:57.728Z"
+    },
+    {
+      "id": 29,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用消息已读",
+      "created_at": "2026-10-05T08:47:58.995Z"
+    },
+    {
+      "id": 30,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用消息已读",
+      "created_at": "2026-10-05T08:48:00.550Z"
+    },
+    {
+      "id": 31,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用梦境塔罗牌",
+      "created_at": "2026-10-05T08:48:01.902Z"
+    },
+    {
+      "id": 32,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用星座塔罗牌",
+      "created_at": "2026-10-05T08:48:03.276Z"
+    },
+    {
+      "id": 33,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用号码塔罗牌",
+      "created_at": "2026-10-05T08:48:04.560Z"
+    },
+    {
+      "id": 34,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用彩虹屁生成器",
+      "created_at": "2026-10-05T08:48:05.191Z"
+    },
+    {
+      "id": 35,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用优雅怼人",
+      "created_at": "2026-10-05T08:48:05.601Z"
+    },
+    {
+      "id": 36,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用emo文案",
+      "created_at": "2026-10-05T08:48:06.187Z"
+    },
+    {
+      "id": 37,
+      "user_id": 5,
+      "points": 1,
+      "reason": "使用歌词改编",
+      "created_at": "2026-10-05T08:48:07.177Z"
+    }
+  ],
+  "manual_orders": [],
+  "nextId": {
+    "users": 6,
+    "tools": 18,
+    "orders": 23,
+    "usage_records": 23,
+    "sign_records": 2,
+    "invite_relations": 1,
+    "task_records": 14,
+    "share_records": 2,
+    "vip_orders": 1,
+    "growth_records": 38,
+    "manual_orders": 1
+  },
+  "vip_records": []
+}
