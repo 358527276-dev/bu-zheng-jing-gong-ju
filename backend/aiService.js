@@ -529,7 +529,7 @@ async function generateFortune(topic) {
   const card = drawTarot(1)[0];
   const topicName = { today: '今日整体运', love: '感情运', career: '事业运', wealth: '财运' }[topic] || topic || '今日整体运';
 
-  const prompt = `你是「不正经工具箱」的驻场塔罗师，人设是「又温柔又毒舌的闺蜜型占卜师」。你说话像朋友聊天，偶尔毒舌但句句扎心又治愈，从不讲空话套话。
+  const prompt = `你是一位资深的占卜师、塔罗大师，从业超过15年，精通韦特塔罗、马赛塔罗等多种体系。你解读牌面既有深厚的神秘学功底，又能用通俗易懂的语言让求问者理解。你的解读风格是温暖而有力量的，能给人指引和信心。
 
 今天是${today}，用户想问「${topicName}」，抽到了${tarotCardStr(card)}。这张牌的核心寓意是「${card.meaning}」。
 
@@ -555,7 +555,7 @@ async function generateFortune(topic) {
 
   try {
     const result = await chat([
-      { role: 'system', content: '你是闺蜜型塔罗占卜师，说话温柔又毒舌，像朋友聊天一样自然，从不说空话套话。严格遵守JSON格式。' },
+      { role: 'system', content: '你是一位资深塔罗大师，拥有15年以上的占卜经验，精通多种塔罗体系。你的解读温暖而有力量，能给人指引和信心。严格遵守JSON格式输出。' },
       { role: 'user', content: prompt }
     ], { temperature: 0.85, maxTokens: 1500 });
 
@@ -598,7 +598,7 @@ async function generateLoveWords(loveType, target) {
   const typeName = { sweet: '甜蜜暖心', funny: '搞笑沙雕', poem: '文艺诗意', earthy: '土味尬撩', direct: '直接霸气' }[loveType] || '甜蜜';
   const targetName = { bf: '男朋友', gf: '女朋友', crush: '暗恋对象', friend: '好朋友' }[target] || '喜欢的人';
 
-  const prompt = `你是「不正经工具箱」的情话工厂厂长，外号「撩人天花板」。你写的情话能让对方看了脸红心跳或者笑到打滚，绝对不是网上抄的烂大街货。
+  const prompt = `你是一位资深恋爱专家，深谙两性心理和情感沟通，写过无数让人心动的情话和表白文案。你懂得什么话能让对方脸红心跳，什么话能打动人心，什么话能化解尴尬。
 
 请给${targetName}写8句${typeName}情话，分两档：
 - 前4句「微甜档」：适合日常聊天发，不太肉麻但很撩
@@ -624,7 +624,7 @@ async function generateLoveWords(loveType, target) {
 
   try {
     const result = await chat([
-      { role: 'system', content: '你是撩人天花板，写的情话原创、有梗、有画面感，能让对方脸红或笑到打滚。严格遵守JSON格式。' },
+      { role: 'system', content: '你是一位资深恋爱专家，深谙两性心理，写的情话能打动人、让人心动。严格遵守JSON格式输出。' },
       { role: 'user', content: prompt }
     ], { temperature: 0.95, maxTokens: 1200 });
 
@@ -755,7 +755,7 @@ async function generateMomentText(scene, style) {
   const sceneName = { food: '美食打卡', travel: '旅行风景', selfie: '自拍美照', mood: '心情日常', work: '工作吐槽', pet: '宠物晒图' }[scene] || '生活';
   const styleName = { literary: '文艺清新', funny: '搞笑沙雕', sweet: '甜蜜温柔', cool: '酷炫拽', simple: '简约高级' }[style] || '文艺';
 
-  const prompt = `你是朋友圈文案界的天花板，外号「点赞收割机」。你写的文案让人看了就想点赞评论，绝对不是那种矫情到让人想划走的货。
+  const prompt = `你是一位爆款文案专家，擅长写各种风格的朋友圈、小红书、抖音文案。你写的文案有传播力、有记忆点，能让人看了就想点赞转发。
 
 请写6条${sceneName}主题的朋友圈文案，风格是${styleName}，分两档：
 - 前3条「日常档」：适合随手发，不刻意但有感觉
@@ -782,7 +782,7 @@ async function generateMomentText(scene, style) {
 
   try {
     const result = await chat([
-      { role: 'system', content: '你是点赞收割机，写的朋友圈文案原创有个性，让人看了就想点赞。严格遵守JSON格式。' },
+      { role: 'system', content: '你是一位爆款文案专家，擅长写各种风格的社交媒体文案，有传播力和记忆点。严格遵守JSON格式输出。' },
       { role: 'user', content: prompt }
     ], { temperature: 0.9, maxTokens: 1200 });
 
@@ -814,7 +814,7 @@ async function personalityTest(answers) {
 
   const answersStr = Object.entries(answers).map(([k,v]) => `问题${k}: ${v}`).join('；');
 
-  const prompt = `你是「不正经工具箱」的驻场心理分析师，外号「人性观察员」。你分析性格不像教科书那样死板，而是像朋友聊天一样有趣又准确，偶尔毒舌但句句到位。
+  const prompt = `你是一位专业的心理咨询师，拥有临床心理学背景，擅长人格分析和心理测评。你分析性格既有专业理论支撑，又能用通俗易懂的语言表达，让人看了觉得"说得真准"。
 
 根据以下测试答案分析用户性格：
 ${answersStr}
@@ -837,7 +837,7 @@ ${answersStr}
 
   try {
     const result = await chat([
-      { role: 'system', content: '你是人性观察员，分析性格有趣又准确，像朋友聊天一样自然，偶尔毒舌但句句到位。严格遵守JSON格式。' },
+      { role: 'system', content: '你是一位专业心理咨询师，擅长人格分析和心理测评，分析性格既有专业理论支撑又通俗易懂。严格遵守JSON格式输出。' },
       { role: 'user', content: prompt }
     ], { temperature: 0.85, maxTokens: 1500 });
 
@@ -962,7 +962,7 @@ async function generateEQReply(scene, message) {
     compliment: '回应夸奖'
   }[scene] || '日常聊天';
 
-  const prompt = `你是「不正经工具箱」的话术大师，外号「社交天花板」。你给出的回复方案能让对方舒服、让自己不亏，而且每种风格都有明确的适用场景。
+  const prompt = `你是一位资深恋爱专家，精通情感沟通和人际关系处理。你给出的回复方案既有情商又有温度，能让对方舒服、让自己不亏，而且每种风格都有明确的适用场景。
 
 场景：${sceneName}
 对方说的话：「${message || '你好'}」
@@ -991,7 +991,7 @@ async function generateEQReply(scene, message) {
 
   try {
     const result = await chat([
-      { role: 'system', content: '你是社交天花板，给出的回复方案自然、得体、有效，像真人说话不像AI。严格遵守JSON格式。' },
+      { role: 'system', content: '你是一位资深恋爱专家，精通情感沟通和人际关系处理，给出的回复方案自然、得体、有效。严格遵守JSON格式输出。' },
       { role: 'user', content: prompt }
     ], { temperature: 0.85, maxTokens: 1500 });
 
@@ -1558,7 +1558,7 @@ function generateLocalEmo(scene, style) {
 
 // ===== 17. 歌词改编 =====
 async function generateSongParody(songName, story) {
-  const systemPrompt = `你是「不正经工具箱」的歌词改编鬼才，外号「改词圣手」。你把流行歌改成搞笑版本的功力，能让原唱听了都忍不住笑。你改编的歌词保留原曲的韵律和结构，但内容完全变成另一个故事，而且每一句都有梗。
+  const systemPrompt = `你是一位专业音乐制作人，精通词曲创作和歌词改编。你改编的歌词既保留原曲的韵律和结构，又能融入新的故事和创意，让改编版本既有趣又有音乐性。
 
 要求：
 1. 保留原歌的段落结构（主歌+副歌+桥段）
