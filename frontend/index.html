@@ -187,7 +187,14 @@
       border: 1px solid var(--border);
     }
     .result-title { font-size: 18px; font-weight: 700; margin-bottom: 16px; text-align: center; }
-    .result-content { font-size: 14px; line-height: 1.8; white-space: pre-wrap; }
+    .result-content { font-size: 14px; line-height: 1.8; }
+    .result-section { margin-bottom: 20px; }
+    .result-section-title { font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--border); }
+    .result-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px; background: rgba(255,255,255,0.6); border-radius: 12px; margin-bottom: 8px; }
+    .result-item-index { font-size: 12px; font-weight: 700; color: var(--primary); min-width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #fce4ec, #f3e5f5); border-radius: 50%; }
+    .result-item-text { flex: 1; font-size: 14px; line-height: 1.6; word-break: break-word; }
+    .btn-copy-item { padding: 6px 12px; border-radius: 16px; background: rgba(255,255,255,0.9); border: 1px solid var(--border); font-size: 12px; cursor: pointer; white-space: nowrap; }
+    .btn-copy-item:active { background: var(--primary); color: #fff; }
     .result-actions { display: flex; gap: 12px; margin-top: 16px; }
     .btn-action {
       flex: 1; padding: 12px; border-radius: 20px;
@@ -686,23 +693,101 @@
     function showResult(result) {
       document.getElementById('resultTitle').textContent = currentTool.name + ' - 生成结果';
 
-      let content = '';
+      const contentDiv = document.getElementById('resultContent');
+      contentDiv.innerHTML = '';
+
       if (typeof result === 'string') {
-        content = result;
+        contentDiv.innerHTML = `<div class="result-item"><div class="result-item-text">${result}</div><button class="btn-copy-item" onclick="copyText(this)">📋 复制</button></div>`;
       } else if (typeof result === 'object') {
-        // 格式化JSON结果
-        content = Object.entries(result).map(([key, value]) => {
+        // 遍历结果对象，数组类型单独渲染
+        Object.entries(result).forEach(([key, value]) => {
           if (Array.isArray(value)) {
-            return `${key}:\n${value.map((item, i) => `  ${i+1}. ${typeof item === 'string' ? item : JSON.stringify(item)}`).join('\n')}`;
+            // 数组类型：每条单独显示+复制按钮
+            const section = document.createElement('div');
+            section.className = 'result-section';
+            section.innerHTML = `<div class="result-section-title">${key}</div>`;
+
+            value.forEach((item, index) => {
+              const itemDiv = document.createElement('div');
+              itemDiv.className = 'result-item';
+
+              let text = '';
+              if (typeof item === 'string') {
+                text = item;
+              } else if (typeof item === 'object' && item !== null) {
+                // 对象数组：显示主要字段
+                text = Object.entries(item).map(([k, v]) => {
+                  if (k === 'text' || k === 'name' || k === 'content') return v;
+                  return `${k}: ${v}`;
+                }).filter(Boolean).join(' | ');
+              } else {
+                text = String(item);
+              }
+
+              itemDiv.innerHTML = `
+                <div class="result-item-index">${index + 1}</div>
+                <div class="result-item-text">${text}</div>
+                <button class="btn-copy-item" onclick="copyText(this)">📋</button>
+              `;
+              section.appendChild(itemDiv);
+            });
+
+            contentDiv.appendChild(section);
+          } else if (typeof value === 'object' && value !== null) {
+            // 嵌套对象
+            const section = document.createElement('div');
+            section.className = 'result-section';
+            section.innerHTML = `
+              <div class="result-section-title">${key}</div>
+              <div class="result-item">
+                <div class="result-item-text">${JSON.stringify(value, null, 2)}</div>
+                <button class="btn-copy-item" onclick="copyText(this)">📋</button>
+              </div>
+            `;
+            contentDiv.appendChild(section);
+          } else {
+            // 简单值
+            const section = document.createElement('div');
+            section.className = 'result-section';
+            section.innerHTML = `
+              <div class="result-section-title">${key}</div>
+              <div class="result-item">
+                <div class="result-item-text">${value}</div>
+                <button class="btn-copy-item" onclick="copyText(this)"></button>
+              </div>
+            `;
+            contentDiv.appendChild(section);
           }
-          return `${key}: ${typeof value === 'object' ? JSON.stringify(value, null, 2) : value}`;
-        }).join('\n\n');
+        });
       } else {
-        content = JSON.stringify(result, null, 2);
+        contentDiv.textContent = JSON.stringify(result, null, 2);
       }
 
-      document.getElementById('resultContent').textContent = content;
       showPage('result');
+    }
+
+    function copyText(btn) {
+      const itemDiv = btn.closest('.result-item');
+      const textDiv = itemDiv.querySelector('.result-item-text');
+      const text = textDiv.textContent;
+
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = '✓';
+        setTimeout(() => { btn.textContent = originalText; }, 1500);
+      }).catch(() => {
+        // 降级方案
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        const originalText = btn.textContent;
+        btn.textContent = '✓';
+        setTimeout(() => { btn.textContent = originalText; }, 1500);
+      });
     }
 
     function copyResult() {
