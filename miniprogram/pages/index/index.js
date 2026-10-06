@@ -4,6 +4,16 @@ const { CATEGORIES } = require('../../utils/tools');
 // VIP工具ID（需要看广告解锁）
 const VIP_TOOL_IDS = [9, 10, 17];
 
+// 宫崎骏风格工具图标
+const ICON_PATHS = {
+  1: '/assets/tool-1.jpg', 2: '/assets/tool-2.jpg', 3: '/assets/tool-3.jpg',
+  4: '/assets/tool-4.jpg', 5: '/assets/tool-5.jpg', 6: '/assets/tool-6.jpg',
+  7: '/assets/tool-7.jpg', 8: '/assets/tool-8.jpg', 9: '/assets/tool-9.jpg',
+  10: '/assets/tool-10.jpg', 11: '/assets/tool-11.jpg', 12: '/assets/tool-12.jpg',
+  13: '/assets/tool-13.jpg', 14: '/assets/tool-14.jpg', 15: '/assets/tool-15.jpg',
+  16: '/assets/tool-16.jpg', 17: '/assets/tool-17.jpg'
+};
+
 // 图标背景渐变色（骚气配色）
 const ICON_BGS = [
   'linear-gradient(135deg, #ff6b9d, #ff8e53)',
@@ -65,7 +75,8 @@ Page({
           isVipTool,
           isHot: HOT_TOOL_IDS.includes(t.id),
           isNew: NEW_TOOL_IDS.includes(t.id),
-          iconBg: ICON_BGS[idx % ICON_BGS.length]
+          iconBg: ICON_BGS[idx % ICON_BGS.length],
+          iconPath: ICON_PATHS[t.id] || ''
         };
       });
       this.setData({

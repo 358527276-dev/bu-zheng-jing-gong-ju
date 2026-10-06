@@ -27,7 +27,9 @@
 }
 
 .tool-big-icon {
-  font-size: 64rpx;
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 20rpx;
 }
 
 .tool-title {

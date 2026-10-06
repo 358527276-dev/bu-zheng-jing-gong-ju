@@ -20,7 +20,7 @@
   <!-- 工具头部 -->
   <view class="card tool-head {{isVipTool ? 'vip-head' : ''}}">
     <view class="tool-icon-bg" style="background: {{iconBg}};">
-      <text class="tool-big-icon">{{tool.icon}}</text>
+      <image class="tool-big-icon" src="{{iconPath}}" mode="aspectFit" />
     </view>
     <view class="tool-title">{{tool.name}}</view>
     <view class="tool-desc">{{tool.description}}</view>

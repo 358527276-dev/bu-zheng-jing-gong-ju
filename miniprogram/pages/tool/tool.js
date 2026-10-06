@@ -5,6 +5,15 @@ const { TOOLS_FORM, validateForm } = require('../../utils/tools');
 // VIP工具ID（需要看广告解锁）
 const VIP_TOOL_IDS = [9, 10, 17];
 
+const ICON_PATHS = {
+  1: '/assets/tool-1.jpg', 2: '/assets/tool-2.jpg', 3: '/assets/tool-3.jpg',
+  4: '/assets/tool-4.jpg', 5: '/assets/tool-5.jpg', 6: '/assets/tool-6.jpg',
+  7: '/assets/tool-7.jpg', 8: '/assets/tool-8.jpg', 9: '/assets/tool-9.jpg',
+  10: '/assets/tool-10.jpg', 11: '/assets/tool-11.jpg', 12: '/assets/tool-12.jpg',
+  13: '/assets/tool-13.jpg', 14: '/assets/tool-14.jpg', 15: '/assets/tool-15.jpg',
+  16: '/assets/tool-16.jpg', 17: '/assets/tool-17.jpg'
+};
+
 // 图标渐变色
 const ICON_BGS = [
   'linear-gradient(135deg, #ff6b9d, #ff8e53)',
@@ -64,6 +73,7 @@ Page({
 
     const isVipTool = VIP_TOOL_IDS.includes(this.toolId);
     const iconBg = ICON_BGS[(this.toolId - 1) % ICON_BGS.length];
+    const iconPath = ICON_PATHS[this.toolId] || '';
 
     this.setData({
       tool: { ...res.data, priceText: isVipTool ? '看广告解锁' : '免费' },
@@ -73,6 +83,7 @@ Page({
       dailyFreeLeft: dailyLeft,
       isVipTool,
       iconBg,
+      iconPath,
       useFree: true
     });
     this.updateVisible();

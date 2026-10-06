@@ -53,7 +53,7 @@
       bindtap="onToolTap"
     >
       <view class="tool-icon-bg" style="background: {{item.iconBg}};">
-        <text class="tool-icon">{{item.icon}}</text>
+        <image class="tool-icon" src="{{item.iconPath}}" mode="aspectFit" />
       </view>
       <view class="tool-name">{{item.name}}</view>
       <view class="tool-desc">{{item.description}}</view>

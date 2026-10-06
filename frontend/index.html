@@ -128,10 +128,14 @@
     .tool-card:active { transform: scale(0.97); }
     .tool-card.vip { background: linear-gradient(180deg, #fff9ec 0%, rgba(255,255,255,0.92) 40%); border-color: var(--gold-light); }
     .tool-icon-bg {
-      width: 44px; height: 44px; border-radius: 12px;
+      width: 52px; height: 52px; border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 8px; font-size: 24px;
+      margin-bottom: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .tool-icon-img {
+      width: 100%; height: 100%; object-fit: cover; border-radius: 14px;
     }
     .tool-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
     .tool-desc { font-size: 11px; color: var(--text-light); line-height: 1.4; height: 32px; overflow: hidden; }
@@ -245,6 +249,14 @@
       const VIP_IDS = [9, 10, 17];
       const HOT_IDS = [1, 3, 5, 8];
       const NEW_IDS = [17, 15];
+      const ICON_PATHS = {
+        1:'images/tool-1.jpg',2:'images/tool-2.jpg',3:'images/tool-3.jpg',
+        4:'images/tool-4.jpg',5:'images/tool-5.jpg',6:'images/tool-6.jpg',
+        7:'images/tool-7.jpg',8:'images/tool-8.jpg',9:'images/tool-9.jpg',
+        10:'images/tool-10.jpg',11:'images/tool-11.jpg',12:'images/tool-12.jpg',
+        13:'images/tool-13.jpg',14:'images/tool-14.jpg',15:'images/tool-15.jpg',
+        16:'images/tool-16.jpg',17:'images/tool-17.jpg'
+      };
       const BGS = [
         'linear-gradient(135deg,#ff6b9d,#ff8e53)',
         'linear-gradient(135deg,#a855f7,#ec4899)',
@@ -256,9 +268,10 @@
         const isVip = VIP_IDS.includes(t.id);
         const isHot = HOT_IDS.includes(t.id);
         const isNew = NEW_IDS.includes(t.id);
+        const iconSrc = ICON_PATHS[t.id] || '';
         return `
           <div class="tool-card ${isVip ? 'vip' : ''}" onclick="openTool(${t.id})">
-            <div class="tool-icon-bg" style="background:${BGS[i % BGS.length]}">${t.icon}</div>
+            <div class="tool-icon-bg" style="background:${BGS[i % BGS.length]}"><img class="tool-icon-img" src="${iconSrc}" alt="${t.name}"></div>
             <div class="tool-name">${t.name}</div>
             <div class="tool-desc">${t.description}</div>
             <div class="tool-foot">

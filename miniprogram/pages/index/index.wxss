@@ -188,9 +188,9 @@
 }
 
 .tool-icon {
-  font-size: 48rpx;
-  display: inline-block;
-  line-height: 1;
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 16rpx;
 }
 
 .tool-name {
