@@ -60,6 +60,20 @@
     .hero-title { font-size: 26px; font-weight: 900; letter-spacing: 2px; }
     .hero-sub { font-size: 13px; opacity: 0.9; margin-top: 4px; }
     .hero-free { margin-top: 12px; font-size: 13px; }
+    .wechat-login-btn {
+      margin-top: 16px; padding: 10px 20px; border-radius: 20px;
+      background: #07c160; color: #fff; border: none;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .wechat-login-btn:hover { background: #06ad56; }
+    .user-info-display {
+      margin-top: 12px; font-size: 13px; opacity: 0.9;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .user-info-display img {
+      width: 24px; height: 24px; border-radius: 50%;
+    }
 
     .cat-bar {
       display: flex; gap: 8px; overflow-x: auto; margin-bottom: 16px;
@@ -235,6 +249,16 @@
           <span style="margin:0 6px;opacity:0.6;">·</span>
           <span>赠送 <b id="giftFree">0</b> 次</span>
         </div>
+        <div id="loginArea">
+          <button class="wechat-login-btn" onclick="wechatLogin()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.045c.134 0 .24-.11.24-.245 0-.06-.024-.12-.04-.178l-.325-1.233a.492.492 0 0 1 .177-.554C23.074 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.269-.03-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982z"/></svg>
+            微信登录
+          </button>
+          <div class="user-info-display" id="userInfoDisplay" style="display:none;">
+            <img id="userAvatar" src="" alt="">
+            <span id="userName"></span>
+          </div>
+        </div>
       </div>
 
       <div class="cat-bar" id="catBar"></div>
@@ -303,6 +327,7 @@
     let currentTool = null;
     let currentResult = null;
     let formData = {};
+    const state = { userInfo: null };
 
     const ICON_PATHS = {
       1:'images/tool-1.jpg',2:'images/tool-2.jpg',3:'images/tool-3.jpg',
@@ -321,9 +346,25 @@
     ];
 
     async function init() {
+      // 检查URL参数（微信登录回调）
+      const urlParams = new URLSearchParams(window.location.search);
+      const wechatLoginSuccess = urlParams.get('wechat_login');
+      const wechatUserId = urlParams.get('userId');
+      const errorMsg = urlParams.get('msg');
+
+      if (wechatLoginSuccess && wechatUserId) {
+        userId = wechatUserId;
+        localStorage.setItem('userId', userId);
+        // 清除URL参数
+        window.history.replaceState({}, document.title, '/');
+      } else if (errorMsg) {
+        alert('微信登录失败：' + decodeURIComponent(errorMsg));
+      }
+
       await login();
       await loadTools();
       await loadUserInfo();
+      updateLoginUI();
     }
 
     async function login() {
@@ -334,6 +375,45 @@
           userId = res.data.userId;
           localStorage.setItem('userId', userId);
         }
+      }
+    }
+
+    async function wechatLogin() {
+      try {
+        const res = await api('/user/h5-wechat-auth-url', 'GET');
+        if (res.code === 0 && res.data.authUrl) {
+          // 跳转到微信授权页面
+          window.location.href = res.data.authUrl;
+        } else {
+          // 未配置微信H5登录，使用快捷登录
+          alert(res.message || '微信登录未配置，使用快捷登录');
+          await login();
+          updateLoginUI();
+        }
+      } catch (err) {
+        console.error('微信登录失败:', err);
+        alert('微信登录失败，使用快捷登录');
+        await login();
+        updateLoginUI();
+      }
+    }
+
+    function updateLoginUI() {
+      const loginArea = document.getElementById('loginArea');
+      const userInfoDisplay = document.getElementById('userInfoDisplay');
+      const userAvatar = document.getElementById('userAvatar');
+      const userName = document.getElementById('userName');
+
+      if (userId && state.userInfo) {
+        // 已登录，显示用户信息
+        loginArea.querySelector('.wechat-login-btn').style.display = 'none';
+        userInfoDisplay.style.display = 'flex';
+        userAvatar.src = state.userInfo.avatar || '😀';
+        userName.textContent = state.userInfo.nickname || '用户' + userId;
+      } else {
+        // 未登录，显示登录按钮
+        loginArea.querySelector('.wechat-login-btn').style.display = 'inline-flex';
+        userInfoDisplay.style.display = 'none';
       }
     }
 
@@ -348,6 +428,7 @@
       if (!userId) return;
       const res = await api('/user/info', 'GET', { userId });
       if (res.code === 0) {
+        state.userInfo = res.data;
         document.getElementById('dailyFree').textContent = res.data.vipInfo?.dailyFreeUses?.count || 0;
         document.getElementById('giftFree').textContent = res.data.freeUses || 0;
       }

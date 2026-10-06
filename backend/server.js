@@ -198,6 +198,91 @@ app.post('/api/user/wx-login', async (req, res) => {
   }
 });
 
+// ===== H5微信登录（OAuth 2.0） =====
+// 获取微信OAuth授权URL
+app.get('/api/user/h5-wechat-auth-url', (req, res) => {
+  try {
+    const WX_H5_APPID = process.env.WX_H5_APPID || '';
+    const WX_H5_SECRET = process.env.WX_H5_SECRET || '';
+    const redirectUri = process.env.WX_H5_REDIRECT_URI || '';
+
+    if (!WX_H5_APPID || !WX_H5_SECRET || !redirectUri) {
+      return fail(res, '微信H5登录未配置，请在环境变量中设置 WX_H5_APPID、WX_H5_SECRET、WX_H5_REDIRECT_URI');
+    }
+
+    const state = 'h5_' + Date.now() + Math.random().toString(36).slice(2, 8);
+    const authUrl = `https://open.weixin.qq.com/connect/qrconnect?appid=${WX_H5_APPID}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=snsapi_login&state=${state}#wechat_redirect`;
+
+    success(res, { authUrl, state }, '获取授权URL成功');
+  } catch (err) {
+    console.error('获取微信授权URL失败:', err);
+    fail(res, '获取授权URL失败');
+  }
+});
+
+// 微信OAuth回调处理
+app.get('/api/user/h5-wechat-callback', async (req, res) => {
+  try {
+    const { code, state } = req.query;
+    if (!code) {
+      return res.redirect('/?error=wechat_login_failed&msg=缺少授权code');
+    }
+
+    const WX_H5_APPID = process.env.WX_H5_APPID || '';
+    const WX_H5_SECRET = process.env.WX_H5_SECRET || '';
+
+    if (!WX_H5_APPID || !WX_H5_SECRET) {
+      return res.redirect('/?error=wechat_login_failed&msg=微信H5登录未配置');
+    }
+
+    // 用code换取access_token和openid
+    const tokenData = await httpsGet(
+      `https://api.weixin.qq.com/sns/oauth2/access_token?appid=${WX_H5_APPID}&secret=${WX_H5_SECRET}&code=${code}&grant_type=authorization_code`
+    );
+
+    if (tokenData.errcode) {
+      console.error('微信OAuth token获取失败:', tokenData);
+      return res.redirect(`/?error=wechat_login_failed&msg=${encodeURIComponent(tokenData.errmsg || '授权失败')}`);
+    }
+
+    const { access_token, openid } = tokenData;
+
+    // 用access_token获取用户信息
+    const userInfo = await httpsGet(
+      `https://api.weixin.qq.com/sns/userinfo?access_token=${access_token}&openid=${openid}&lang=zh_CN`
+    );
+
+    if (userInfo.errcode) {
+      console.error('微信用户信息获取失败:', userInfo);
+      return res.redirect(`/?error=wechat_login_failed&msg=${encodeURIComponent(userInfo.errmsg || '获取用户信息失败')}`);
+    }
+
+    // 查找或创建用户
+    let user = db.users.findByOpenid(openid);
+    if (!user) {
+      user = db.users.create({
+        openid,
+        nickname: userInfo.nickname || '微信用户',
+        avatar: userInfo.headimgurl || '😀',
+        balance: 0,
+        free_uses: 5
+      });
+    } else {
+      user = db.users.update(user.id, {
+        nickname: userInfo.nickname || user.nickname,
+        avatar: userInfo.headimgurl || user.avatar,
+        last_login_at: new Date().toISOString()
+      });
+    }
+
+    // 重定向到前端页面，带上userId
+    res.redirect(`/?wechat_login=1&userId=${user.id}`);
+  } catch (err) {
+    console.error('微信H5登录回调失败:', err);
+    res.redirect('/?error=wechat_login_failed&msg=登录失败');
+  }
+});
+
 // 获取用户信息
 app.get('/api/user/info', (req, res) => {
   try {
