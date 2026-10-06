@@ -187,6 +187,25 @@ Page({
     wx.switchTab({ url: '/pages/index/index' });
   },
 
+  // 一键复制小红书文案+标签
+  onCopyXhs() {
+    const blocks = this.data.blocks;
+    let text = '';
+    blocks.forEach(b => {
+      if (b.type === 'text' || b.type === 'tip') text += b.text + '\n';
+      if (b.type === 'memeText') text += b.text + '\n';
+      if (b.type === 'list') b.items.forEach(i => { text += `${i.rank}. ${i.title}${i.sub ? ' — ' + i.sub : ''}\n`; });
+      if (b.type === 'kv') b.items.forEach(i => { text += `${i.key}：${i.value}\n`; });
+      if (b.type === 'poem') { text += (b.title ? `《${b.title}》\n` : ''); b.lines.forEach(l => text += l + '\n'); text += (b.sub || '') + '\n'; }
+      if (b.type === 'score') text += `综合评分：${b.score} ${b.motto ? '「' + b.motto + '」' : ''}\n`;
+    });
+    const xhsText = text.trim() + '\n\n#不正经工具箱 #' + this.data.toolName + ' #AI生成 #今日运势 #好玩的工具';
+    wx.setClipboardData({
+      data: xhsText,
+      success: () => wx.showToast({ title: '已复制，去小红书粘贴吧~', icon: 'none', duration: 2500 })
+    });
+  },
+
   onShareAppMessage() {
     const app = getApp();
     api.recordShare(app.globalData.userId, 'result', this.toolId);

@@ -1,8 +1,19 @@
 <view class="container">
-  <!-- 顶部横幅 -->
+  <!-- 樱花飘落层 -->
+  <view class="sakura-layer">
+    <view class="sakura" style="left: 10%; animation-delay: 0s; animation-duration: 9s;"></view>
+    <view class="sakura" style="left: 25%; animation-delay: 2s; animation-duration: 11s;"></view>
+    <view class="sakura" style="left: 45%; animation-delay: 4s; animation-duration: 8s;"></view>
+    <view class="sakura" style="left: 65%; animation-delay: 1s; animation-duration: 10s;"></view>
+    <view class="sakura" style="left: 80%; animation-delay: 3s; animation-duration: 12s;"></view>
+    <view class="sakura" style="left: 92%; animation-delay: 5s; animation-duration: 9s;"></view>
+  </view>
+
+  <!-- 顶部横幅 · 深紫金边 -->
   <view class="hero card">
+    <view class="hero-stars">✦</view>
     <view class="hero-title">🤪 不正经工具箱</view>
-    <view class="hero-sub">17个上头AI小玩具，看广告就能白嫖全部！</view>
+    <view class="hero-sub">17个上头AI小玩具 · 看广告白嫖</view>
     <view class="hero-free">
       <text>🎁 今日免费 {{dailyFreeLeft}} 次</text>
       <text class="hero-free-dot">·</text>

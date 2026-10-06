@@ -204,3 +204,52 @@
   font-size: 26rpx;
   border-radius: 999rpx !important;
 }
+
+/* ===== 小红书种草引导 ===== */
+.xhs-guide {
+  background: linear-gradient(135deg, #fff0f3, #fce4ec);
+  border: 2rpx dashed #ff6b9d;
+  border-radius: 20rpx;
+  padding: 28rpx 24rpx;
+  margin: 16rpx 0;
+}
+
+.xhs-title {
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #831843;
+  margin-bottom: 16rpx;
+}
+
+.xhs-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  justify-content: center;
+  margin-bottom: 16rpx;
+}
+
+.xhs-tag {
+  font-size: 22rpx;
+  color: #be185d;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 6rpx 16rpx;
+  border-radius: 999rpx;
+  border: 1rpx solid #f9a8d4;
+}
+
+.xhs-action {
+  text-align: center;
+}
+
+.xhs-copy {
+  display: inline-block;
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #ec4899, #be185d);
+  padding: 16rpx 40rpx;
+  border-radius: 999rpx;
+  box-shadow: 0 6rpx 20rpx rgba(190, 24, 93, 0.35);
+}

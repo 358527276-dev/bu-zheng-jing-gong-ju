@@ -72,6 +72,21 @@
         🎁 分享好友
       </button>
     </view>
+
+    <!-- 小红书种草引导 -->
+    <view class="xhs-guide">
+      <view class="xhs-title">📸 发小红书更容易火</view>
+      <view class="xhs-tags">
+        <text class="xhs-tag">#不正经工具箱</text>
+        <text class="xhs-tag">#{{toolName}}</text>
+        <text class="xhs-tag">#AI生成</text>
+        <text class="xhs-tag">#今日运势</text>
+      </view>
+      <view class="xhs-action">
+        <text class="xhs-copy" bindtap="onCopyXhs">一键复制文案+标签</text>
+      </view>
+    </view>
+
     <view class="btn-second-row">
       <button class="btn-plain" bindtap="goBackTool">🔄 再玩一次</button>
       <button class="btn-plain" bindtap="goHome">🏠 返回首页</button>
