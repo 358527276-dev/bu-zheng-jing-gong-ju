@@ -419,44 +419,47 @@ async function generateName(type, gender, style) {
   if (!isEnabled()) {
     return generateLocalName(type, gender, style);
   }
-  
+
   const typeMap = { pet: '宠物', baby: '宝宝', nickname: '网名/昵称', web: '网名/昵称', company: '公司/品牌' };
   const typeName = typeMap[type] || '昵称';
   const genderMap = { male: '男/公', boy: '男/公', female: '女/母', girl: '女/母', neutral: '中性' };
   const genderName = genderMap[gender] || '中性';
   const styleMap = { cute: '可爱萌系', cool: '酷炫霸气', literary: '文艺清新', funny: '搞笑沙雕', elegant: '优雅高级' };
   const styleName = styleMap[style] || '可爱';
-  
-  const prompt = `请为${typeName}起6个好听的名字。
+
+  const prompt = `你是「不正经工具箱」的御用起名大师，外号「取名鬼才」。你起的名字既有文化底蕴又接地气，能让用户一看就「哇，好绝」。
+
+请为${typeName}起8个名字，分成两组：
+- 前4个走「${styleName}」路线，精致有品位
+- 后4个走「搞笑沙雕」路线，让人一看就笑，但细品又觉得挺有道理
+
 要求：
 - 性别倾向：${genderName}
-- 风格：${styleName}
-- 每个名字附带一句简短的寓意或解释（10字以内）
-- 名字要新颖不俗气，朗朗上口
+- 每个名字附带寓意（15字以内，要有趣，别写"寓意美好"这种废话）
+- 名字要新颖，绝对不要烂大街的
+- 沙雕组的名字要有梗、有画面感
 
 请用JSON格式返回：
 {
   "names": [
-    {"name": "名字1", "meaning": "寓意1"},
-    {"name": "名字2", "meaning": "寓意2"},
-    {"name": "名字3", "meaning": "寓意3"},
-    {"name": "名字4", "meaning": "寓意4"},
-    {"name": "名字5", "meaning": "寓意5"},
-    {"name": "名字6", "meaning": "寓意6"}
-  ]
+    {"name": "名字", "meaning": "寓意", "style": "精致/沙雕"},
+    ...共8个
+  ],
+  "topPick": "你最推荐的一个名字",
+  "topReason": "为什么推荐它，30字以内，要有趣"
 }
 
 只返回JSON，不要其他文字。所有内容用中文。`;
 
   try {
     const result = await chat([
-      { role: 'system', content: '你是一位创意起名专家，擅长起各种类型的好名字。' },
+      { role: 'system', content: '你是取名鬼才，起的名字既有文化底蕴又沙雕搞笑，用户看了又爱又笑。严格遵守JSON格式输出。' },
       { role: 'user', content: prompt }
-    ], { temperature: 0.9, maxTokens: 500 });
-    
+    ], { temperature: 0.9, maxTokens: 1200 });
+
     let jsonStr = result.content.trim().replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```$/, '').trim();
     const data = JSON.parse(jsonStr);
-    return { names: data.names || [], fromAI: true };
+    return { names: data.names || [], topPick: data.topPick || '', topReason: data.topReason || '', fromAI: true };
   } catch (err) {
     console.error('AI起名失败:', err.message);
     return generateLocalName(type, gender, style);
@@ -526,30 +529,35 @@ async function generateFortune(topic) {
   const card = drawTarot(1)[0];
   const topicName = { today: '今日整体运', love: '感情运', career: '事业运', wealth: '财运' }[topic] || topic || '今日整体运';
 
-  const prompt = `请做一次塔罗牌占卜解读。用户在今天（${today}）想问「${topicName}」，抽到了一张${tarotCardStr(card)}。
+  const prompt = `你是「不正经工具箱」的驻场塔罗师，人设是「又温柔又毒舌的闺蜜型占卜师」。你说话像朋友聊天，偶尔毒舌但句句扎心又治愈，从不讲空话套话。
 
-请用JSON格式返回：
+今天是${today}，用户想问「${topicName}」，抽到了${tarotCardStr(card)}。这张牌的核心寓意是「${card.meaning}」。
+
+请结合牌意和正逆位，用JSON格式返回：
 {
-  "overallScore": 85,
+  "overallScore": 65-95之间的整数,
   "cardName": "${card.name}",
   "cardEmoji": "${card.emoji}",
   "reversed": ${card.reversed},
-  "cardMeaning": "这张牌的核心寓意，25字以内",
-  "overallText": "结合「${topicName}」的整体解读，80-100字",
-  "loveText": "感情方面的提示，40-60字",
-  "careerText": "事业/学业方面的提示，40-60字",
-  "wealthText": "财运方面的提示，40-60字",
-  "suggestion": "今天的一个小建议，30-50字",
-  "todaysMotto": "一句塔罗寄语，20字以内"
+  "cardMeaning": "用大白话解释这张牌，20字以内，别用术语",
+  "overallText": "整体运势解读，100-150字。要结合牌的正逆位，语气像跟朋友聊天，可以毒舌但要给人希望",
+  "loveText": "感情运，60-80字。单身说桃花，有伴说关系，别写废话",
+  "careerText": "事业/学业运，60-80字。给具体建议，别写'继续努力'这种",
+  "wealthText": "财运，40-60字。可以幽默一点",
+  "luckyColor": "今日幸运色，1-2个字",
+  "luckyItem": "今日幸运物，3-6个字，要具体有趣（比如'冰美式'而不是'饮品'）",
+  "luckyNumber": "幸运数字，1-2位整数",
+  "suggestion": "今天做一件具体的小事，30-50字，要有画面感",
+  "todaysMotto": "一句塔罗寄语，15字以内，要像朋友圈文案一样有感觉"
 }
 
-只返回JSON，不要其他文字。所有内容用中文，语气像一个温柔有趣的塔罗占卜师，积极向上。`;
+只返回JSON，不要其他文字。所有内容用中文。`;
 
   try {
     const result = await chat([
-      { role: 'system', content: '你是一位温柔有趣的塔罗占卜师，擅长把牌意讲得通俗易懂又给人力量。' },
+      { role: 'system', content: '你是闺蜜型塔罗占卜师，说话温柔又毒舌，像朋友聊天一样自然，从不说空话套话。严格遵守JSON格式。' },
       { role: 'user', content: prompt }
-    ], { temperature: 0.8, maxTokens: 600 });
+    ], { temperature: 0.85, maxTokens: 1500 });
 
     let jsonStr = result.content.trim().replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```$/, '').trim();
     const data = JSON.parse(jsonStr);
@@ -586,33 +594,43 @@ async function generateLoveWords(loveType, target) {
   if (!isEnabled()) {
     return generateLocalLoveWords(loveType, target);
   }
-  
+
   const typeName = { sweet: '甜蜜暖心', funny: '搞笑沙雕', poem: '文艺诗意', earthy: '土味尬撩', direct: '直接霸气' }[loveType] || '甜蜜';
   const targetName = { bf: '男朋友', gf: '女朋友', crush: '暗恋对象', friend: '好朋友' }[target] || '喜欢的人';
-  
-  const prompt = `请生成5句给${targetName}的${typeName}情话。
+
+  const prompt = `你是「不正经工具箱」的情话工厂厂长，外号「撩人天花板」。你写的情话能让对方看了脸红心跳或者笑到打滚，绝对不是网上抄的烂大街货。
+
+请给${targetName}写8句${typeName}情话，分两档：
+- 前4句「微甜档」：适合日常聊天发，不太肉麻但很撩
+- 后4句「爆甜档」：适合特殊时刻发，直接让人心跳加速
+
 要求：
-- 每句15-30字，不要太长
-- 要新颖不俗套，让对方心动/发笑
-- 符合${typeName}的风格
-- 适合微信聊天用
+- 每句15-40字
+- 绝对不要网上烂大街的（"你知道我最喜欢什么神吗"这种禁止）
+- 要原创、有画面感、有梗
+- 适合直接复制粘贴发微信
 
 请用JSON格式返回：
 {
-  "words": ["情话1", "情话2", "情话3", "情话4", "情话5"]
+  "words": [
+    {"text": "情话内容", "level": "微甜/爆甜", "vibe": "一句话形容这句的感觉，比如'让人脸红'"},
+    ...共8句
+  ],
+  "bestPick": "你最推荐的一句",
+  "bestReason": "为什么这句最绝，20字"
 }
 
-只返回JSON，不要其他文字。`;
+只返回JSON，不要其他文字。所有内容用中文。`;
 
   try {
     const result = await chat([
-      { role: 'system', content: '你是一位情话大师，擅长写各种风格的情话。' },
+      { role: 'system', content: '你是撩人天花板，写的情话原创、有梗、有画面感，能让对方脸红或笑到打滚。严格遵守JSON格式。' },
       { role: 'user', content: prompt }
-    ], { temperature: 0.95, maxTokens: 400 });
-    
+    ], { temperature: 0.95, maxTokens: 1200 });
+
     let jsonStr = result.content.trim().replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```$/, '').trim();
     const data = JSON.parse(jsonStr);
-    return { words: data.words || [], fromAI: true };
+    return { words: data.words || [], bestPick: data.bestPick || '', bestReason: data.bestReason || '', fromAI: true };
   } catch (err) {
     console.error('AI情话生成失败:', err.message);
     return generateLocalLoveWords(loveType, target);
@@ -635,35 +653,40 @@ async function generateAcrostic(name) {
   if (!isEnabled()) {
     return generateLocalAcrostic(name);
   }
-  
+
   const chars = name.split('');
-  const firstChar = chars[0] || '我';
-  
-  const prompt = `请以"${name}"为藏头，生成一首4句的七言藏头诗。
+
+  const prompt = `你是「不正经工具箱」的御用诗人，外号「藏头诗圣手」。你写的藏头诗既有意境又不死板，读起来像古诗但又有现代感。
+
+请以"${name}"为藏头，写两首诗：
+第一首：七言绝句风格，优美浪漫，适合表白
+第二首：现代诗风格，自由洒脱，适合发朋友圈
+
 要求：
 - 每句第一个字依次是：${chars.join('、')}
-- 风格：优美浪漫，有意境
-- 押韵，读起来顺口
-- 适合表白或表达美好祝愿
+- 第一首4句，每句7个字，要押韵
+- 第二首4句，每句字数自由，但要有诗意
+- 两首都要有意境，不要凑字
 
 请用JSON格式返回：
 {
-  "poem": ["第一句诗", "第二句诗", "第三句诗", "第四句诗"],
-  "title": "诗的标题（4-6个字）",
-  "explanation": "诗意解读，30-50字"
+  "poem": ["七言第一句", "七言第二句", "七言第三句", "七言第四句"],
+  "modernPoem": ["现代诗第一句", "现代诗第二句", "现代诗第三句", "现代诗第四句"],
+  "title": "给这首诗起个有感觉的标题（4-8个字）",
+  "explanation": "用大白话解读这首诗的意境，50-80字，像跟朋友聊天一样"
 }
 
-重要：poem是字符串数组，每个元素是一句完整的诗。只返回JSON，不要其他文字。`;
+只返回JSON，不要其他文字。所有内容用中文。`;
 
   try {
     const result = await chat([
-      { role: 'system', content: '你是一位才华横溢的诗人，擅长写藏头诗。' },
+      { role: 'system', content: '你是藏头诗圣手，写的诗既有意境又不死板，古诗现代诗都能驾驭。严格遵守JSON格式。' },
       { role: 'user', content: prompt }
-    ], { temperature: 0.85, maxTokens: 400 });
-    
+    ], { temperature: 0.85, maxTokens: 1200 });
+
     let jsonStr = result.content.trim().replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```$/, '').trim();
     const data = JSON.parse(jsonStr);
-    return { poem: data.poem || [], title: data.title || '', explanation: data.explanation || '', fromAI: true };
+    return { poem: data.poem || [], modernPoem: data.modernPoem || [], title: data.title || '', explanation: data.explanation || '', fromAI: true };
   } catch (err) {
     console.error('AI藏头诗生成失败:', err.message);
     return generateLocalAcrostic(name);
@@ -728,33 +751,44 @@ async function generateMomentText(scene, style) {
   if (!isEnabled()) {
     return generateLocalMomentText(scene, style);
   }
-  
-  const sceneName = { food: '美食', travel: '旅行', selfie: '自拍', mood: '心情', work: '工作', pet: '宠物' }[scene] || '生活';
+
+  const sceneName = { food: '美食打卡', travel: '旅行风景', selfie: '自拍美照', mood: '心情日常', work: '工作吐槽', pet: '宠物晒图' }[scene] || '生活';
   const styleName = { literary: '文艺清新', funny: '搞笑沙雕', sweet: '甜蜜温柔', cool: '酷炫拽', simple: '简约高级' }[style] || '文艺';
-  
-  const prompt = `请生成5条${sceneName}主题的朋友圈文案，风格是${styleName}。
+
+  const prompt = `你是朋友圈文案界的天花板，外号「点赞收割机」。你写的文案让人看了就想点赞评论，绝对不是那种矫情到让人想划走的货。
+
+请写6条${sceneName}主题的朋友圈文案，风格是${styleName}，分两档：
+- 前3条「日常档」：适合随手发，不刻意但有感觉
+- 后3条「精修档」：适合配九宫格大片，有质感有格调
+
 要求：
-- 每条20-50字，适合发朋友圈
-- 要有感觉、有画面感，不矫情
-- 可以适当用emoji点缀
-- 配文可以搭配对应的照片
+- 每条20-60字
+- 要有画面感，读起来像在看一张照片
+- 可以适当用emoji但不超过2个
+- 绝对不要"生活不止眼前的苟且"这种烂大街的
+- 要原创、有个性、有记忆点
 
 请用JSON格式返回：
 {
-  "texts": ["文案1", "文案2", "文案3", "文案4", "文案5"]
+  "texts": [
+    {"content": "文案内容", "level": "日常/精修", "emoji": "推荐搭配的emoji（1-2个）"},
+    ...共6条
+  ],
+  "bestPick": "最推荐发的一条",
+  "hashtags": ["#标签1", "#标签2", "#标签3"]
 }
 
-只返回JSON，不要其他文字。`;
+只返回JSON，不要其他文字。所有内容用中文。`;
 
   try {
     const result = await chat([
-      { role: 'system', content: '你是一位朋友圈文案高手，擅长写各种风格的配文。' },
+      { role: 'system', content: '你是点赞收割机，写的朋友圈文案原创有个性，让人看了就想点赞。严格遵守JSON格式。' },
       { role: 'user', content: prompt }
-    ], { temperature: 0.9, maxTokens: 500 });
-    
+    ], { temperature: 0.9, maxTokens: 1200 });
+
     let jsonStr = result.content.trim().replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```$/, '').trim();
     const data = JSON.parse(jsonStr);
-    return { texts: data.texts || [], fromAI: true };
+    return { texts: data.texts || [], bestPick: data.bestPick || '', hashtags: data.hashtags || [], fromAI: true };
   } catch (err) {
     console.error('AI朋友圈文案生成失败:', err.message);
     return generateLocalMomentText(scene, style);
@@ -777,32 +811,36 @@ async function personalityTest(answers) {
   if (!isEnabled()) {
     return generateLocalPersonality(answers);
   }
-  
+
   const answersStr = Object.entries(answers).map(([k,v]) => `问题${k}: ${v}`).join('；');
-  
-  const prompt = `根据以下测试答案，分析用户的性格：
+
+  const prompt = `你是「不正经工具箱」的驻场心理分析师，外号「人性观察员」。你分析性格不像教科书那样死板，而是像朋友聊天一样有趣又准确，偶尔毒舌但句句到位。
+
+根据以下测试答案分析用户性格：
 ${answersStr}
 
-请用JSON格式返回分析结果：
+请用JSON格式返回：
 {
-  "type": "性格类型（4个字，如：治愈系小太阳、高冷禁欲系等）",
-  "emoji": "一个代表性格的emoji",
-  "desc": "性格整体描述，80-120字",
-  "traits": ["性格特点1", "性格特点2", "性格特点3", "性格特点4"],
-  "suitable": ["适合的职业1", "适合的职业2", "适合的职业3"],
-  "loveStyle": "恋爱中的样子，40-60字",
-  "friendStyle": "做朋友的样子，30-50字",
-  "growthAdvice": "成长建议，30-50字"
+  "type": "性格类型名（4-8个字，要有创意，比如'治愈系小太阳'、'社恐型话痨'这种）",
+  "emoji": "一个最能代表这个性格的emoji",
+  "desc": "整体性格画像，100-150字。要有趣有画面感，像在读一个人的故事，不要列条目",
+  "traits": ["性格特点1（6字以内）", "性格特点2", "性格特点3", "性格特点4"],
+  "superpower": "这个性格的超能力是什么，20字以内，要有趣",
+  "kryptonite": "这个性格的致命弱点是什么，20字以内",
+  "loveStyle": "恋爱中是什么样子的，50-80字，要有画面感",
+  "friendStyle": "做Ta的朋友是什么体验，40-60字",
+  "famousLike": "哪个明星/动漫角色跟这个性格最像，2-4个字",
+  "growthAdvice": "一句成长建议，30-50字，要扎心但温暖"
 }
 
-只返回JSON，不要其他文字。分析要准确有趣。`;
+只返回JSON，不要其他文字。所有内容用中文。`;
 
   try {
     const result = await chat([
-      { role: 'system', content: '你是一位资深心理咨询师，擅长性格分析。' },
+      { role: 'system', content: '你是人性观察员，分析性格有趣又准确，像朋友聊天一样自然，偶尔毒舌但句句到位。严格遵守JSON格式。' },
       { role: 'user', content: prompt }
-    ], { temperature: 0.8, maxTokens: 600 });
-    
+    ], { temperature: 0.85, maxTokens: 1500 });
+
     let jsonStr = result.content.trim().replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```$/, '').trim();
     const data = JSON.parse(jsonStr);
     return {
@@ -810,9 +848,12 @@ ${answersStr}
       emoji: data.emoji || '🌟',
       desc: data.desc || '',
       traits: data.traits || [],
+      superpower: data.superpower || '',
+      kryptonite: data.kryptonite || '',
       suitable: data.suitable || [],
       loveStyle: data.loveStyle || '',
       friendStyle: data.friendStyle || '',
+      famousLike: data.famousLike || '',
       growthAdvice: data.growthAdvice || '',
       fromAI: true
     };
@@ -911,44 +952,52 @@ async function generateEQReply(scene, message) {
   if (!isEnabled()) {
     return generateLocalEQReply(scene, message);
   }
-  
+
   const sceneName = {
     love_quarrel: '情侣吵架',
-    colleague: '同事沟通',
+    colleague: '同事甩锅/沟通',
     leader: '领导对话',
     blind_date: '相亲聊天',
     reject: '拒绝别人',
     compliment: '回应夸奖'
   }[scene] || '日常聊天';
-  
-  const prompt = `场景：${sceneName}
-对方说的话：${message || '你好'}
 
-请给出3种高情商回复方案，分别对应不同风格：
-1. 温柔体贴型
-2. 幽默化解型  
-3. 高段位回复
+  const prompt = `你是「不正经工具箱」的话术大师，外号「社交天花板」。你给出的回复方案能让对方舒服、让自己不亏，而且每种风格都有明确的适用场景。
+
+场景：${sceneName}
+对方说的话：「${message || '你好'}」
+
+请给出5种回复方案，覆盖不同策略：
 
 请用JSON格式返回：
 {
   "replies": [
-    {"style": "温柔体贴", "text": "回复内容", "reason": "为什么这么回复，20字"},
-    {"style": "幽默化解", "text": "回复内容", "reason": "为什么这么回复，20字"},
-    {"style": "高段位", "text": "回复内容", "reason": "为什么这么回复，20字"}
-  ]
+    {"style": "温柔共情", "text": "回复内容（20-50字）", "reason": "为什么这么回，20字", "effect": "对方听了会怎样，10字"},
+    {"style": "幽默化解", "text": "回复内容", "reason": "为什么这么回", "effect": "效果"},
+    {"style": "四两拨千斤", "text": "回复内容", "reason": "为什么这么回", "effect": "效果"},
+    {"style": "直接但有礼貌", "text": "回复内容", "reason": "为什么这么回", "effect": "效果"},
+    {"style": "反客为主", "text": "回复内容", "reason": "为什么这么回", "effect": "效果"}
+  ],
+  "bestPick": "最推荐的方案编号（1-5）",
+  "bestReason": "为什么这个方案在这个场景下最好，30字"
 }
 
-重要：每个回复必须包含style（风格名称）、text（回复内容）、reason（分析）三个字段。只返回JSON，不要其他文字。`;
+要求：
+- 每个回复都要自然，像真人说话，不要像AI写的
+- 要符合${sceneName}场景的社交礼仪
+- 幽默的不要过度，温柔的不要卑微
+
+只返回JSON，不要其他文字。所有内容用中文。`;
 
   try {
     const result = await chat([
-      { role: 'system', content: '你是一位高情商沟通专家，擅长各种场景的话术。' },
+      { role: 'system', content: '你是社交天花板，给出的回复方案自然、得体、有效，像真人说话不像AI。严格遵守JSON格式。' },
       { role: 'user', content: prompt }
-    ], { temperature: 0.85, maxTokens: 600 });
-    
+    ], { temperature: 0.85, maxTokens: 1500 });
+
     let jsonStr = result.content.trim().replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```$/, '').trim();
     const data = JSON.parse(jsonStr);
-    return { replies: data.replies || [], fromAI: true };
+    return { replies: data.replies || [], bestPick: data.bestPick || '', bestReason: data.bestReason || '', fromAI: true };
   } catch (err) {
     console.error('AI高情商回复生成失败:', err.message);
     return generateLocalEQReply(scene, message);
@@ -1345,20 +1394,28 @@ ${suggestions[Math.floor(Math.random() * suggestions.length)]}
 
 // ===== 14. 彩虹屁生成器 =====
 async function generateCompliment(target, style) {
-  const systemPrompt = `你是一个彩虹屁大师，特别会夸人，夸得天花乱坠但又不让人觉得油腻。请根据用户提供的对象和风格，生成一段超级会夸人的话。
+  const systemPrompt = `你是「不正经工具箱」的彩虹屁工厂厂长，外号「夸夸教主」。你夸人的功力已经到了「让人明知道在夸但还是心花怒放」的境界。你夸人不油腻、不敷衍，每一句都有创意有画面感。
+
+请根据用户提供的对象和风格，生成5段彩虹屁，分两档：
+- 前3段「微夸档」：适合日常夸，不太夸张但很甜
+- 后2段「爆夸档」：适合特殊时刻，直接夸到对方飞起
+
 要求：
-1. 要真诚又夸张，让人听了心花怒放
-2. 可以适当使用比喻、排比等修辞手法
-3. 语气要自然，不要太生硬
-4. 100字左右，不要太长
-5. 可以加点emoji`;
-  
+- 每段30-80字
+- 要有创意，用比喻、排比等修辞，但不要烂俗
+- 语气自然，像朋友之间开玩笑那种夸
+- 绝对不要"你是最棒的"这种废话
+- 可以加emoji但不超过2个`;
+
   try {
     const result = await chat([
       { role: 'system', content: systemPrompt },
-      { role: 'user', content: `夸夸对象：${target}，风格：${style}` }
-    ]);
-    return { text: result.content, fromAI: true };
+      { role: 'user', content: `夸夸对象：${target}，风格：${style}。请用JSON格式返回：{"compliments":[{"text":"内容","level":"微夸/爆夸","vibe":"一句话形容感觉"}],"bestPick":"最推荐的一段"}` }
+    ], { temperature: 0.9, maxTokens: 1200 });
+
+    let jsonStr = result.content.trim().replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```$/, '').trim();
+    const data = JSON.parse(jsonStr);
+    return { compliments: data.compliments || [], bestPick: data.bestPick || '', fromAI: true };
   } catch (err) {
     return generateLocalCompliment(target, style);
   }
@@ -1391,20 +1448,24 @@ function generateLocalCompliment(target, style) {
 
 // ===== 15. 优雅怼人 =====
 async function generateRoast(scene, intensity) {
-  const systemPrompt = `你是一个优雅怼人大师，骂人不带脏字，但杀伤力极强。根据用户提供的场景和强度，生成一句怼人的话。
-要求：
-1. 要优雅、文明、有文化
-2. 不带脏话，但让对方哑口无言
-3. 可以阴阳怪气，可以反讽
-4. 简短有力，一句话即可
-5. 可以加点emoji增加杀伤力`;
-  
+  const systemPrompt = `你是「不正经工具箱」的怼人导师，外号「优雅刺客」。你怼人的最高境界是：对方听完愣了三秒才反应过来被怼了，而且你还全程微笑不带脏字。
+
+请根据场景和强度，生成5句怼人金句：
+- 要求绝对不带脏字，但要让对方哑口无言
+- 要有文化、有创意、有画面感
+- 可以阴阳怪气、可以反讽、可以借物喻人
+- 每句15-40字
+- 要像真人说的话`;
+
   try {
     const result = await chat([
       { role: 'system', content: systemPrompt },
-      { role: 'user', content: `场景：${scene}，强度：${intensity}` }
-    ]);
-    return { text: result.content, fromAI: true };
+      { role: 'user', content: `场景：${scene}，强度：${intensity}（light=轻微阴阳/medium=中度伤害/heavy=致命一击）。请用JSON格式返回：{"roasts":[{"text":"怼人金句","style":"风格形容","damage":"杀伤力1-5星"}],"bestPick":"最推荐的一句"}` }
+    ], { temperature: 0.9, maxTokens: 1200 });
+
+    let jsonStr = result.content.trim().replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```$/, '').trim();
+    const data = JSON.parse(jsonStr);
+    return { roasts: data.roasts || [], bestPick: data.bestPick || '', fromAI: true };
   } catch (err) {
     return generateLocalRoast(scene, intensity);
   }
@@ -1440,21 +1501,28 @@ function generateLocalRoast(scene, intensity) {
 
 // ===== 16. emo文案生成器 =====
 async function generateEmoText(scene, style) {
-  const systemPrompt = `你是一个深夜emo文案大师，特别会写那种让人看了就想点赞的emo文案。
+  const systemPrompt = `你是「不正经工具箱」的深夜文案诗人，外号「emo制造机」。你写的emo文案不是无病呻吟，而是那种让人看了沉默三秒然后默默点赞的质感文字。你的文字有画面感、有温度、有共鸣。
+
+请根据场景和心情，写5条emo文案：
+- 前3条「微emo档」：淡淡的忧伤，适合白天发
+- 后2条「深emo档」：深夜专属，看完想给前任发消息（但别发）
+
 要求：
-1. 要有氛围感，让人一看就觉得"哇，好有感觉"
-2. 简短精致，适合发朋友圈
-3. 可以文艺、可以忧伤、可以释然
-4. 带点小遗憾、小伤感，但不要太丧
-5. 可以加一些适合的emoji
-6. 100字以内`;
-  
+- 每条20-60字
+- 要有画面感，像电影台词
+- 可以文艺、可以扎心、可以释然
+- 不要太丧，要留一丝光
+- 可以加1个emoji`;
+
   try {
     const result = await chat([
       { role: 'system', content: systemPrompt },
-      { role: 'user', content: `场景：${scene}，风格：${style}` }
-    ]);
-    return { text: result.content, fromAI: true };
+      { role: 'user', content: `场景：${scene}，心情：${style}（love=爱而不得/life=生活感慨/lateNight=深夜emo）。请用JSON格式返回：{"texts":[{"content":"文案","level":"微emo/深emo","vibe":"一句话形容感觉"}],"bestPick":"最推荐的一条"}` }
+    ], { temperature: 0.9, maxTokens: 1200 });
+
+    let jsonStr = result.content.trim().replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```$/, '').trim();
+    const data = JSON.parse(jsonStr);
+    return { texts: data.texts || [], bestPick: data.bestPick || '', fromAI: true };
   } catch (err) {
     return generateLocalEmo(scene, style);
   }
@@ -1490,21 +1558,25 @@ function generateLocalEmo(scene, style) {
 
 // ===== 17. 歌词改编 =====
 async function generateSongParody(songName, story) {
-  const systemPrompt = `你是一个歌词改编鬼才，特别会把流行歌曲改成搞笑版本。
+  const systemPrompt = `你是「不正经工具箱」的歌词改编鬼才，外号「改词圣手」。你把流行歌改成搞笑版本的功力，能让原唱听了都忍不住笑。你改编的歌词保留原曲的韵律和结构，但内容完全变成另一个故事，而且每一句都有梗。
+
 要求：
-1. 保留原歌的结构和押韵感
-2. 把用户提供的故事/梗融入歌词里
-3. 要搞笑、有梗、让人一看就想笑
-4. 写一段主歌+副歌就行，不用太长
-5. 风格要跟原歌类似但内容完全不一样
-6. 标注好歌名和原曲`;
-  
+1. 保留原歌的段落结构（主歌+副歌+桥段）
+2. 把用户的故事完美融入歌词，要押韵、要顺口
+3. 要搞笑、有梗、让人一看就想跟着唱
+4. 写完整：主歌1段 + 副歌1段 + 主歌2段 + 副歌（重复）+ 桥段（可选）
+5. 每段4行，每行8-15字
+6. 标注好段落（【主歌】【副歌】【桥段】）`;
+
   try {
     const result = await chat([
       { role: 'system', content: systemPrompt },
-      { role: 'user', content: `歌曲名：${songName}，改编故事：${story}` }
-    ]);
-    return { text: result.content, fromAI: true };
+      { role: 'user', content: `原曲：《${songName}》，改编故事：${story}。请用JSON格式返回：{"title":"改编后的歌名","originalSong":"${songName}","lyrics":"完整歌词（含段落标注）","intro":"一句话介绍这个改编版本（20字以内）"}` }
+    ], { temperature: 0.9, maxTokens: 1500 });
+
+    let jsonStr = result.content.trim().replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```$/, '').trim();
+    const data = JSON.parse(jsonStr);
+    return { title: data.title || '', originalSong: data.originalSong || songName, lyrics: data.lyrics || '', intro: data.intro || '', fromAI: true };
   } catch (err) {
     return generateLocalSongParody(songName, story);
   }
