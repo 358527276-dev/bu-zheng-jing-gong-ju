@@ -8,6 +8,10 @@ const LOCAL_SERVER_URL = 'https://bu-zheng-jing-gong-ju.onrender.com';
 // 正式公网域名（callContainer 不可用时的降级入口）
 const PUBLIC_BASE = 'https://bu-zheng-jing-gong-ju.onrender.com';
 
+// 云托管配置（USE_CALLCONTAINER = true 时使用）
+const ENV_ID = '';
+const SERVICE_NAME = 'buzheng-api';
+
 // true = 优先 callContainer 直连云托管；false = 走 LOCAL_SERVER_URL/PUBLIC_BASE
 const USE_CALLCONTAINER = false;
 

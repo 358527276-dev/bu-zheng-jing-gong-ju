@@ -29,7 +29,8 @@ Page({
     isVipTool: false,
     iconBg: '',
     submitting: false,
-    shareUnlocked: false  // 今日是否已通过分享解锁
+    shareUnlocked: false,  // 今日是否已通过分享解锁
+    loadError: ''
   },
 
   onLoad(options) {
@@ -37,14 +38,20 @@ Page({
     this.loadTool();
   },
 
+  retryLoad() {
+    this.setData({ loadError: '' });
+    this.loadTool();
+  },
+
   async loadTool() {
-    const app = getApp();
-    await app.ensureLogin();
-    const res = await api.getToolDetail(this.toolId, app.globalData.userId);
-    if (res.code !== 0 || !res.data) {
-      wx.showToast({ title: res.message || '工具不存在', icon: 'none' });
-      return;
-    }
+    try {
+      const app = getApp();
+      await app.ensureLogin();
+      const res = await api.getToolDetail(this.toolId, app.globalData.userId);
+      if (res.code !== 0 || !res.data) {
+        this.setData({ loadError: res.message || '工具不存在' });
+        return;
+      }
     const conf = TOOLS_FORM[this.toolId] || { fields: [], defaults: {} };
     const formData = { ...conf.defaults };
     conf.fields.forEach(f => { if (f.default !== undefined) formData[f.key] = f.default; });
@@ -69,6 +76,10 @@ Page({
       useFree: true
     });
     this.updateVisible();
+    } catch (e) {
+      console.error('loadTool error:', e);
+      this.setData({ loadError: '网络错误，请重试' });
+    }
   },
 
   updateVisible() {

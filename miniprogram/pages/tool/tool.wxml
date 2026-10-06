@@ -1,3 +1,21 @@
+<!-- 加载中 -->
+<view class="container" wx:if="{{!tool && !loadError}}">
+  <view style="text-align:center; padding:100rpx 0; color:#999;">
+    <text style="font-size:48rpx;">⏳</text>
+    <view style="margin-top:20rpx;">加载中...</view>
+  </view>
+</view>
+
+<!-- 加载失败 -->
+<view class="container" wx:if="{{loadError}}">
+  <view style="text-align:center; padding:100rpx 40rpx; color:#999;">
+    <text style="font-size:48rpx;">😢</text>
+    <view style="margin-top:20rpx; font-size:28rpx;">{{loadError}}</view>
+    <button style="margin-top:40rpx; background:#ff6b9d; color:#fff; border-radius:40rpx;" bindtap="retryLoad">重新加载</button>
+  </view>
+</view>
+
+<!-- 工具详情 -->
 <view class="container" wx:if="{{tool}}">
   <!-- 工具头部 -->
   <view class="card tool-head {{isVipTool ? 'vip-head' : ''}}">
