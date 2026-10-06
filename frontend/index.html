@@ -865,73 +865,129 @@
       contentDiv.innerHTML = '';
 
       if (typeof result === 'string') {
-        contentDiv.innerHTML = `<div class="result-item"><div class="result-item-text">${result}</div><button class="btn-copy-item" onclick="copyText(this)">📋 复制</button></div>`;
+        // 尝试解析字符串格式的结果
+        const parsed = parseStringResult(result);
+        if (parsed) {
+          renderParsedResult(parsed, contentDiv);
+        } else {
+          // 纯文本，整块显示
+          contentDiv.innerHTML = `<div class="result-item"><div class="result-item-text">${result}</div><button class="btn-copy-item" onclick="copyText(this)">📋 复制</button></div>`;
+        }
       } else if (typeof result === 'object') {
-        // 遍历结果对象，数组类型单独渲染
-        Object.entries(result).forEach(([key, value]) => {
-          if (Array.isArray(value)) {
-            // 数组类型：每条单独显示+复制按钮
-            const section = document.createElement('div');
-            section.className = 'result-section';
-            section.innerHTML = `<div class="result-section-title">${key}</div>`;
-
-            value.forEach((item, index) => {
-              const itemDiv = document.createElement('div');
-              itemDiv.className = 'result-item';
-
-              let text = '';
-              if (typeof item === 'string') {
-                text = item;
-              } else if (typeof item === 'object' && item !== null) {
-                // 对象数组：显示主要字段
-                text = Object.entries(item).map(([k, v]) => {
-                  if (k === 'text' || k === 'name' || k === 'content') return v;
-                  return `${k}: ${v}`;
-                }).filter(Boolean).join(' | ');
-              } else {
-                text = String(item);
-              }
-
-              itemDiv.innerHTML = `
-                <div class="result-item-index">${index + 1}</div>
-                <div class="result-item-text">${text}</div>
-                <button class="btn-copy-item" onclick="copyText(this)">📋</button>
-              `;
-              section.appendChild(itemDiv);
-            });
-
-            contentDiv.appendChild(section);
-          } else if (typeof value === 'object' && value !== null) {
-            // 嵌套对象
-            const section = document.createElement('div');
-            section.className = 'result-section';
-            section.innerHTML = `
-              <div class="result-section-title">${key}</div>
-              <div class="result-item">
-                <div class="result-item-text">${JSON.stringify(value, null, 2)}</div>
-                <button class="btn-copy-item" onclick="copyText(this)">📋</button>
-              </div>
-            `;
-            contentDiv.appendChild(section);
-          } else {
-            // 简单值
-            const section = document.createElement('div');
-            section.className = 'result-section';
-            section.innerHTML = `
-              <div class="result-section-title">${key}</div>
-              <div class="result-item">
-                <div class="result-item-text">${value}</div>
-                <button class="btn-copy-item" onclick="copyText(this)"></button>
-              </div>
-            `;
-            contentDiv.appendChild(section);
-          }
-        });
+        renderParsedResult(result, contentDiv);
       } else {
         contentDiv.textContent = JSON.stringify(result, null, 2);
       }
 
       showPage('result');
+    }
+
+    function parseStringResult(str) {
+      // 尝试解析 "key:\n  1. item1\n  2. item2" 格式
+      const lines = str.split('\n');
+      const result = {};
+      let currentKey = null;
+      let currentArray = [];
+
+      for (let line of lines) {
+        line = line.trim();
+        if (!line) continue;
+
+        // 检查是否是 "key:" 格式
+        const keyMatch = line.match(/^(\w+):\s*$/);
+        if (keyMatch) {
+          if (currentKey && currentArray.length > 0) {
+            result[currentKey] = currentArray;
+          }
+          currentKey = keyMatch[1];
+          currentArray = [];
+          continue;
+        }
+
+        // 检查是否是 "  1. item" 格式
+        const itemMatch = line.match(/^\d+\.\s*(.+)$/);
+        if (itemMatch && currentKey) {
+          currentArray.push(itemMatch[1]);
+          continue;
+        }
+
+        // 检查是否是 "key: value" 格式
+        const kvMatch = line.match(/^(\w+):\s*(.+)$/);
+        if (kvMatch) {
+          if (currentKey && currentArray.length > 0) {
+            result[currentKey] = currentArray;
+            currentArray = [];
+          }
+          result[kvMatch[1]] = kvMatch[2];
+          currentKey = null;
+        }
+      }
+
+      if (currentKey && currentArray.length > 0) {
+        result[currentKey] = currentArray;
+      }
+
+      return Object.keys(result).length > 0 ? result : null;
+    }
+
+    function renderParsedResult(result, container) {
+      Object.entries(result).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+          // 数组类型：每条单独显示+复制按钮
+          const section = document.createElement('div');
+          section.className = 'result-section';
+          section.innerHTML = `<div class="result-section-title">${key}</div>`;
+
+          value.forEach((item, index) => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'result-item';
+
+            let text = '';
+            if (typeof item === 'string') {
+              text = item;
+            } else if (typeof item === 'object' && item !== null) {
+              text = Object.entries(item).map(([k, v]) => {
+                if (k === 'text' || k === 'name' || k === 'content') return v;
+                return `${k}: ${v}`;
+              }).filter(Boolean).join(' | ');
+            } else {
+              text = String(item);
+            }
+
+            itemDiv.innerHTML = `
+              <div class="result-item-index">${index + 1}</div>
+              <div class="result-item-text">${text}</div>
+              <button class="btn-copy-item" onclick="copyText(this)">📋</button>
+            `;
+            section.appendChild(itemDiv);
+          });
+
+          container.appendChild(section);
+        } else if (typeof value === 'object' && value !== null) {
+          const section = document.createElement('div');
+          section.className = 'result-section';
+          section.innerHTML = `
+            <div class="result-section-title">${key}</div>
+            <div class="result-item">
+              <div class="result-item-text">${JSON.stringify(value, null, 2)}</div>
+              <button class="btn-copy-item" onclick="copyText(this)">📋</button>
+            </div>
+          `;
+          container.appendChild(section);
+        } else {
+          // 简单值
+          const section = document.createElement('div');
+          section.className = 'result-section';
+          section.innerHTML = `
+            <div class="result-section-title">${key}</div>
+            <div class="result-item">
+              <div class="result-item-text">${value}</div>
+              <button class="btn-copy-item" onclick="copyText(this)">📋</button>
+            </div>
+          `;
+          container.appendChild(section);
+        }
+      });
     }
 
     function copyText(btn) {
