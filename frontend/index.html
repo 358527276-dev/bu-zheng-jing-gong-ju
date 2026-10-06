@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="apple-mobile-web-app-capable" content="yes">
   <title>不正经工具箱 - 17个AI趣味工具</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,7 +11,6 @@
       --primary-light: #c084fc;
       --pink: #ff6b9d;
       --gold: #d4a574;
-      --gold-light: #f4d03f;
       --bg-1: #fff0f5;
       --bg-2: #fce4ec;
       --bg-3: #f3e5f5;
@@ -31,7 +29,6 @@
       padding-bottom: 80px;
     }
 
-    /* 樱花飘落 */
     .sakura-layer { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
     .sakura {
       position: absolute; width: 16px; height: 16px;
@@ -49,49 +46,21 @@
 
     .container { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; }
 
-    /* Hero */
     .hero {
       background: linear-gradient(135deg, #4a235a 0%, #7b2d8e 30%, #c084fc 70%, #ff6b9d 100%);
       color: #fff;
       border-radius: 20px;
       padding: 32px 24px;
       margin-bottom: 16px;
-      box-shadow: 0 12px 32px rgba(123, 45, 142, 0.4), inset 0 2px 8px rgba(255,255,255,0.15);
+      box-shadow: 0 12px 32px rgba(123, 45, 142, 0.4);
       border: 2px solid rgba(244, 208, 63, 0.3);
       position: relative;
       overflow: hidden;
     }
-    .hero::before {
-      content: ''; position: absolute; top: -40px; right: -30px;
-      width: 120px; height: 120px;
-      background: radial-gradient(circle, rgba(244,208,63,0.25), transparent 70%);
-      border-radius: 50%;
-    }
-    .hero::after {
-      content: ''; position: absolute; bottom: -50px; left: -20px;
-      width: 100px; height: 100px;
-      background: radial-gradient(circle, rgba(255,183,197,0.2), transparent 70%);
-      border-radius: 50%;
-    }
-    .hero-stars { position: absolute; top: 8px; right: 16px; color: #f4d03f; font-size: 18px; text-shadow: 0 0 8px rgba(244,208,63,0.6); }
-    .hero-title { font-size: 26px; font-weight: 900; position: relative; z-index: 1; letter-spacing: 2px; }
-    .hero-sub { font-size: 13px; opacity: 0.9; margin-top: 4px; position: relative; z-index: 1; }
-    .hero-free { margin-top: 12px; font-size: 13px; position: relative; z-index: 1; }
-    .hero-free-dot { margin: 0 6px; opacity: 0.6; }
+    .hero-title { font-size: 26px; font-weight: 900; letter-spacing: 2px; }
+    .hero-sub { font-size: 13px; opacity: 0.9; margin-top: 4px; }
+    .hero-free { margin-top: 12px; font-size: 13px; }
 
-    /* 分享Banner */
-    .share-banner {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      width: 100%; padding: 14px 16px; margin-bottom: 16px;
-      background: linear-gradient(135deg, #f59e0b, #ef4444);
-      border-radius: 16px; color: #fff; font-size: 14px; font-weight: 700;
-      box-shadow: 0 6px 20px rgba(239,68,68,0.3);
-      border: none; cursor: pointer;
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.02); } }
-
-    /* 分类 */
     .cat-bar {
       display: flex; gap: 8px; overflow-x: auto; margin-bottom: 16px;
       padding-bottom: 4px; scrollbar-width: none;
@@ -101,15 +70,13 @@
       padding: 8px 16px; border-radius: 999px;
       background: rgba(255,255,255,0.7); color: var(--text-light);
       font-size: 13px; font-weight: 500; white-space: nowrap;
-      border: 2px solid transparent; cursor: pointer; transition: all 0.2s;
+      border: 2px solid transparent; cursor: pointer;
     }
     .cat-item.active {
       background: linear-gradient(135deg, #fce4ec, #f3e5f5);
       color: var(--primary); border-color: var(--gold); font-weight: 700;
-      box-shadow: 0 4px 12px rgba(212,165,116,0.3);
     }
 
-    /* 工具网格 */
     .grid { display: flex; flex-wrap: wrap; gap: 12px; }
     .tool-card {
       width: calc(50% - 6px);
@@ -118,42 +85,22 @@
       box-shadow: 0 4px 16px rgba(124,58,90,0.08);
       border: 1px solid var(--border);
       position: relative; overflow: hidden; cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .tool-card::before {
-      content: ''; position: absolute; top:0; left:0; right:0; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
-      opacity: 0.6;
     }
     .tool-card:active { transform: scale(0.97); }
     .tool-card.vip { background: linear-gradient(180deg, #fff9ec 0%, rgba(255,255,255,0.92) 40%); border-color: var(--gold-light); }
     .tool-icon-bg {
       width: 52px; height: 52px; border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      overflow: hidden;
+      margin-bottom: 8px; overflow: hidden;
     }
-    .tool-icon-img {
-      width: 100%; height: 100%; object-fit: cover; border-radius: 14px;
-    }
+    .tool-icon-img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
     .tool-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
     .tool-desc { font-size: 11px; color: var(--text-light); line-height: 1.4; height: 32px; overflow: hidden; }
     .tool-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
     .tool-price { font-size: 11px; font-weight: 700; color: #1b5e20; }
     .tool-price.vip { color: #7a4a00; }
     .tool-count { font-size: 10px; color: #d1b3c0; }
-    .new-badge, .hot-badge {
-      position: absolute; top: 8px; right: -14px; transform: rotate(45deg);
-      width: 50px; text-align: center; font-size: 9px; font-weight: 800;
-      padding: 2px 0; color: #fff; letter-spacing: 1px;
-    }
-    .new-badge { background: linear-gradient(135deg, #10b981, #06b6d4); }
-    .hot-badge { background: linear-gradient(135deg, #ef4444, #f97316); }
 
-    .empty { text-align: center; color: #d1b3c0; padding: 60px 0; font-size: 13px; }
-
-    /* 底部Tab */
     .tabbar {
       position: fixed; bottom: 0; left: 0; right: 0; height: 60px;
       background: rgba(255,255,255,0.95); border-top: 1px solid var(--border);
@@ -166,7 +113,99 @@
     .tab-item.active { color: var(--primary); }
     .tab-icon { font-size: 20px; }
 
-    @media (min-width: 481px) { .container { max-width: 480px; } }
+    /* 工具详情页 */
+    .tool-detail { display: none; }
+    .tool-detail.active { display: block; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 8px 16px; background: rgba(255,255,255,0.8);
+      border-radius: 20px; font-size: 14px; cursor: pointer;
+      margin-bottom: 16px; border: 1px solid var(--border);
+    }
+    .tool-header {
+      background: var(--card-bg);
+      border-radius: 20px; padding: 24px;
+      text-align: center; margin-bottom: 16px;
+      border: 1px solid var(--border);
+    }
+    .tool-header-icon {
+      width: 80px; height: 80px; border-radius: 20px;
+      margin: 0 auto 12px; overflow: hidden;
+    }
+    .tool-header-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .tool-header-name { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+    .tool-header-desc { font-size: 13px; color: var(--text-light); line-height: 1.6; }
+    .tool-header-meta { margin-top: 12px; display: flex; justify-content: center; gap: 12px; }
+    .tool-tag {
+      padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;
+    }
+    .tag-free { background: #d1fae5; color: #059669; }
+    .tag-vip { background: #fef3c7; color: #92400e; }
+
+    .form-card {
+      background: var(--card-bg);
+      border-radius: 20px; padding: 24px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+    }
+    .form-card-title { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-label { font-size: 14px; font-weight: 600; margin-bottom: 8px; display: block; }
+    .form-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .form-option {
+      padding: 8px 16px; border-radius: 20px;
+      background: rgba(255,255,255,0.8); border: 2px solid transparent;
+      font-size: 13px; cursor: pointer;
+    }
+    .form-option.active {
+      background: linear-gradient(135deg, #fce4ec, #f3e5f5);
+      border-color: var(--gold); color: var(--primary); font-weight: 600;
+    }
+    .form-input, .form-textarea {
+      width: 100%; padding: 12px; border-radius: 12px;
+      border: 2px solid var(--border); font-size: 14px;
+      background: rgba(255,255,255,0.8);
+    }
+    .form-textarea { min-height: 80px; resize: vertical; }
+
+    .btn-generate {
+      width: 100%; padding: 16px; border-radius: 30px;
+      background: linear-gradient(135deg, #ff6b9d 0%, #c084fc 50%, #60a5fa 100%);
+      color: #fff; font-size: 16px; font-weight: 700;
+      border: none; cursor: pointer; margin-top: 16px;
+      box-shadow: 0 8px 24px rgba(192, 132, 252, 0.4);
+    }
+    .btn-generate:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* 结果页 */
+    .result-page { display: none; }
+    .result-page.active { display: block; }
+    .result-card {
+      background: var(--card-bg);
+      border-radius: 20px; padding: 24px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+    }
+    .result-title { font-size: 18px; font-weight: 700; margin-bottom: 16px; text-align: center; }
+    .result-content { font-size: 14px; line-height: 1.8; white-space: pre-wrap; }
+    .result-actions { display: flex; gap: 12px; margin-top: 16px; }
+    .btn-action {
+      flex: 1; padding: 12px; border-radius: 20px;
+      background: rgba(255,255,255,0.8); border: 2px solid var(--border);
+      font-size: 14px; font-weight: 600; cursor: pointer;
+    }
+
+    /* 加载和错误 */
+    .loading, .error {
+      text-align: center; padding: 60px 20px; color: var(--text-light);
+    }
+    .loading-icon { font-size: 48px; margin-bottom: 16px; }
+    .retry-btn {
+      margin-top: 16px; padding: 10px 24px; border-radius: 20px;
+      background: var(--primary); color: #fff; border: none; cursor: pointer;
+    }
+
+    .hidden { display: none !important; }
   </style>
 </head>
 <body>
@@ -176,26 +215,69 @@
     <div class="sakura" style="left:45%; animation-delay:4s; animation-duration:8s;"></div>
     <div class="sakura" style="left:65%; animation-delay:1s; animation-duration:10s;"></div>
     <div class="sakura" style="left:80%; animation-delay:3s; animation-duration:12s;"></div>
-    <div class="sakura" style="left:92%; animation-delay:5s; animation-duration:9s;"></div>
   </div>
 
   <div class="container">
-    <div class="hero">
-      <div class="hero-stars">✦</div>
-      <div class="hero-title">🤪 不正经工具箱</div>
-      <div class="hero-sub">17个上头AI小玩具 · 看广告白嫖</div>
-      <div class="hero-free">
-        <span>🎁 今日免费 <b id="dailyFree">0</b> 次</span>
-        <span class="hero-free-dot">·</span>
-        <span>赠送 <b id="giftFree">0</b> 次</span>
+    <!-- 首页 -->
+    <div id="pageHome" class="page active">
+      <div class="hero">
+        <div class="hero-title">🤪 不正经工具箱</div>
+        <div class="hero-sub">17个上头AI小玩具 · 看广告白嫖</div>
+        <div class="hero-free">
+          <span>🎁 今日免费 <b id="dailyFree">0</b> 次</span>
+          <span style="margin:0 6px;opacity:0.6;">·</span>
+          <span>赠送 <b id="giftFree">0</b> 次</span>
+        </div>
+      </div>
+
+      <div class="cat-bar" id="catBar"></div>
+      <div class="grid" id="toolGrid"></div>
+    </div>
+
+    <!-- 工具详情页 -->
+    <div id="pageTool" class="tool-detail">
+      <div class="back-btn" onclick="goHome()">← 返回</div>
+      <div class="tool-header">
+        <div class="tool-header-icon"><img id="toolIcon" src="" alt=""></div>
+        <div class="tool-header-name" id="toolName"></div>
+        <div class="tool-header-desc" id="toolDesc"></div>
+        <div class="tool-header-meta">
+          <span class="tool-tag tag-free" id="toolTag">🆓 免费</span>
+          <span class="tool-tag" style="background:#f3f4f6;color:#6b7280;" id="toolCount">0人玩过</span>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="form-card-title">✏️ 填写参数</div>
+        <div id="toolForm"></div>
+        <button class="btn-generate" id="generateBtn" onclick="generate()">✨ 开始生成</button>
       </div>
     </div>
 
-    <button class="share-banner">🎁 分享好友 · 邀1人得15次</button>
+    <!-- 结果页 -->
+    <div id="pageResult" class="result-page">
+      <div class="back-btn" onclick="goBack()">← 返回</div>
+      <div class="result-card">
+        <div class="result-title" id="resultTitle">生成结果</div>
+        <div class="result-content" id="resultContent"></div>
+        <div class="result-actions">
+          <button class="btn-action" onclick="copyResult()">📋 复制</button>
+          <button class="btn-action" onclick="regenerate()">🔄 重新生成</button>
+        </div>
+      </div>
+    </div>
 
-    <div class="cat-bar" id="catBar"></div>
-    <div class="grid" id="toolGrid"></div>
-    <div class="empty" id="emptyMsg" style="display:none;">这个分类暂时没有工具~</div>
+    <!-- 加载状态 -->
+    <div id="loadingState" class="loading hidden">
+      <div class="loading-icon">⏳</div>
+      <div>加载中...</div>
+    </div>
+
+    <!-- 错误状态 -->
+    <div id="errorState" class="error hidden">
+      <div class="loading-icon">😢</div>
+      <div id="errorMsg">加载失败</div>
+      <button class="retry-btn" onclick="retryLoad()">重新加载</button>
+    </div>
   </div>
 
   <div class="tabbar">
@@ -211,6 +293,25 @@
     const API_BASE = '/api';
     let userId = localStorage.getItem('userId') || null;
     let currentCat = 'all';
+    let currentTool = null;
+    let currentResult = null;
+    let formData = {};
+
+    const ICON_PATHS = {
+      1:'images/tool-1.jpg',2:'images/tool-2.jpg',3:'images/tool-3.jpg',
+      4:'images/tool-4.jpg',5:'images/tool-5.jpg',6:'images/tool-6.jpg',
+      7:'images/tool-7.jpg',8:'images/tool-8.jpg',9:'images/tool-9.jpg',
+      10:'images/tool-10.jpg',11:'images/tool-11.jpg',12:'images/tool-12.jpg',
+      13:'images/tool-13.jpg',14:'images/tool-14.jpg',15:'images/tool-15.jpg',
+      16:'images/tool-16.jpg',17:'images/tool-17.jpg'
+    };
+
+    const BGS = [
+      'linear-gradient(135deg,#ff6b9d,#ff8e53)',
+      'linear-gradient(135deg,#a855f7,#ec4899)',
+      'linear-gradient(135deg,#06b6d4,#3b82f6)',
+      'linear-gradient(135deg,#10b981,#06b6d4)'
+    ];
 
     async function init() {
       await login();
@@ -247,27 +348,9 @@
 
     function renderTools(tools) {
       const VIP_IDS = [9, 10, 17];
-      const HOT_IDS = [1, 3, 5, 8];
-      const NEW_IDS = [17, 15];
-      const ICON_PATHS = {
-        1:'images/tool-1.jpg',2:'images/tool-2.jpg',3:'images/tool-3.jpg',
-        4:'images/tool-4.jpg',5:'images/tool-5.jpg',6:'images/tool-6.jpg',
-        7:'images/tool-7.jpg',8:'images/tool-8.jpg',9:'images/tool-9.jpg',
-        10:'images/tool-10.jpg',11:'images/tool-11.jpg',12:'images/tool-12.jpg',
-        13:'images/tool-13.jpg',14:'images/tool-14.jpg',15:'images/tool-15.jpg',
-        16:'images/tool-16.jpg',17:'images/tool-17.jpg'
-      };
-      const BGS = [
-        'linear-gradient(135deg,#ff6b9d,#ff8e53)',
-        'linear-gradient(135deg,#a855f7,#ec4899)',
-        'linear-gradient(135deg,#06b6d4,#3b82f6)',
-        'linear-gradient(135deg,#10b981,#06b6d4)'
-      ];
       const grid = document.getElementById('toolGrid');
       grid.innerHTML = tools.map((t, i) => {
         const isVip = VIP_IDS.includes(t.id);
-        const isHot = HOT_IDS.includes(t.id);
-        const isNew = NEW_IDS.includes(t.id);
         const iconSrc = ICON_PATHS[t.id] || '';
         return `
           <div class="tool-card ${isVip ? 'vip' : ''}" onclick="openTool(${t.id})">
@@ -278,22 +361,401 @@
               <span class="tool-price ${isVip ? 'vip' : ''}">${isVip ? '👑 看广告解锁' : '🆓 免费'}</span>
               <span class="tool-count">${t.useCount}人玩过</span>
             </div>
-            ${isNew ? '<div class="new-badge">NEW</div>' : ''}
-            ${isHot ? '<div class="hot-badge">HOT</div>' : ''}
           </div>
         `;
       }).join('');
     }
 
-    function openTool(id) {
-      alert('H5版本仅展示工具列表，完整体验请微信搜索「不正经工具箱」小程序');
+    async function openTool(id) {
+      const res = await api('/tools/detail', 'GET', { toolId: id, userId });
+      if (res.code !== 0 || !res.data) {
+        alert('工具加载失败');
+        return;
+      }
+
+      currentTool = res.data;
+      formData = {};
+
+      document.getElementById('toolIcon').src = ICON_PATHS[id] || '';
+      document.getElementById('toolName').textContent = currentTool.name;
+      document.getElementById('toolDesc').textContent = currentTool.description;
+      document.getElementById('toolCount').textContent = currentTool.useCount + '人玩过';
+
+      const isVip = [9, 10, 17].includes(id);
+      const tag = document.getElementById('toolTag');
+      tag.textContent = isVip ? '👑 看广告解锁' : '🆓 免费使用';
+      tag.className = 'tool-tag ' + (isVip ? 'tag-vip' : 'tag-free');
+
+      renderForm(id);
+      showPage('tool');
+    }
+
+    function renderForm(toolId) {
+      const form = document.getElementById('toolForm');
+      let html = '';
+
+      switch(toolId) {
+        case 1: // AI起名
+          html = `
+            <div class="form-group">
+              <label class="form-label">起名类型</label>
+              <div class="form-options">
+                <div class="form-option active" data-field="type" data-value="pet"> 宠物名</div>
+                <div class="form-option" data-field="type" data-value="web">🌐 网名</div>
+                <div class="form-option" data-field="type" data-value="baby">👶 宝宝名</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">风格偏好</label>
+              <div class="form-options">
+                <div class="form-option active" data-field="style" data-value="cute">可爱风</div>
+                <div class="form-option" data-field="style" data-value="cool">酷炫风</div>
+                <div class="form-option" data-field="style" data-value="literary">文艺范</div>
+                <div class="form-option" data-field="style" data-value="funny">搞笑派</div>
+              </div>
+            </div>
+          `;
+          formData = { type: 'pet', style: 'cute' };
+          break;
+
+        case 2: // 塔罗占卜
+          const zodiacs = ['白羊座','金牛座','双子座','巨蟹座','狮子座','处女座','天秤座','天蝎座','射手座','摩羯座','水瓶座','双鱼座'];
+          html = `
+            <div class="form-group">
+              <label class="form-label">选择你的星座</label>
+              <div class="form-options">
+                ${zodiacs.map((z, i) => `<div class="form-option ${i===0?'active':''}" data-field="zodiac" data-value="${z}">${z}</div>`).join('')}
+              </div>
+            </div>
+          `;
+          formData = { zodiac: '白羊座' };
+          break;
+
+        case 3: // 土味情话
+          html = `
+            <div class="form-group">
+              <label class="form-label">情话类型</label>
+              <div class="form-options">
+                <div class="form-option active" data-field="type" data-value="sweet">日常甜蜜</div>
+                <div class="form-option" data-field="type" data-value="literary">文艺深情</div>
+                <div class="form-option" data-field="type" data-value="funny">搞笑土味</div>
+                <div class="form-option" data-field="type" data-value="ambiguous">暧昧撩人</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">对谁说</label>
+              <div class="form-options">
+                <div class="form-option active" data-field="target" data-value="crush">暗恋对象</div>
+                <div class="form-option" data-field="target" data-value="lover">男/女朋友</div>
+                <div class="form-option" data-field="target" data-value="spouse">老公/老婆</div>
+              </div>
+            </div>
+          `;
+          formData = { type: 'sweet', target: 'crush' };
+          break;
+
+        case 4: // 藏头诗
+          html = `
+            <div class="form-group">
+              <label class="form-label">输入名字（2-4个字最佳）</label>
+              <input type="text" class="form-input" id="inputName" placeholder="比如：我爱你、李白" maxlength="10">
+            </div>
+          `;
+          formData = { name: '' };
+          break;
+
+        case 5: // 表情包
+          html = `
+            <div class="form-group">
+              <label class="form-label">表情包文案</label>
+              <textarea class="form-textarea" id="memeText" placeholder="输入你想加的文字" maxlength="30">上班如上坟</textarea>
+            </div>
+          `;
+          formData = { text: '上班如上坟' };
+          break;
+
+        case 6: // 朋友圈文案
+          html = `
+            <div class="form-group">
+              <label class="form-label">发布场景</label>
+              <div class="form-options">
+                <div class="form-option active" data-field="scene" data-value="food">美食打卡</div>
+                <div class="form-option" data-field="scene" data-value="travel">旅行风景</div>
+                <div class="form-option" data-field="scene" data-value="selfie">自拍美照</div>
+                <div class="form-option" data-field="scene" data-value="daily">日常随拍</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">文案风格</label>
+              <div class="form-options">
+                <div class="form-option active" data-field="style" data-value="literary">文艺清新</div>
+                <div class="form-option" data-field="style" data-value="funny">搞笑沙雕</div>
+                <div class="form-option" data-field="style" data-value="simple">简洁明了</div>
+              </div>
+            </div>
+          `;
+          formData = { scene: 'food', style: 'literary' };
+          break;
+
+        case 7: // 性格测试
+          html = `
+            <div class="form-group">
+              <label class="form-label">1. 周末你更喜欢？</label>
+              <div class="form-options">
+                <div class="form-option active" data-field="q1" data-value="a">宅在家追剧</div>
+                <div class="form-option" data-field="q1" data-value="b">约朋友出去玩</div>
+                <div class="form-option" data-field="q1" data-value="c">学习提升自己</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">2. 遇到困难时你会？</label>
+              <div class="form-options">
+                <div class="form-option active" data-field="q2" data-value="a">自己默默解决</div>
+                <div class="form-option" data-field="q2" data-value="b">找朋友帮忙</div>
+                <div class="form-option" data-field="q2" data-value="c">先放一放再说</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">3. 你更看重什么？</label>
+              <div class="form-options">
+                <div class="form-option active" data-field="q3" data-value="a">事业成就</div>
+                <div class="form-option" data-field="q3" data-value="b">感情幸福</div>
+                <div class="form-option" data-field="q3" data-value="c">自由快乐</div>
+              </div>
+            </div>
+          `;
+          formData = { q1: 'a', q2: 'a', q3: 'a' };
+          break;
+
+        case 8: // 感情塔罗
+          html = `
+            <div class="form-group">
+              <label class="form-label">你的年龄</label>
+              <div class="form-options">
+                <div class="form-option active" data-field="age" data-value="22">18-25岁</div>
+                <div class="form-option" data-field="age" data-value="28">26-30岁</div>
+                <div class="form-option" data-field="age" data-value="33">31-35岁</div>
+                <div class="form-option" data-field="age" data-value="38">35岁以上</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">你的性格</label>
+              <div class="form-options">
+                <div class="form-option active" data-field="personality" data-value="外向">外向开朗</div>
+                <div class="form-option" data-field="personality" data-value="内向">内向慢热</div>
+                <div class="form-option" data-field="personality" data-value="活泼">活泼好动</div>
+                <div class="form-option" data-field="personality" data-value="安静">安静沉稳</div>
+              </div>
+            </div>
+          `;
+          formData = { age: 22, personality: '外向' };
+          break;
+
+        case 9: // 职业规划
+          html = `
+            <div class="form-group">
+              <label class="form-label">你的行业</label>
+              <div class="form-options">
+                <div class="form-option active" data-field="industry" data-value="internet">互联网/IT</div>
+                <div class="form-option" data-field="industry" data-value="finance">金融/经济</div>
+                <div class="form-option" data-field="industry" data-value="education">教育/培训</div>
+                <div class="form-option" data-field="industry" data-value="medical">医疗/健康</div>
+                <div class="form-option" data-field="industry" data-value="other">其他行业</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">工作年限</label>
+              <div class="form-options">
+                <div class="form-option active" data-field="years" data-value="1">1年以内</div>
+                <div class="form-option" data-field="years" data-value="3">1-3年</div>
+                <div class="form-option" data-field="years" data-value="5">3-5年</div>
+                <div class="form-option" data-field="years" data-value="10">5年以上</div>
+              </div>
+            </div>
+          `;
+          formData = { industry: 'internet', years: '1' };
+          break;
+
+        case 10: // 高情商回复
+          html = `
+            <div class="form-group">
+              <label class="form-label">场景类型</label>
+              <div class="form-options">
+                <div class="form-option active" data-field="scene" data-value="greeting">初次聊天</div>
+                <div class="form-option" data-field="scene" data-value="date">约会</div>
+                <div class="form-option" data-field="scene" data-value="conflict">吵架和好</div>
+                <div class="form-option" data-field="scene" data-value="daily">日常聊天</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">对方说了什么？</label>
+              <textarea class="form-textarea" id="eqMessage" placeholder="输入对方说的话" maxlength="200"></textarea>
+            </div>
+          `;
+          formData = { scene: 'greeting', message: '' };
+          break;
+
+        default:
+          html = '<div style="text-align:center;color:#999;padding:20px;">该工具暂无表单</div>';
+      }
+
+      form.innerHTML = html;
+
+      // 绑定选项点击事件
+      form.querySelectorAll('.form-option').forEach(opt => {
+        opt.addEventListener('click', function() {
+          const field = this.dataset.field;
+          const value = this.dataset.value;
+          formData[field] = value;
+
+          // 更新同组选项的active状态
+          this.parentElement.querySelectorAll('.form-option').forEach(o => o.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      // 绑定输入框事件
+      const nameInput = document.getElementById('inputName');
+      if (nameInput) {
+        nameInput.addEventListener('input', function() {
+          formData.name = this.value;
+        });
+      }
+
+      const memeText = document.getElementById('memeText');
+      if (memeText) {
+        memeText.addEventListener('input', function() {
+          formData.text = this.value;
+        });
+      }
+
+      const eqMessage = document.getElementById('eqMessage');
+      if (eqMessage) {
+        eqMessage.addEventListener('input', function() {
+          formData.message = this.value;
+        });
+      }
+    }
+
+    async function generate() {
+      if (!currentTool) return;
+
+      const btn = document.getElementById('generateBtn');
+      btn.disabled = true;
+      btn.textContent = '⏳ 生成中...';
+
+      try {
+        // 创建订单
+        const createRes = await api('/order/create', 'POST', {
+          toolId: currentTool.id,
+          userId: userId,
+          inputParams: formData,
+          useFree: true
+        });
+
+        if (createRes.code !== 0) {
+          alert(createRes.message || '创建订单失败');
+          return;
+        }
+
+        const orderId = createRes.data.orderId;
+
+        // 支付订单（免费订单自动成功）
+        const payRes = await api('/order/pay', 'POST', {
+          orderId: orderId,
+          userId: userId
+        });
+
+        if (payRes.code !== 0) {
+          alert(payRes.message || '生成失败');
+          return;
+        }
+
+        // 显示结果
+        currentResult = payRes.data.result;
+        showResult(currentResult);
+
+      } catch (err) {
+        alert('网络错误，请重试');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '✨ 开始生成';
+      }
+    }
+
+    function showResult(result) {
+      document.getElementById('resultTitle').textContent = currentTool.name + ' - 生成结果';
+
+      let content = '';
+      if (typeof result === 'string') {
+        content = result;
+      } else if (typeof result === 'object') {
+        // 格式化JSON结果
+        content = Object.entries(result).map(([key, value]) => {
+          if (Array.isArray(value)) {
+            return `${key}:\n${value.map((item, i) => `  ${i+1}. ${typeof item === 'string' ? item : JSON.stringify(item)}`).join('\n')}`;
+          }
+          return `${key}: ${typeof value === 'object' ? JSON.stringify(value, null, 2) : value}`;
+        }).join('\n\n');
+      } else {
+        content = JSON.stringify(result, null, 2);
+      }
+
+      document.getElementById('resultContent').textContent = content;
+      showPage('result');
+    }
+
+    function copyResult() {
+      const content = document.getElementById('resultContent').textContent;
+      navigator.clipboard.writeText(content).then(() => {
+        alert('已复制到剪贴板');
+      }).catch(() => {
+        alert('复制失败，请手动复制');
+      });
+    }
+
+    function regenerate() {
+      if (currentTool) {
+        generate();
+      }
+    }
+
+    function showPage(page) {
+      document.querySelectorAll('.page, .tool-detail, .result-page').forEach(p => {
+        p.classList.remove('active');
+      });
+
+      if (page === 'home') {
+        document.getElementById('pageHome').classList.add('active');
+      } else if (page === 'tool') {
+        document.getElementById('pageTool').classList.add('active');
+      } else if (page === 'result') {
+        document.getElementById('pageResult').classList.add('active');
+      }
+
+      window.scrollTo(0, 0);
+    }
+
+    function goHome() {
+      showPage('home');
+    }
+
+    function goBack() {
+      if (currentTool) {
+        showPage('tool');
+      } else {
+        showPage('home');
+      }
     }
 
     function switchTab(tab) {
       document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
       event.currentTarget.classList.add('active');
-      if (tab === 'profile') {
-        alert('请微信搜索「不正经工具箱」小程序体验完整功能');
+
+      if (tab === 'home') {
+        showPage('home');
+      } else if (tab === 'profile') {
+        alert('个人中心功能开发中，请使用小程序体验完整功能');
       }
     }
 
@@ -310,6 +772,7 @@
       return res.json();
     }
 
+    // 初始化
     init();
   </script>
 </body>
