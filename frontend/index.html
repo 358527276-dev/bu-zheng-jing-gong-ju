@@ -74,6 +74,43 @@
     .user-info-display img {
       width: 24px; height: 24px; border-radius: 50%;
     }
+    .miniprogram-btn {
+      margin-top: 12px; padding: 10px 20px; border-radius: 20px;
+      background: linear-gradient(135deg, #07c160, #06ad56);
+      color: #fff; border: none; font-size: 14px; font-weight: 600;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .miniprogram-btn:hover { opacity: 0.9; }
+
+    /* 小程序码弹窗 */
+    .modal-overlay {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7); z-index: 1000;
+      justify-content: center; align-items: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-content {
+      background: #fff; border-radius: 20px; padding: 32px;
+      max-width: 360px; text-align: center; position: relative;
+    }
+    .modal-close {
+      position: absolute; top: 12px; right: 12px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #f3f4f6; border: none; font-size: 20px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .modal-title { font-size: 20px; font-weight: 700; margin-bottom: 16px; color: var(--text); }
+    .modal-desc { font-size: 14px; color: var(--text-light); margin-bottom: 20px; line-height: 1.6; }
+    .qrcode-placeholder {
+      width: 200px; height: 200px; margin: 0 auto 20px;
+      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: #9ca3af; border: 2px dashed #d1d5db;
+    }
+    .modal-tips {
+      font-size: 12px; color: #9ca3af; margin-top: 16px;
+      padding: 12px; background: #f9fafb; border-radius: 8px;
+    }
 
     .cat-bar {
       display: flex; gap: 8px; overflow-x: auto; margin-bottom: 16px;
@@ -254,6 +291,10 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.045c.134 0 .24-.11.24-.245 0-.06-.024-.12-.04-.178l-.325-1.233a.492.492 0 0 1 .177-.554C23.074 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.269-.03-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982z"/></svg>
             微信登录
           </button>
+          <button class="miniprogram-btn" onclick="showMiniProgramQR()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            使用小程序
+          </button>
           <div class="user-info-display" id="userInfoDisplay" style="display:none;">
             <img id="userAvatar" src="" alt="">
             <span id="userName"></span>
@@ -317,6 +358,37 @@
     </div>
     <div class="tab-item" onclick="switchTab('profile')">
       <span class="tab-icon">👤</span><span>我的</span>
+    </div>
+  </div>
+
+  <!-- 小程序码弹窗 -->
+  <div class="modal-overlay" id="miniprogramModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeMiniProgramQR()">×</button>
+      <div class="modal-title">📱 微信搜索「不正经工具箱」</div>
+      <div class="modal-desc">
+        小程序版功能更完整<br>
+        支持微信登录、看广告解锁VIP工具
+      </div>
+      <div class="qrcode-placeholder">
+        <div>
+          <div style="font-size:48px;margin-bottom:8px;">📱</div>
+          <div>小程序码占位</div>
+          <div style="font-size:11px;margin-top:4px;">请在微信公众平台生成小程序码<br>替换此占位图</div>
+        </div>
+      </div>
+      <div style="font-size:14px;color:var(--text);font-weight:600;margin-bottom:8px;">
+        或直接在微信搜索
+      </div>
+      <div style="padding:12px;background:linear-gradient(135deg,#f3f4f6,#e5e7eb);border-radius:12px;font-size:16px;font-weight:700;color:var(--primary);">
+        不正经工具箱
+      </div>
+      <div class="modal-tips">
+        💡 小程序版优势：<br>
+        • 微信一键登录，数据云端同步<br>
+        • 看广告免费解锁VIP工具<br>
+        • 每日免费次数 + 赠送次数
+      </div>
     </div>
   </div>
 
@@ -416,6 +488,21 @@
         userInfoDisplay.style.display = 'none';
       }
     }
+
+    function showMiniProgramQR() {
+      document.getElementById('miniprogramModal').classList.add('active');
+    }
+
+    function closeMiniProgramQR() {
+      document.getElementById('miniprogramModal').classList.remove('active');
+    }
+
+    // 点击弹窗外部关闭
+    document.getElementById('miniprogramModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeMiniProgramQR();
+      }
+    });
 
     async function loadTools() {
       const res = await api('/tools/list', 'GET', { category: currentCat, userId });
