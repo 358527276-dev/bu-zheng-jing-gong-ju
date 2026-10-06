@@ -32,6 +32,16 @@
     </view>
   </view>
 
+  <!-- 次数不足时的赚次数入口 -->
+  <view class="card earn-card" wx:if="{{dailyFreeLeft === 0 && freeUses === 0}}">
+    <view class="earn-title">次数用完啦，继续白嫖</view>
+    <view class="earn-btns">
+      <view class="earn-btn earn-ad" bindtap="goWallet">📺 看广告+1</view>
+      <button class="earn-btn earn-share" open-type="share">🎁 分享解锁</button>
+      <view class="earn-btn earn-invite" bindtap="goInvite">👥 邀请+15</view>
+    </view>
+  </view>
+
   <!-- 动态表单 -->
   <view class="card form-card">
     <view class="form-card-title">✨ 填写参数</view>

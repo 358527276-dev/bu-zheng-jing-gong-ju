@@ -28,7 +28,8 @@ Page({
     dailyFreeLeft: 0,
     isVipTool: false,
     iconBg: '',
-    submitting: false
+    submitting: false,
+    shareUnlocked: false  // 今日是否已通过分享解锁
   },
 
   onLoad(options) {
@@ -93,6 +94,10 @@ Page({
 
   goWallet() {
     wx.navigateTo({ url: '/pages/wallet/wallet' });
+  },
+
+  goInvite() {
+    wx.navigateTo({ url: '/pages/invite/invite' });
   },
 
   async handleGenerate() {
@@ -162,9 +167,37 @@ Page({
     }
   },
 
+  // 分享解锁：次数不足时，分享到群/好友可白嫖1次
+  async handleShareUnlock() {
+    const today = new Date().toDateString();
+    const lastShareDay = wx.getStorageSync('share_unlock_day');
+    if (lastShareDay === today) {
+      wx.showToast({ title: '今日已分享解锁过啦~', icon: 'none' });
+      this.setData({ shareUnlocked: true });
+      return;
+    }
+    // 触发分享
+    wx.showModal({
+      title: '🎁 分享解锁',
+      content: '把工具分享到群或好友，立得1次免费使用！',
+      confirmText: '去分享',
+      success: (res) => {
+        if (res.confirm) {
+          wx.setStorageSync('share_unlock_day', today);
+          wx.showToast({ title: '分享后回来继续~', icon: 'success' });
+          this.setData({ shareUnlocked: true });
+        }
+      }
+    });
+  },
+
   onShareAppMessage() {
     const app = getApp();
     api.recordShare(app.globalData.userId, 'tool', this.toolId);
+    // 分享解锁回调
+    const today = new Date().toDateString();
+    wx.setStorageSync('share_unlock_day', today);
+    this.setData({ shareUnlocked: true });
     return {
       title: `我用「${this.data.tool.name}」整了个活，快来看！`,
       path: '/pages/index/index?invite=' + ((app.globalData.userInfo || {}).inviteCode || '')

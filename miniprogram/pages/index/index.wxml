@@ -11,6 +11,13 @@
     <view class="hero-cta" bindtap="goWallet">看广告得次数 →</view>
   </view>
 
+  <!-- 分享赚钱Banner -->
+  <button class="share-banner" open-type="share">
+    <text class="share-banner-icon">🎁</text>
+    <text class="share-banner-text">分享好友 · 邀1人得15次</text>
+    <text class="share-banner-arrow">›</text>
+  </button>
+
   <!-- 分类 -->
   <scroll-view scroll-x class="cat-bar" enhanced show-scrollbar="{{false}}">
     <view

@@ -196,3 +196,51 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* ===== 赚次数入口 ===== */
+.earn-card {
+  padding: 28rpx 24rpx !important;
+  background: linear-gradient(135deg, #fef3c7, #fde68a) !important;
+  border: 2rpx solid #f59e0b;
+}
+
+.earn-title {
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 20rpx;
+}
+
+.earn-btns {
+  display: flex;
+  gap: 16rpx;
+}
+
+.earn-btn {
+  flex: 1;
+  text-align: center;
+  padding: 18rpx 0;
+  border-radius: 16rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.earn-ad {
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+  color: #fff;
+}
+
+.earn-share {
+  background: linear-gradient(135deg, #ec4899, #f43f5e);
+  color: #fff;
+  border: none;
+  line-height: normal;
+}
+
+.earn-share::after { border: none; }
+
+.earn-invite {
+  background: linear-gradient(135deg, #8b5cf6, #d946ef);
+  color: #fff;
+}
